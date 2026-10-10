@@ -20,7 +20,7 @@
   --pk:#E0508C;--lav:#D4BBFF;--wine:#A3004F;--vio:#7B2FC4;--ok:#7BE0B0;
   --grad:linear-gradient(120deg,#B0105C 0%,#7B2FC4 100%);
   --grad-t:linear-gradient(120deg,#EAD4FF 0%,#E09BDC 48%,#FF9CC0 100%);
-  --r:22px;--gut:clamp(18px,4.5vw,72px)
+  --r:22px;--gut:clamp(16px,2.6vw,44px)
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -28,7 +28,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Manrope,sy
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(60% 40% at 85% 0%,rgba(176,16,92,.22),transparent 70%),radial-gradient(50% 40% at 0% 30%,rgba(123,47,196,.16),transparent 70%)}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--lav);outline-offset:3px;border-radius:8px}
-.w{width:100%;max-width:1320px;margin:0 auto;padding-inline:var(--gut)}
+.w{width:100%;max-width:none;margin:0 auto;padding-inline:var(--gut)}
 h1,h2,h3{font-family:"Bricolage Grotesque",Manrope,sans-serif;margin:0;letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
 h1{font-weight:800;font-size:clamp(40px,5.4vw,80px)}
 h2{font-weight:800;font-size:clamp(32px,4.2vw,58px)}
@@ -88,8 +88,8 @@ small.note{display:block;color:var(--dim);font-size:13px;line-height:1.5;margin-
 .facts svg{color:var(--pk)}
 .stage{position:relative;aspect-ratio:4/5;max-width:520px;justify-self:center;width:100%;perspective:1200px}
 .tilt{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-.stage .card{position:absolute;left:5%;right:5%;top:24%;bottom:0;border-radius:36px 36px 0 0;background:radial-gradient(90% 70% at 20% 0%,#D02A78 0%,transparent 60%),linear-gradient(160deg,#B0105C 0%,#7B2FC4 100%);box-shadow:0 40px 90px -30px rgba(176,16,92,.6),inset 0 1px 0 rgba(255,255,255,.2);-webkit-mask-image:linear-gradient(#000 84%,transparent);mask-image:linear-gradient(#000 84%,transparent)}
-.stage .cut{position:absolute;left:3%;bottom:0;width:86%;height:auto;transform:translateZ(60px);filter:drop-shadow(0 28px 34px rgba(8,0,6,.5));pointer-events:none;-webkit-mask-image:linear-gradient(#000 86%,transparent);mask-image:linear-gradient(#000 86%,transparent)}
+.stage .card{position:absolute;left:3%;right:3%;top:30%;bottom:0;border-radius:36px 36px 0 0;background:radial-gradient(90% 70% at 20% 0%,#D02A78 0%,transparent 60%),linear-gradient(160deg,#B0105C 0%,#7B2FC4 100%);box-shadow:0 40px 90px -30px rgba(176,16,92,.6),inset 0 1px 0 rgba(255,255,255,.2);-webkit-mask-image:linear-gradient(#000 84%,transparent);mask-image:linear-gradient(#000 84%,transparent)}
+.stage .cut{position:absolute;left:0;bottom:0;width:100%;height:auto;transform:translateZ(60px);filter:drop-shadow(0 28px 34px rgba(8,0,6,.5));pointer-events:none;-webkit-mask-image:linear-gradient(#000 86%,transparent);mask-image:linear-gradient(#000 86%,transparent)}
 .chip{position:absolute;padding:12px 16px;border-radius:18px;background:rgba(33,16,25,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);line-height:1.25;box-shadow:0 18px 40px -16px rgba(0,0,0,.6)}
 .chip b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:17px}
 .chip span{font-size:12px;color:var(--mute)}
@@ -203,7 +203,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:center}
-.aimg{position:relative;border-radius:30px;overflow:hidden;aspect-ratio:4/5;background:var(--grad)}
+.aimg{position:relative;border-radius:30px;overflow:hidden;aspect-ratio:1/1;background:var(--grad)}
 .aimg img{position:absolute;inset:auto 0 0 0;width:100%;height:auto}
 .aimg .tagc{position:absolute;left:16px;top:16px;padding:8px 14px;border-radius:999px;background:rgba(26,10,20,.7);backdrop-filter:blur(10px);font-size:13px;font-weight:800}
 .about blockquote{margin:22px 0 0;font-size:clamp(18px,1.6vw,21px);color:var(--mute)}
@@ -410,7 +410,7 @@ footer details p{max-width:80ch}
   <div class="stage rv d2" id="stage">
     <div class="tilt" id="tilt">
       <div class="card"></div>
-      <img class="cut" src="/img/cimey.webp" width="840" height="1120" alt="Juliani (Cimey), UGC creator and mentor" fetchpriority="high">
+      <img class="cut" src="/img/cimey-course.webp" width="1000" height="705" alt="Juliani (Cimey), UGC creator and mentor" fetchpriority="high">
       <div class="chip math"><span>The $1,000 math</span><div class="eq">5 brands <i>×</i> $200 <i>=</i> <em>$1,000</em></div></div>
       <div class="chip cal"><div class="av"><i></i><i></i><i></i></div><div><b>Weekly call</b><span>Thursdays · 7 pm WIB</span></div></div>
       <div class="ph intro" data-src="/videos/intro.mp4" data-poster="/videos/intro.jpg"><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Watch Cimey's 30-second intro"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Hi, I'm Cimey</span></div></div>
@@ -434,7 +434,7 @@ footer details p{max-width:80ch}
 
 <!-- PROBLEM -->
 <section id="why"><div class="w">
-  <div class="sech"><div><span class="eyebrow rv">Why most people stall</span><h2 class="rv d1" style="margin-top:14px">Beginners get stuck at <span class="g">the same three places.</span></h2></div><p class="lead rv">Free tutorials explain the idea of UGC. Nobody looks at your actual video and tells you what to change.</p></div>
+  <div class="sech"><div><span class="eyebrow rv">Why most people stall</span><h2 class="rv d1" style="margin-top:14px">Beginners get stuck at <span class="g">the same three places.</span></h2></div><p class="lead rv">Free tutorials explain what UGC is. Nobody watches your video and tells you what to change.</p></div>
   <div class="stuck">
     <article class="sk rv"><span class="n">01 · WHAT TO FILM</span><h3>You open the camera and freeze.</h3><p>Without a brief or a format to follow, every idea feels wrong, so the portfolio never gets made.</p><div class="q">"I've been 'starting next week' for two months."</div><div class="fix">✓ Week 1 to 3: scripts and three portfolio videos</div></article>
     <article class="sk rv d1"><span class="n">02 · WHOM TO WRITE</span><h3>You know brands pay. You don't know which ones.</h3><p>You send two DMs, get no answer and decide UGC doesn't work for people without followers.</p><div class="q">"Do I need 10k followers first?" (No.)</div><div class="fix">✓ Week 4 to 5: brand list, pitch template, 20 pitches out</div></article>
@@ -456,14 +456,14 @@ footer details p{max-width:80ch}
     <div class="cres rv d1" aria-live="polite">
       <div><span class="lbl">Estimated monthly income</span><div class="big"><span id="oTot">$690</span><small>/ month</small></div></div>
       <div class="goalbar"><div class="tr"><div class="fl" id="gFill"></div><div class="mk" id="gMk"><span>$1,000 goal</span></div></div><div class="st" id="gSt">Two more videos at this price and you're there.</div></div>
-      <p class="fine">This is a calculator, not a forecast. Finding clients takes time, and your numbers depend on niche, consistency and how many brands you pitch.</p>
+      <p class="fine">The calculator is an illustration. Finding clients takes time, and your numbers depend on your niche, your consistency and how many brands you pitch.</p>
     </div>
   </div>
 </div></section>
 
 <!-- DELIVERABLES -->
 <section id="get" style="background:var(--bg2)"><div class="w">
-  <div class="sech"><div><span class="eyebrow rv">What you leave with</span><h2 class="rv d1" style="margin-top:14px">Eight weeks later, <span class="g">you have these.</span></h2></div><p class="lead rv">Things you can show a brand on Monday, not a folder of lessons you'll watch "later".</p></div>
+  <div class="sech"><div><span class="eyebrow rv">What you leave with</span><h2 class="rv d1" style="margin-top:14px">Eight weeks later, <span class="g">you have these.</span></h2></div><p class="lead rv">Things you can show a brand next Monday.</p></div>
   <div class="bento">
     <article class="bx b1 rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M11 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>A portfolio of 3 to 5 videos</h3><p>Shot on your phone in the formats brands buy most: talking head, product demo, unboxing and app screen recording. Juliani reviews each one before it goes in.</p>
       <div class="mini-ph"><i style="background-image:url(/videos/seyra.jpg)"></i><i style="background-image:url(/videos/heygen.jpg)"></i><i style="background-image:url(/videos/superchinese.jpg)"></i></div></article>
@@ -497,14 +497,14 @@ footer details p{max-width:80ch}
 <!-- ABOUT + WORK -->
 <section id="work" style="background:var(--bg2)"><div class="w">
   <div class="about">
-    <div class="aimg rv"><img src="/img/cimey.webp" width="840" height="1120" alt="Juliani, known as Cimey" loading="lazy"><span class="tagc">📍 Pekanbaru, Indonesia</span></div>
+    <div class="aimg rv"><img src="/img/cimey-course.webp" width="1000" height="705" alt="Juliani, known as Cimey" loading="lazy"><span class="tagc">📍 Pekanbaru, Indonesia</span></div>
     <div>
       <span class="eyebrow rv">Your mentor</span>
       <h2 class="rv d1" style="margin-top:14px">Hi, I'm Juliani. <span class="g">Most people call me Cimey.</span></h2>
       <blockquote class="rv d2">
         <p>I make UGC for brands in English and Bahasa Indonesia, from language apps and AI tools to skincare and travel. <b>I've worked with 30+ brands</b> and kept a 5.0 rating on Fiverr.</p>
-        <p>I started with no audience, no camera and no idea what to charge. The first months were slow because I had to work everything out alone. This group is the shortcut I wish I'd had: a small room, real feedback, and someone who still pitches brands every week.</p>
-        <p><b>I keep it to 8 people</b> so I can actually watch your videos.</p>
+        <p>I still pitch brands every week, so what I teach is what I did last week. In this group you get what is hard to find alone: someone who watches your videos and tells you what to change.</p>
+        <p><b>The group is capped at 8</b> so I can watch every video you send.</p>
       </blockquote>
       <div class="sig rv d3"><a href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener">Instagram @cimeygallery</a><a href="https://www.fiverr.com/cimeygallery" target="_blank" rel="noopener">Fiverr · 5.0</a><a href="https://cimey-ugc.vercel.app" target="_blank" rel="noopener">Brand portfolio</a></div>
     </div>
@@ -601,9 +601,9 @@ footer details p{max-width:80ch}
   <div class="faq">
     <details class="rv"><summary>Do I need followers?</summary><p>No. Brands pay UGC creators for the video file and post it on their own accounts and ads. Your follower count rarely comes up.</p></details>
     <details class="rv"><summary>Do I need a camera or special gear?</summary><p>No. A phone from the last 4 to 5 years, daylight from a window and a quiet room are enough. We'll talk about a $10 to $20 mic only if you want one.</p></details>
-    <details class="rv"><summary>Will I earn $1,000 a month?</summary><p>That's the goal we build toward, and I can't promise it. Some people land a first paid order during the program, others need a few more months of pitching. What I can promise is that you'll know what to send, to whom and for how much.</p></details>
+    <details class="rv"><summary>Will I earn $1,000 a month?</summary><p>That is the goal we build toward, and I cannot promise it. Some people land a first paid order during the program, others need a few more months of pitching. By week 8 you will have a portfolio, a pitch that works and a price list.</p></details>
     <details class="rv"><summary>I live in a different time zone. What about the calls?</summary><p>Calls are on Thursdays at 7 pm WIB (UTC+7) and every call is recorded. You can send questions before the call and watch the answers later.</p></details>
-    <details class="rv"><summary>How is this different from a video course?</summary><p>A course gives you lessons. Here you get the lessons plus someone who checks your videos and pitches each week, in a group small enough that she knows your name.</p></details>
+    <details class="rv"><summary>How is this different from a video course?</summary><p>A course gives you lessons. Here you also get someone who checks your videos and pitches each week, in a group small enough that she knows your name.</p></details>
     <details class="rv"><summary>What happens after I apply?</summary><p>Juliani reads every application and replies within 48 hours on the channel you choose. If the group fits, you get a payment link. If it doesn't, she'll tell you honestly and suggest what to do instead.</p></details>
     <details class="rv"><summary>I speak Bahasa Indonesia. Is there a group in Indonesian?</summary><p>Yes, with its own page and a price in rupiah. Leave your email below and you'll get the link when it opens.</p></details>
   </div>
