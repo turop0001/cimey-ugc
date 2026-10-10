@@ -173,6 +173,80 @@ footer{padding:34px 0 100px;color:var(--dim);font-size:14px}
 
 .pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;color:var(--lav);margin-bottom:22px}
 .pill b{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.18)}
+
+/* hero stage (3D portrait) */
+.hgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,72px);align-items:center}
+.stage{position:relative;width:100%;max-width:600px;margin-inline:auto;aspect-ratio:4/5;perspective:1200px}
+.tilt{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.stage .card{position:absolute;left:4%;right:4%;top:30%;bottom:0;border-radius:32px 32px 0 0;background:radial-gradient(90% 70% at 20% 0%,#C0206A 0%,transparent 60%),linear-gradient(160deg,#A3004F 0%,#7B2FC4 100%);box-shadow:0 40px 90px -30px rgba(163,0,79,.6),inset 0 1px 0 rgba(255,255,255,.18);transform:translateZ(0)}
+.stage .cut{position:absolute;left:4%;bottom:0;width:92%;height:auto;transform:translateZ(70px);filter:drop-shadow(0 28px 34px rgba(8,0,6,.5));pointer-events:none}
+.chip{position:absolute;padding:12px 18px;border-radius:999px;background:rgba(23,7,15,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);display:flex;flex-direction:column;line-height:1.2;box-shadow:0 18px 40px -16px rgba(0,0,0,.6)}
+.chip b{font-family:"Bricolage Grotesque",Manrope,sans-serif;font-size:16px}
+.chip span{font-size:12px;color:var(--mute)}
+.chip.c1{left:-2%;top:46%;transform:translateZ(120px)}
+.chip.c2{left:8%;bottom:7%;transform:translateZ(100px)}
+.stage .ph.intro{position:absolute;right:-3%;bottom:9%;width:33%;transform:translateZ(150px) rotateZ(5deg)}
+@media(max-width:1000px){.hgrid{grid-template-columns:1fr}.stage{max-width:460px;margin-top:20px}.stage .ph.intro{right:0}.chip.c1{left:0}}
+@media(max-width:520px){.chip{padding:9px 14px}.chip b{font-size:14px}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@media(prefers-reduced-motion:no-preference){.stage .ph.intro{animation:bob 6s ease-in-out infinite}.chip.c1{animation:bob 7s ease-in-out -2s infinite}.chip.c2{animation:bob 8s ease-in-out -4s infinite}}
+/* phone frame */
+.ph{position:relative;margin:0;aspect-ratio:9/19;border-radius:34px;padding:7px;background:#0b0408;border:1px solid #5a2342;box-shadow:0 30px 60px -24px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.05)}
+.ph .scr{position:relative;width:100%;height:100%;border-radius:27px;overflow:hidden;background:radial-gradient(120% 80% at 50% 0%,#4a1237 0%,transparent 70%),linear-gradient(170deg,#1f0b16,#2a0f3d)}
+.ph .scr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .nt{position:absolute;top:9px;left:50%;translate:-50% 0;width:34%;height:14px;border-radius:999px;background:#0b0408;z-index:3}
+.ph .pl{position:absolute;left:50%;top:50%;translate:-50% -50%;width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;cursor:pointer;z-index:2;backdrop-filter:blur(6px);transition:transform .2s,background .2s}
+.ph .pl:disabled{cursor:default;opacity:.8}
+.ph.has .pl:hover{transform:scale(1.08);background:rgba(255,255,255,.22)}
+.ph.playing .pl{opacity:0}
+.ph .tg{position:absolute;left:12px;bottom:12px;z-index:2;padding:6px 12px;border-radius:999px;background:rgba(11,4,8,.6);border:1px solid rgba(255,255,255,.14);font-size:12px;font-weight:700;color:#fff}
+.reels{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px 4px 30px;margin-top:20px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.reels .ph{flex:none;width:clamp(190px,17vw,250px);scroll-snap-align:start;transition:transform .3s}
+.reels .ph:hover{transform:translateY(-8px) rotateZ(-1deg)}
+.reels:focus-visible{outline:2px solid var(--lav);outline-offset:4px;border-radius:12px}
+
+/* ---- compact rhythm + infographics (v15) ---- */
+section{padding:clamp(40px,5vw,76px) 0}
+.sech{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(20px,3vw,36px)}
+.sech .lead{margin:0;max-width:44ch}
+.hero{padding:clamp(28px,3.5vw,52px) 0 0}
+.hero h1{font-size:clamp(38px,4.7vw,74px)}
+.hero .lead{margin-top:16px}
+.cta-row{margin-top:26px}
+.stats{margin-top:clamp(24px,3vw,44px)}
+.stat{padding:22px 24px}
+.strs{display:block;margin-top:8px;color:var(--pk);letter-spacing:.18em;font-style:normal;font-size:15px}
+.lg{display:flex;gap:6px;margin-top:10px;font-style:normal}
+.lg em{font-style:normal;font-weight:800;font-size:12px;letter-spacing:.08em;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--lav)}
+.stage{max-width:520px}
+.stage .ph.intro{right:2%}
+.marq{margin-top:clamp(28px,3vw,44px)}
+.reels{padding-top:22px;padding-bottom:20px;margin-top:8px}
+/* niches */
+.nx{display:grid;gap:14px}
+.nr{display:grid;grid-template-columns:64px minmax(0,1.3fr) minmax(0,1fr);gap:clamp(16px,3vw,40px);align-items:center;padding:clamp(20px,2.4vw,30px) clamp(20px,2.6vw,34px);border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(120deg,rgba(163,0,79,.12),rgba(123,47,196,.08) 60%,transparent),var(--card)}
+.nr .no{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;line-height:1;background:var(--grad-t);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nr h3{font-size:clamp(22px,2.3vw,32px);font-weight:800;letter-spacing:-.03em}
+.nr p{margin:8px 0 0;color:var(--mute);font-size:16px;max-width:54ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none;justify-content:flex-end}
+.chips li{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:13px;font-weight:700;color:var(--lav)}
+@media(max-width:900px){.nr{grid-template-columns:48px 1fr}.nr .chips{grid-column:1/-1;justify-content:flex-start}}
+/* timeline */
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,36px);position:relative}
+.tl::before{content:"";position:absolute;left:22px;right:22px;top:22px;height:2px;background:linear-gradient(90deg,#A3004F,#7B2FC4 55%,#CDB0FF);opacity:.8}
+.tl li{position:relative;padding-top:64px}
+.tl .dot{position:absolute;left:0;top:0;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px;background:var(--bg);border:2px solid var(--pk);color:#fff;box-shadow:0 0 0 6px var(--bg)}
+.tl .dot.end{background:var(--grad);border-color:transparent}
+.tl h3{font-size:clamp(20px,1.8vw,26px);font-weight:800}
+.tl p{margin:8px 0 0;color:var(--mute);font-size:15.5px}
+@media(max-width:860px){.tl{grid-template-columns:1fr;gap:6px}.tl::before{left:22px;right:auto;top:22px;bottom:22px;width:2px;height:auto;background:linear-gradient(180deg,#A3004F,#7B2FC4 55%,#CDB0FF)}.tl li{padding:4px 0 22px 66px}}
+.rl{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:var(--lav);text-decoration:none;border-bottom:1px solid var(--line)}
+.rl:hover{border-color:var(--lav)}
+.reels{-webkit-mask-image:linear-gradient(90deg,#000 90%,transparent);mask-image:linear-gradient(90deg,#000 90%,transparent)}
+.nr{grid-template-columns:64px minmax(0,1.2fr) minmax(300px,1fr)}
+.stage .card,.stage .cut{-webkit-mask-image:linear-gradient(#000 84%,transparent 100%);mask-image:linear-gradient(#000 84%,transparent 100%)}
+.rev{padding:clamp(22px,3vw,38px)}
+.final{padding:clamp(36px,5vw,72px) clamp(22px,4vw,64px)}
 /* booking dialog */
 .btn{font-family:inherit}
 dialog.bk{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:28px;background:var(--bg2);color:var(--ink);overflow:auto;box-shadow:0 40px 120px -20px rgba(0,0,0,.8)}
@@ -231,16 +305,29 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 
 <section class="hero"><div class="glow a"></div><div class="glow b"></div>
 <div class="w">
+  <div class="hgrid">
+  <div class="hcopy">
   <div class="pill"><b></b>2 slots open this month</div>
   <h1>Short product videos in <span class="g">English and Bahasa Indonesia.</span></h1>
   <p class="lead">I'm Juliani, a UGC creator in Indonesia. I make videos under 30 seconds for AI, SaaS, travel and beauty brands.</p>
   <div class="cta-row"><button type="button" class="btn" data-book>Get a free consultation</button><a class="btn o" href="#work">See my work</a></div>
+  </div>
+  <div class="stage" id="stage" aria-hidden="false">
+   <div class="tilt" id="tilt">
+    <div class="card"></div>
+    <img class="cut" src="img/cimey.webp" width="840" height="1120" alt="Juliani (Cimey), UGC creator in Indonesia" fetchpriority="high">
+    <div class="chip c1"><b>EN + Bahasa</b><span>native in both</span></div>
+    <div class="chip c2"><b>Pekanbaru</b><span>Riau, Indonesia</span></div>
+    <figure class="ph intro" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play intro video" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Intro</span></div></figure>
+   </div>
+  </div>
+  </div>
 
   <div class="stats rv">
     <div class="stat"><b>30+</b><span>brands, local and international</span></div>
     <div class="stat"><b>10M+</b><span>organic views for clients</span></div>
-    <div class="stat"><b>5.0<i class="st">★</i></b><span>from 22 reviews, Fiverr Level 2</span></div>
-    <div class="stat"><b>2</b><span>languages, native in both</span></div>
+    <div class="stat"><b>5.0<i class="st">★</i></b><span>from 22 reviews, Fiverr Level 2</span><i class="strs" aria-hidden="true">★★★★★</i><a class="rl" href="https://www.fiverr.com/cimeygallery" target="_blank" rel="noopener">Read reviews on Fiverr ↗</a></div>
+    <div class="stat"><b>2</b><span>languages, native in both</span><i class="lg" aria-hidden="true"><em>EN</em><em>ID</em></i></div>
   </div>
 </div>
 <!-- SHOWREEL SLOT: when the 20-second vertical reel is ready, add a section here with a 9:16 video next to the hero text. -->
@@ -259,32 +346,34 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 </section>
 
 <section id="work"><div class="w">
- <h2 class="rv">Formats I shoot most</h2>
- <p class="lead rv">The videos for each format are on my Instagram.</p>
- <div class="bento">
-  <a class="tile t1 rv" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ar" aria-hidden="true">↗</span><small>AI apps, talking head</small><b>Problem, demo and result in under 30 seconds</b></a>
-  <a class="tile t2 rv" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ar" aria-hidden="true">↗</span><small>SaaS, screen demo</small><b>Voiceover over a screen recording</b></a>
-  <a class="tile t3 rv" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ar" aria-hidden="true">↗</span><small>Travel, eSIM</small><b>Lifestyle storytelling</b></a>
-  <a class="tile t4 rv" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ar" aria-hidden="true">↗</span><small>Bahasa Indonesia</small><b>Native ads for a market of 280M people</b></a>
+ <h2 class="rv">Selected work</h2>
+ <p class="lead rv">Vertical videos for AI, SaaS, travel and beauty brands, in English and Bahasa Indonesia.</p>
+ <!-- VIDEOS: put each mp4 (vertical 9:16, under 12 MB, H.264) into the /videos folder and set data-src="videos/name.mp4" and data-poster="videos/name.jpg" on a figure below. Same for the intro video in the hero. -->
+ <div class="reels" id="reels" tabindex="0" aria-label="Work examples">
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 1: AI app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">AI app</span></div></figure>
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 2: SaaS demo" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">SaaS demo</span></div></figure>
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 3: Travel" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Travel</span></div></figure>
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 4: eSIM" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">eSIM</span></div></figure>
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 5: Beauty" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Beauty</span></div></figure>
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 6: Bahasa Indonesia" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Bahasa Indonesia</span></div></figure>
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 7: AI app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">AI app</span></div></figure>
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 8: SaaS demo" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">SaaS demo</span></div></figure>
+  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 9: Travel" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Travel</span></div></figure>
+  
  </div>
  <p class="more"><a class="btn o" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener">See my work on Instagram ↗</a></p>
 </div></section>
 
 <section id="niches" class="alt"><div class="w">
- <h2 class="rv">Niches</h2>
- <div class="rows">
-  <div class="row rv"><h3>AI, SaaS and apps</h3><p>Screen demos, problem and solution hooks, and short feature explainers that give viewers a reason to install.</p></div>
-  <div class="row rv"><h3>Travel, hotels and food</h3><p>Hotel, restaurant and travel reels shot on location in Pekanbaru and across Indonesia, with Bali available when the brand covers travel and stay.</p></div>
-  <div class="row rv"><h3>Beauty and skincare</h3><p>Routines, texture shots and honest reviews in English or Bahasa for brands that ship within Southeast Asia.</p></div>
+ <div class="sech"><h2 class="rv">Niches</h2><p class="lead rv">Three categories I know well, each with its own formats.</p></div>
+ <div class="nx">
+  <article class="nr rv"><span class="no">01</span><div class="nb"><h3>AI, SaaS and apps</h3><p>Screen demos, problem and solution hooks, and short feature explainers that give viewers a reason to install.</p></div><ul class="chips"><li>Talking head</li><li>Screen demo</li><li>Voiceover</li><li>Feature explainer</li></ul></article>
+  <article class="nr rv"><span class="no">02</span><div class="nb"><h3>Travel, hotels and food</h3><p>Hotel, restaurant and travel reels shot on location in Pekanbaru and across Indonesia, with Bali available when the brand covers travel and stay.</p></div><ul class="chips"><li>On location</li><li>Lifestyle story</li><li>eSIM and travel apps</li><li>Bali on request</li></ul></article>
+  <article class="nr rv"><span class="no">03</span><div class="nb"><h3>Beauty and skincare</h3><p>Routines, texture shots and honest reviews in English or Bahasa for brands that ship within Southeast Asia.</p></div><ul class="chips"><li>Routine</li><li>Texture shots</li><li>Honest review</li><li>English or Bahasa</li></ul></article>
  </div>
 </div></section>
 
-<section style="padding-block:clamp(48px,6vw,88px)"><div class="w">
- <div class="rev rv">
-  <div><div class="big">5.0<i class="st">★</i> from 22 clients</div><p>Verified client reviews on Fiverr.</p></div>
-  <a class="btn o" href="https://www.fiverr.com/cimeygallery" target="_blank" rel="noopener">Read reviews on Fiverr ↗</a>
- </div>
-</div></section>
+
 
 <section id="consult" class="alt"><div class="w split">
  <div class="stk rv">
@@ -301,13 +390,13 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 </div></section>
 
 <section id="process"><div class="w">
- <h2 class="rv">From brief to ad in 7 days</h2>
- <div class="steps">
-  <div class="rv"><h3>Free consultation</h3><p>A quick written chat to align on product, audience and goal. Then you get a custom quote.</p></div>
-  <div class="rv"><h3>Script</h3><p>I write hooks and a script for your approval before filming.</p></div>
-  <div class="rv"><h3>Film and edit</h3><p>Shot natively for TikTok, Reels and Shorts, with captions and pacing built for retention.</p></div>
-  <div class="rv"><h3>Deliver</h3><p>An organised Google Drive folder with files ready for ads. Revisions are included.</p></div>
- </div>
+ <div class="sech"><h2 class="rv">From brief to ad in 7 days</h2><p class="lead rv">Four steps, one person, no agency layers.</p></div>
+ <ol class="tl">
+  <li class="rv"><span class="dot">1</span><h3>Free consultation</h3><p>A quick written chat to align on product, audience and goal. Then you get a custom quote.</p></li>
+  <li class="rv"><span class="dot">2</span><h3>Script</h3><p>I write hooks and a script for your approval before filming.</p></li>
+  <li class="rv"><span class="dot">3</span><h3>Film and edit</h3><p>Shot natively for TikTok, Reels and Shorts, with captions and pacing built for retention.</p></li>
+  <li class="rv"><span class="dot end">4</span><h3>Deliver</h3><p>An organised Google Drive folder with files ready for ads. Revisions are included.</p></li>
+ </ol>
 </div></section>
 
 <section id="faq" class="alt"><div class="w faq">
@@ -425,6 +514,32 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
       .then(function(r){if(!r.ok)throw 0;document.getElementById('bk-done-ok').hidden=false;document.getElementById('bk-done-mail').hidden=true;f.hidden=true;done.hidden=false})
       .catch(function(){document.getElementById('bk-done-ok').hidden=true;document.getElementById('bk-done-mail').hidden=false;f.hidden=true;done.hidden=false;window.location.href=href})
       .then(function(){btn.disabled=false;btn.textContent='Request my free consultation'});
+  });
+})();
+
+(function(){
+  /* 3D tilt on the hero portrait */
+  var st=document.getElementById('stage'),t=document.getElementById('tilt');
+  if(st&&t&&window.matchMedia('(pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    st.addEventListener('pointermove',function(e){var r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      t.style.transform='rotateY('+(x*14)+'deg) rotateX('+(-y*10)+'deg)'});
+    st.addEventListener('pointerleave',function(){t.style.transform=''});
+  }
+  /* video slots: a figure with data-src becomes playable */
+  var all=[];
+  document.querySelectorAll('.ph[data-src]').forEach(function(ph){
+    var src=ph.dataset.src;if(!src)return;
+    var b=ph.querySelector('.pl'),scr=ph.querySelector('.scr'),v=null;all.push(ph);
+    ph.classList.add('has');b.disabled=false;
+    if(ph.dataset.poster)scr.style.background='center/cover url("'+ph.dataset.poster+'")';
+    b.addEventListener('click',function(){
+      if(!v){v=document.createElement('video');v.src=src;v.playsInline=true;v.loop=true;v.preload='metadata';if(ph.dataset.poster)v.poster=ph.dataset.poster;
+        v.addEventListener('click',function(){v.paused?v.play():v.pause()});
+        v.addEventListener('play',function(){ph.classList.add('playing')});v.addEventListener('pause',function(){ph.classList.remove('playing')});
+        scr.insertBefore(v,scr.firstChild)}
+      all.forEach(function(o){var ov=o.querySelector('video');if(ov&&ov!==v)ov.pause()});
+      v.play();
+    });
   });
 })();
 </script>
