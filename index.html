@@ -202,6 +202,20 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 .bk .btn{width:100%;justify-content:center}
 .bk .ok p{color:var(--mute)}
 .bk .ok .btn{width:auto}
+.bk .slots.c3{grid-template-columns:repeat(3,1fr)}
+.cal{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:14px}
+.cal .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cal .ch b{font-size:16px;color:#fff}
+.cal .cn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:#fff;font-size:22px;line-height:1;cursor:pointer;font-family:inherit}
+.cal .cn:hover:not(:disabled){border-color:var(--pk)}
+.cal .cn:disabled{opacity:.3;cursor:default}
+.cal .cg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal .cw span{text-align:center;font-size:12px;font-weight:700;color:var(--lav);padding:4px 0}
+.cal .cg button{height:40px;width:40px;margin:0 auto;border:0;border-radius:50%;background:transparent;color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+.cal .cg button:hover:not(:disabled){background:#3a1730}
+.cal .cg button:disabled{color:#7d6676;cursor:default}
+.cal .cg button.on{background:var(--grad);color:#fff}
+.cal .cg button:focus-visible{outline:2px solid var(--lav)}
 @media(max-width:560px){.bk .fr{grid-template-columns:1fr}.bk .slots{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
@@ -329,11 +343,9 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
    <div class="f"><label for="bk-name">Your name</label><input id="bk-name" name="name" type="text" autocomplete="name" required></div>
    <div class="f"><label for="bk-mail">Email</label><input id="bk-mail" name="email" type="email" autocomplete="email" required></div>
   </div>
-  <div class="fr">
-   <div class="f"><label for="bk-brand">Brand or product</label><input id="bk-brand" name="brand" type="text" required></div>
-   <div class="f"><label for="bk-ch">Where should I reach you</label><select id="bk-ch" name="channel"><option>Email</option><option>Instagram</option><option>WhatsApp</option></select></div>
-  </div>
-  <div class="f"><label for="bk-date">Preferred date</label><input id="bk-date" name="date" type="date" required></div>
+  <div class="f"><label for="bk-brand">Brand or product</label><input id="bk-brand" name="brand" type="text" required></div>
+  <fieldset class="f"><legend>Where should I reach you</legend><div class="slots c3"><input type="radio" name="ch" id="c0" value="Email" checked><label for="c0">Email</label><input type="radio" name="ch" id="c1" value="Instagram"><label for="c1">Instagram</label><input type="radio" name="ch" id="c2" value="WhatsApp"><label for="c2">WhatsApp</label></div></fieldset>
+  <fieldset class="f"><legend>Preferred date</legend><input id="bk-date" type="hidden"><div class="cal" id="bk-cal"><div class="ch"><button type="button" class="cn" id="cal-p" aria-label="Previous month">&#8249;</button><b id="cal-t"></b><button type="button" class="cn" id="cal-n" aria-label="Next month">&#8250;</button></div><div class="cg cw"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div><div class="cg" id="cal-g"></div></div></fieldset>
   <fieldset><legend>Preferred time (Indonesia, WIB)</legend>
    <div class="slots" id="bk-slots"></div>
    <p class="hint" id="bk-local"></p>
@@ -365,7 +377,23 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
       date=document.getElementById('bk-date'),slots=document.getElementById('bk-slots'),loc=document.getElementById('bk-local');
   var times=['09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00'];
   slots.innerHTML=times.map(function(t,i){return '<input type="radio" name="time" id="t'+i+'" value="'+t+'"><label for="t'+i+'">'+t+'</label>'}).join('');
-  var tm=new Date(Date.now()+864e5);date.min=tm.toISOString().slice(0,10);
+  var cg=document.getElementById('cal-g'),ct=document.getElementById('cal-t'),cp=document.getElementById('cal-p'),cn=document.getElementById('cal-n');
+  var today=new Date();today.setHours(0,0,0,0);var minD=new Date(today.getTime()+864e5);
+  var vm=new Date(minD.getFullYear(),minD.getMonth(),1);
+  function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  function draw(){
+    ct.textContent=vm.toLocaleString('en',{month:'long',year:'numeric'});
+    cp.disabled=vm<=new Date(minD.getFullYear(),minD.getMonth(),1);
+    var first=(new Date(vm.getFullYear(),vm.getMonth(),1).getDay()+6)%7,n=new Date(vm.getFullYear(),vm.getMonth()+1,0).getDate(),h='';
+    for(var i=0;i<first;i++)h+='<span></span>';
+    for(var k=1;k<=n;k++){var d=new Date(vm.getFullYear(),vm.getMonth(),k),v=iso(d);
+      h+='<button type="button" data-d="'+v+'"'+(d<minD?' disabled':'')+(v===date.value?' class="on"':'')+'>'+k+'</button>'}
+    cg.innerHTML=h;
+  }
+  cg.addEventListener('click',function(e){var b=e.target.closest('button[data-d]');if(!b)return;date.value=b.dataset.d;draw();local()});
+  cp.addEventListener('click',function(){vm=new Date(vm.getFullYear(),vm.getMonth()-1,1);draw()});
+  cn.addEventListener('click',function(){vm=new Date(vm.getFullYear(),vm.getMonth()+1,1);draw()});
+  draw();
   function local(){
     var t=(f.querySelector('input[name=time]:checked')||{}).value;
     if(!t||!date.value){loc.textContent='';return}
@@ -387,7 +415,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
     if(!/^\S+@\S+\.\S+$/.test(v('bk-mail'))){err.textContent='Please enter a valid email.';return}
     if(!date.value||!time){err.textContent='Please choose a date and a time.';return}
     if(!document.getElementById('bk-ok').checked){err.textContent='Please confirm the privacy checkbox.';return}
-    var body='Hi Juliani,\n\nName: '+v('bk-name')+'\nEmail: '+v('bk-mail')+'\nBrand/product: '+v('bk-brand')+'\nReach me via: '+v('bk-ch')+'\nPreferred time: '+date.value+' at '+time+' WIB (UTC+7)\n\n'+v('bk-msg')+'\n\nI agree that my details are used only to answer this request.';
+    var body='Hi Juliani,\n\nName: '+v('bk-name')+'\nEmail: '+v('bk-mail')+'\nBrand/product: '+v('bk-brand')+'\nReach me via: '+(f.querySelector('input[name=ch]:checked')||{}).value+'\nPreferred time: '+date.value+' at '+time+' WIB (UTC+7)\n\n'+v('bk-msg')+'\n\nI agree that my details are used only to answer this request.';
     var href='mailto:cimeygallery@gmail.com?subject='+encodeURIComponent('Free UGC consultation: '+v('bk-brand'))+'&body='+encodeURIComponent(body);
     f.hidden=true;done.hidden=false;window.location.href=href;
   });
