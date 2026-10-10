@@ -462,7 +462,7 @@ footer .logo{color:#fff}
 .tab .bar{position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--grad)}
 .tab[aria-selected=true]{transform:translateX(12px);background:#fff;border-color:rgba(214,64,127,.28);box-shadow:0 34px 60px -34px rgba(176,16,92,.6),0 2px 6px rgba(42,16,32,.05)}
 .tab[aria-selected=true] .ti{background:var(--grad);color:#fff;transform:rotate(-7deg) scale(1.06)}
-.tab[aria-selected=true] .bar{animation:tabbar 8s linear forwards}
+.tab[aria-selected=true] .bar{animation:tabbar 5.5s linear forwards}
 .stk.paused .tab .bar{animation:none;width:100%}
 @keyframes tabbar{to{width:100%}}
 .stk-view{display:grid;position:relative;border-radius:32px;overflow:hidden;background:radial-gradient(70% 60% at 100% 0%,rgba(224,80,140,.16),transparent 65%),radial-gradient(60% 50% at 0% 100%,rgba(123,47,196,.13),transparent 65%),#fff;box-shadow:0 44px 80px -46px rgba(123,47,196,.55),0 2px 6px rgba(42,16,32,.05)}
@@ -758,6 +758,18 @@ footer .logo{color:#fff}
 @media(max-width:760px){#cine-sec .sech{margin-bottom:28px}}
 .sgrid .rl2{display:inline-block;margin-top:6px;font:700 13px Manrope,sans-serif;color:var(--lav);text-decoration:none;border-bottom:1.5px solid #e2c9ec;padding-bottom:1px;transition:border-color .2s,transform .2s}
 .sgrid .rl2:hover{border-color:var(--lav);transform:translateX(2px)}
+.stk-hint{display:flex;align-items:center;gap:10px;margin:0 0 4px;font:800 12px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--lav);transition:opacity .4s,max-height .4s}
+.stk-hint .hand{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 8px 18px -8px rgba(123,47,196,.6);animation:tap 1.8s ease-in-out infinite}
+@keyframes tap{0%,100%{transform:translate(0,0) scale(1)}45%{transform:translate(4px,6px) scale(.9)}}
+.stk.used .stk-hint{opacity:0;max-height:0;margin:0;overflow:hidden}
+.tab .go{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font:800 12.5px Manrope,sans-serif;font-style:normal;color:var(--lav);padding:8px 12px;border-radius:99px;background:#f4e9fb;white-space:nowrap;transition:transform .25s,background .25s}
+.tab .go svg{transition:transform .25s}
+.tab:hover .go{background:var(--grad);color:#fff}.tab:hover .go svg{transform:translateX(3px)}
+.tab[aria-selected=true] .go{display:none}
+.stk:not(.used) .tab[aria-selected=false]:first-of-type .go,.stk:not(.used) .tab[aria-selected=false] .go{animation:nudge 2s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(5px)}}
+@media(max-width:520px){.tab .go{font-size:0;padding:8px}.tab .go svg{width:18px;height:18px}}
+@media(prefers-reduced-motion:reduce){.stk-hint .hand,.tab .go{animation:none!important}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -823,10 +835,10 @@ footer .logo{color:#fff}
 <section id="why"><div class="w">
   <div class="sech"><div><span class="eyebrow rv">Why most people stall</span><h2 class="rv d1" style="margin-top:14px">Beginners get stuck at <span class="g">the same three places.</span></h2></div><p class="lead rv">Free tutorials explain what UGC is. Nobody watches your video and tells you what to change.</p></div>
   <div class="stk" id="stk">
-    <div class="stk-nav" role="tablist" aria-label="Where beginners get stuck">
-      <button class="tab" role="tab" type="button" aria-selected="true"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><span><small>01 · What to film</small><b>You open the camera and freeze.</b></span><i class="bar"></i></button>
-      <button class="tab" role="tab" type="button" aria-selected="false"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-7-7 18-3-8z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><span><small>02 · Whom to write</small><b>You know brands pay. You don't know which ones.</b></span><i class="bar"></i></button>
-      <button class="tab" role="tab" type="button" aria-selected="false"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l9-9h9v9l-9 9zM16 8h.01" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg></span><span><small>03 · What to charge</small><b>A brand asks your rate and you guess low.</b></span><i class="bar"></i></button>
+    <div class="stk-nav" role="tablist" aria-label="Where beginners get stuck"><p class="stk-hint" aria-hidden="true"><span class="hand"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M9 11V5a1.5 1.5 0 013 0v5l5 1.2a2 2 0 011.5 2.3l-.8 5A3 3 0 0114 21h-3a3 3 0 01-2.3-1L5 15.5a1.5 1.5 0 012.2-2L9 15" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg></span>Tap each problem to see how it gets fixed</p>
+      <button class="tab" role="tab" type="button" aria-selected="true"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><span><small>01 · What to film</small><b>You open the camera and freeze.</b></span><em class="go">See the fix<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></em><i class="bar"></i></button>
+      <button class="tab" role="tab" type="button" aria-selected="false"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-7-7 18-3-8z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><span><small>02 · Whom to write</small><b>You know brands pay. You don't know which ones.</b></span><em class="go">See the fix<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></em><i class="bar"></i></button>
+      <button class="tab" role="tab" type="button" aria-selected="false"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l9-9h9v9l-9 9zM16 8h.01" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg></span><span><small>03 · What to charge</small><b>A brand asks your rate and you guess low.</b></span><em class="go">See the fix<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></em><i class="bar"></i></button>
     </div>
     <div class="stk-view" aria-live="polite">
       <article class="pane on" role="tabpanel">
@@ -1306,8 +1318,8 @@ var CFG={seatsTotal:8,seatsTaken:3,closes:'2026-11-14T23:59:00+07:00',start:'Thu
     function show(i){cur=i;tabs.forEach(function(t,k){var on=k===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;var b=t.querySelector('.bar');if(on){b.style.animation='none';void b.offsetWidth;b.style.animation=''}});
       panes.forEach(function(p,k){p.classList.toggle('on',k===i)})}
     function next(){show((cur+1)%tabs.length)}
-    function start(){clearInterval(timer);if(stopped||rm)return;timer=setInterval(next,8000)}
-    tabs.forEach(function(t,i){t.addEventListener('click',function(){stopped=true;stk.classList.add('paused');clearInterval(timer);show(i)});
+    function start(){clearInterval(timer);if(stopped||rm)return;timer=setInterval(next,5500)}
+    tabs.forEach(function(t,i){t.addEventListener('click',function(){stk.classList.add('used');stopped=true;stk.classList.add('paused');clearInterval(timer);show(i)});
       t.addEventListener('keydown',function(e){if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();stopped=true;stk.classList.add('paused');show((cur+1)%tabs.length);tabs[cur].focus()}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();stopped=true;stk.classList.add('paused');show((cur+tabs.length-1)%tabs.length);tabs[cur].focus()}})});
     if(rm){stk.classList.add('paused')}
     var seen=false;if('IntersectionObserver' in window){new IntersectionObserver(function(es,o){if(es[0].isIntersecting&&!seen){seen=true;show(0);start()}else if(!es[0].isIntersecting){clearInterval(timer)}else if(seen&&!stopped){start()}},{threshold:.35}).observe(stk)}else{show(0)}
