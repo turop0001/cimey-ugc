@@ -285,6 +285,13 @@ section{padding:clamp(40px,5vw,76px) 0}
 .ra:disabled{opacity:.25;pointer-events:none}
 .ra.l{left:clamp(8px,3vw,48px)}.ra.r{right:clamp(8px,3vw,48px)}
 @media(max-width:640px){.ra{width:42px;height:42px;font-size:26px;margin-top:-50px}.ra.l{left:4px}.ra.r{right:4px}}
+/* intro lightbox */
+.lbx{position:fixed;inset:0;z-index:200;background:rgba(8,0,6,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transition:opacity .35s}
+.lbx.in{opacity:1}
+.lbx .ph{position:fixed;margin:0;box-shadow:0 60px 120px -30px rgba(214,64,127,.5),0 0 0 1px rgba(205,176,255,.3);cursor:pointer}
+.lbx .ph .pl{display:none}
+.lbx .x{position:fixed;top:18px;right:18px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:24px;cursor:pointer;display:grid;place-items:center;z-index:2;padding:0 0 3px}
+.lbx .x:hover{background:var(--grad)}
 /* booking dialog */
 .btn{font-family:inherit}
 dialog.bk{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:28px;background:var(--bg2);color:var(--ink);overflow:auto;box-shadow:0 40px 120px -20px rgba(0,0,0,.8)}
@@ -567,12 +574,35 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
     st.addEventListener('pointerleave',function(){t.style.transform=''});
   }
   /* video slots: a figure with data-src becomes playable */
+  function openLb(ph,src){
+    var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches,from=ph.getBoundingClientRect();
+    var ov=document.createElement('div');ov.className='lbx';ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Intro video');
+    var w=Math.min(innerWidth*.86,innerHeight*.88*9/19,400),h=w*19/9,L=(innerWidth-w)/2,T=(innerHeight-h)/2;
+    var p=document.createElement('div');p.className='ph';p.style.cssText='left:'+L+'px;top:'+T+'px;width:'+w+'px;height:'+h+'px';
+    var sc=document.createElement('div');sc.className='scr';sc.innerHTML='<i class="nt"></i>';
+    var v=document.createElement('video');v.src=src;v.playsInline=true;v.loop=true;if(ph.dataset.poster)v.poster=ph.dataset.poster;
+    v.addEventListener('click',function(e){e.stopPropagation();v.paused?v.play():v.pause()});sc.insertBefore(v,sc.firstChild);p.appendChild(sc);
+    var x=document.createElement('button');x.type='button';x.className='x';x.setAttribute('aria-label','Close video');x.innerHTML='&times;';
+    ov.appendChild(p);ov.appendChild(x);document.body.appendChild(ov);document.body.style.overflow='hidden';
+    var ease='cubic-bezier(.2,.8,.2,1)';
+    function tf(){return 'translate('+(from.left+from.width/2-(L+w/2))+'px,'+(from.top+from.height/2-(T+h/2))+'px) scale('+(from.width/w)+') rotate(5deg)'}
+    ph.style.visibility='hidden';
+    requestAnimationFrame(function(){ov.classList.add('in');if(!rm)p.animate([{transform:tf()},{transform:'none'}],{duration:520,easing:ease});v.play().catch(function(){})});
+    var closed=false;
+    function close(){if(closed)return;closed=true;v.pause();document.removeEventListener('keydown',kd);ov.classList.remove('in');
+      var fin=function(){ov.remove();ph.style.visibility='';document.body.style.overflow=''};
+      if(rm){fin();return}
+      var a=p.animate([{transform:'none'},{transform:tf()}],{duration:420,easing:ease,fill:'forwards'});a.onfinish=fin}
+    function kd(e){if(e.key==='Escape')close()}
+    document.addEventListener('keydown',kd);ov.addEventListener('click',function(e){if(e.target!==v)close()});x.focus();
+  }
   var all=[];
   document.querySelectorAll('.ph[data-src]').forEach(function(ph){
     var src=ph.dataset.src;if(!src)return;
     var b=ph.querySelector('.pl'),scr=ph.querySelector('.scr'),v=null;all.push(ph);
     ph.classList.add('has');b.disabled=false;
     if(ph.dataset.poster)scr.style.background='center/cover url("'+ph.dataset.poster+'")';
+    if(ph.classList.contains('intro')){b.addEventListener('click',function(){openLb(ph,src)});return}
     b.addEventListener('click',function(){
       if(!v){v=document.createElement('video');v.src=src;v.playsInline=true;v.loop=true;v.preload='metadata';if(ph.dataset.poster)v.poster=ph.dataset.poster;
         v.addEventListener('click',function(){v.paused?v.play():v.pause()});
