@@ -293,11 +293,14 @@ section{padding:clamp(40px,5vw,76px) 0}
 .lbx .x:hover{background:var(--grad)}
 /* motion + infographics (v17) */
 #sp{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--grad);z-index:300;pointer-events:none}
-.tl::before{opacity:.18!important}
-.tl::after{content:"";position:absolute;left:22px;right:22px;top:22px;height:2px;background:linear-gradient(90deg,#A3004F,#7B2FC4 55%,#CDB0FF);clip-path:inset(0 calc((1 - var(--p,0))*100%) 0 0);box-shadow:0 0 14px rgba(214,64,127,.7)}
+.tl::before,.tl::after{display:none!important}
+.tl{--g:clamp(16px,2.4vw,36px)}
+.tl li:not(:last-child)::before,.tl li:not(:last-child)::after{content:"";position:absolute;left:58px;top:22px;height:2px;width:calc(100% + var(--g) - 70px);border-radius:2px;background:linear-gradient(90deg,#A3004F,#7B2FC4)}
+.tl li:not(:last-child)::before{opacity:.2}
+.tl li:not(:last-child)::after{clip-path:inset(0 calc((1 - var(--s,0))*100%) 0 0);box-shadow:0 0 12px rgba(214,64,127,.6)}
 .tl li .dot{transition:background .4s,border-color .4s,box-shadow .4s,transform .4s}
 .tl li.on .dot{background:var(--grad);border-color:transparent;box-shadow:0 0 0 6px var(--bg),0 0 26px rgba(214,64,127,.65);transform:scale(1.08)}
-@media(max-width:860px){.tl::after{left:22px;right:auto;top:22px;bottom:22px;width:2px;height:auto;background:linear-gradient(180deg,#A3004F,#7B2FC4 55%,#CDB0FF);clip-path:inset(0 0 calc((1 - var(--p,0))*100%) 0)}}
+@media(max-width:860px){.tl li:not(:last-child)::before,.tl li:not(:last-child)::after{left:22px;top:52px;width:2px;height:calc(100% - 46px);background:linear-gradient(180deg,#A3004F,#7B2FC4)}.tl li:not(:last-child)::after{clip-path:inset(0 0 calc((1 - var(--s,0))*100%) 0)}}
 .stat b .cnt{display:inline;margin:0;color:inherit;font-size:inherit}
 .stat .strs{display:flex;gap:2px;letter-spacing:0}
 .lg em{font-style:normal}
@@ -664,8 +667,8 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
     var h=document.documentElement.scrollHeight-innerHeight;if(sp)sp.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')';
     if(tl){var r=tl.getBoundingClientRect(),vert=getComputedStyle(tl).gridTemplateColumns.split(' ').length===1,
       p=rm?1:Math.max(0,Math.min(1,(innerHeight*.72-r.top)/(vert?r.height:r.height+innerHeight*.15)));
-      tl.style.setProperty('--p',p);
-      lis.forEach(function(li,i){li.classList.toggle('on',p>=(i/(lis.length-1))*.92+.02||rm)})}
+      var n=lis.length-1;
+      lis.forEach(function(li,i){li.style.setProperty('--s',rm?1:Math.max(0,Math.min(1,p*n-i)));li.classList.toggle('on',rm||p>=i/n-.001)})}
   }
   addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
 })();
