@@ -145,8 +145,8 @@ details{border-bottom:1px solid var(--line);padding:22px 0}
 details:first-of-type{border-top:1px solid var(--line)}
 summary{font-weight:600;font-size:19px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-size:28px;line-height:1;color:var(--lav);transition:transform .25s}
-details[open] summary::after{transform:rotate(45deg)}
+summary::after{content:"";flex:none;width:22px;height:22px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23CDB0FF' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");transition:transform .25s}
+details[open] summary::after{transform:rotate(180deg)}
 details p{color:var(--mute);margin:12px 0 0;max-width:68ch}
 
 /* final */
@@ -169,6 +169,37 @@ footer{padding:34px 0 100px;color:var(--dim);font-size:14px}
 @media(prefers-reduced-motion:reduce){
   .track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.track span[aria-hidden]{display:none}html{scroll-behavior:auto}
 }
+
+/* booking dialog */
+.btn{font-family:inherit}
+dialog.bk{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:28px;background:var(--bg2);color:var(--ink);overflow:auto;box-shadow:0 40px 120px -20px rgba(0,0,0,.8)}
+dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
+.bk form,.bk .ok{padding:clamp(24px,4vw,40px)}
+.bk h2{font-size:clamp(26px,4vw,34px);margin:0 36px 8px 0}
+.bk .sub{color:var(--mute);margin:0 0 24px;font-size:16px}
+.bk .x{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:grid;place-items:center;font:inherit;font-size:20px;line-height:1}
+.bk .x:hover{border-color:var(--pk)}
+.bk label,.bk legend{display:block;font-weight:700;font-size:14px;margin:0 0 7px;color:var(--ink)}
+.bk fieldset{border:0;padding:0;margin:0 0 18px}
+.bk .fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bk .f{margin-bottom:18px}
+.bk input[type=text],.bk input[type=email],.bk input[type=date],.bk textarea,.bk select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 15px;color-scheme:dark}
+.bk textarea{min-height:92px;resize:vertical}
+.bk input:focus,.bk textarea:focus,.bk select:focus{outline:2px solid var(--lav);outline-offset:1px;border-color:transparent}
+.bk .slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.bk .slots input{position:absolute;opacity:0;pointer-events:none}
+.bk .slots label{margin:0;text-align:center;padding:11px 6px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-weight:600;font-size:15px;cursor:pointer;transition:background .2s,border-color .2s}
+.bk .slots input:checked+label{background:var(--grad);border-color:transparent;color:#fff}
+.bk .slots input:focus-visible+label{outline:2px solid var(--lav);outline-offset:2px}
+.bk .hint{color:var(--dim);font-size:13px;margin:8px 0 0;min-height:1.4em}
+.bk .chk{display:flex;gap:12px;align-items:flex-start;margin:6px 0 22px}
+.bk .chk input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:#B2338A}
+.bk .chk label{font-weight:500;font-size:14px;color:var(--mute);margin:0}
+.bk .err{color:#ff9db8;font-size:14px;margin:0 0 14px;min-height:0}
+.bk .btn{width:100%;justify-content:center}
+.bk .ok p{color:var(--mute)}
+.bk .ok .btn{width:auto}
+@media(max-width:560px){.bk .fr{grid-template-columns:1fr}.bk .slots{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
@@ -176,7 +207,7 @@ footer{padding:34px 0 100px;color:var(--dim);font-size:14px}
 <header class="top"><div class="w">
   <a class="logo" href="#top">Cimey<i>.</i></a><span class="sp"></span>
   <nav aria-label="Main"><a href="#work">Work</a><a href="#niches">Niches</a><a href="#consult">Free consultation</a><a href="#process">Process</a><a href="#faq">FAQ</a></nav>
-  <a class="btn sm" href="#consult">Get a free consultation</a>
+  <button type="button" class="btn sm" data-book>Get a free consultation</button>
 </div></header>
 
 <main id="top">
@@ -185,7 +216,7 @@ footer{padding:34px 0 100px;color:var(--dim);font-size:14px}
 <div class="w">
   <h1>Short product videos in <span class="g">English and Bahasa Indonesia.</span></h1>
   <p class="lead">I'm Juliani, a UGC creator in Indonesia. I make videos under 30 seconds for AI, SaaS, travel and beauty brands.</p>
-  <div class="cta-row"><a class="btn" href="#consult">Get a free consultation</a><a class="btn o" href="#work">See my work</a></div>
+  <div class="cta-row"><button type="button" class="btn" data-book>Get a free consultation</button><a class="btn o" href="#work">See my work</a></div>
 
   <div class="stats rv">
     <div class="stat"><b>30+</b><span>brands, local and international</span></div>
@@ -241,7 +272,7 @@ footer{padding:34px 0 100px;color:var(--dim);font-size:14px}
  <div class="stk rv">
   <h2>Every project is different, so we talk first</h2>
   <p class="lead">A free written chat on Instagram, WhatsApp or email. No call, no preparation, no obligation.</p>
-  <a class="btn" href="mailto:cimeygallery@gmail.com?subject=Free%20UGC%20consultation&body=Hi%20Juliani%2C%0A%0ABrand%3A%20%0AProduct%3A%20%0AWhere%20the%20video%20will%20run%3A%20%0ABest%20way%20to%20reach%20you%20(Instagram%2FWhatsApp)%3A%20">Get a free consultation</a>
+  <button type="button" class="btn" data-book>Get a free consultation</button>
   <p class="note">I reply within 24 hours. Indonesian-language projects are welcome.</p>
  </div>
  <div class="list">
@@ -277,20 +308,85 @@ footer{padding:34px 0 100px;color:var(--dim);font-size:14px}
  <div class="final rv">
   <h2>Let's make your next <span class="g">ad.</span></h2>
   <p>Tell me about your product and I will reply within 24 hours. The first consultation is free.</p>
-  <a class="btn" href="mailto:cimeygallery@gmail.com?subject=Free%20UGC%20consultation">Get a free consultation</a>
+  <button type="button" class="btn" data-book>Get a free consultation</button>
   <div class="contact"><a href="mailto:cimeygallery@gmail.com">cimeygallery@gmail.com</a><a href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener">Instagram @cimeygallery</a><a href="https://www.tiktok.com/@cimey.gallery" target="_blank" rel="noopener">TikTok @cimey.gallery</a><a href="https://www.tiktok.com/@cimeyugc" target="_blank" rel="noopener">TikTok @cimeyugc</a></div>
  </div>
 </div></section>
 
 </main>
 <footer><div class="w">© 2026 Juliani (Cimey), UGC creator in Pekanbaru, Indonesia</div></footer>
-<div class="stick"><a class="btn" href="#consult">Get a free consultation</a></div>
+
+<dialog class="bk" id="book" aria-labelledby="bk-t">
+ <button type="button" class="x" data-close aria-label="Close">&times;</button>
+ <form id="bk-form" novalidate>
+  <h2 id="bk-t">Free consultation</h2>
+  <p class="sub">Pick a time for the chat and tell me about your product. I reply within 24 hours.</p>
+  <div class="fr">
+   <div class="f"><label for="bk-name">Your name</label><input id="bk-name" name="name" type="text" autocomplete="name" required></div>
+   <div class="f"><label for="bk-mail">Email</label><input id="bk-mail" name="email" type="email" autocomplete="email" required></div>
+  </div>
+  <div class="fr">
+   <div class="f"><label for="bk-brand">Brand or product</label><input id="bk-brand" name="brand" type="text" required></div>
+   <div class="f"><label for="bk-ch">Where should I reach you</label><select id="bk-ch" name="channel"><option>Email</option><option>Instagram</option><option>WhatsApp</option></select></div>
+  </div>
+  <div class="f"><label for="bk-date">Preferred date</label><input id="bk-date" name="date" type="date" required></div>
+  <fieldset><legend>Preferred time (Indonesia, WIB)</legend>
+   <div class="slots" id="bk-slots"></div>
+   <p class="hint" id="bk-local"></p>
+  </fieldset>
+  <div class="f"><label for="bk-msg">About your product (optional)</label><textarea id="bk-msg" name="message"></textarea></div>
+  <div class="chk"><input id="bk-ok" type="checkbox" required><label for="bk-ok">I agree that my details are used only to answer this request and are not shared with third parties.</label></div>
+  <p class="err" id="bk-err" role="alert"></p>
+  <button type="submit" class="btn">Request my free consultation</button>
+ </form>
+ <div class="ok" id="bk-done" hidden>
+  <h2>One last step</h2>
+  <p>Your email app should have opened with the request filled in. Press send there and I will reply within 24 hours.</p>
+  <p>If nothing opened, write to <a href="mailto:cimeygallery@gmail.com">cimeygallery@gmail.com</a> with the details you entered.</p>
+  <button type="button" class="btn" data-close>Close</button>
+ </div>
+</dialog>
+<div class="stick"><button type="button" class="btn" data-book>Get a free consultation</button></div>
 <script>
 (function(){
   var els=document.querySelectorAll('.rv');
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   els.forEach(function(e){io.observe(e)});
+})();
+
+(function(){
+  var d=document.getElementById('book');if(!d||!d.showModal)return;
+  var f=document.getElementById('bk-form'),done=document.getElementById('bk-done'),err=document.getElementById('bk-err'),
+      date=document.getElementById('bk-date'),slots=document.getElementById('bk-slots'),loc=document.getElementById('bk-local');
+  var times=['09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00'];
+  slots.innerHTML=times.map(function(t,i){return '<input type="radio" name="time" id="t'+i+'" value="'+t+'"><label for="t'+i+'">'+t+'</label>'}).join('');
+  var tm=new Date(Date.now()+864e5);date.min=tm.toISOString().slice(0,10);
+  function local(){
+    var t=(f.querySelector('input[name=time]:checked')||{}).value;
+    if(!t||!date.value){loc.textContent='';return}
+    try{var dt=new Date(date.value+'T'+t+':00+07:00');
+      loc.textContent='In your time zone: '+dt.toLocaleString([], {weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}catch(e){loc.textContent=''}
+  }
+  f.addEventListener('change',local);
+  var last;
+  function open(e){e.preventDefault();last=document.activeElement;f.hidden=false;done.hidden=true;err.textContent='';d.showModal()}
+  document.querySelectorAll('[data-book]').forEach(function(b){b.addEventListener('click',open)});
+  d.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){d.close()})});
+  d.addEventListener('click',function(e){if(e.target===d)d.close()});
+  d.addEventListener('close',function(){if(last&&last.focus)last.focus()});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();err.textContent='';
+    var v=function(id){return document.getElementById(id).value.trim()};
+    var time=(f.querySelector('input[name=time]:checked')||{}).value;
+    if(!v('bk-name')||!v('bk-brand')){err.textContent='Please fill in your name and brand.';return}
+    if(!/^\S+@\S+\.\S+$/.test(v('bk-mail'))){err.textContent='Please enter a valid email.';return}
+    if(!date.value||!time){err.textContent='Please choose a date and a time.';return}
+    if(!document.getElementById('bk-ok').checked){err.textContent='Please confirm the privacy checkbox.';return}
+    var body='Hi Juliani,\n\nName: '+v('bk-name')+'\nEmail: '+v('bk-mail')+'\nBrand/product: '+v('bk-brand')+'\nReach me via: '+v('bk-ch')+'\nPreferred time: '+date.value+' at '+time+' WIB (UTC+7)\n\n'+v('bk-msg')+'\n\nI agree that my details are used only to answer this request.';
+    var href='mailto:cimeygallery@gmail.com?subject='+encodeURIComponent('Free UGC consultation: '+v('bk-brand'))+'&body='+encodeURIComponent(body);
+    f.hidden=true;done.hidden=false;window.location.href=href;
+  });
 })();
 </script>
 </body>
