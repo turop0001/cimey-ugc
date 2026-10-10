@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Juliani UGC Creator</title>
+<meta name="description" content="UGC creator in English and Bahasa Indonesia for AI, SaaS, app, travel and beauty brands. Based in Indonesia, working worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0d0508;--bg2:#17070f;--card:#1f0b16;--line:#46192f;
+  --ink:#faf3f6;--mute:#bba9b4;--dim:#8a7283;
+  --p:#660066;--pk:#D6407F;--lav:#CDB0FF;--wine:#910048;--wine2:#660033;--vio:#7B2FC4;
+  --grad:linear-gradient(120deg,#A3004F 0%,#7B2FC4 100%);--grad-t:linear-gradient(120deg,#E3C8FF 0%,#D895D6 48%,#FF8FB8 100%);
+  --r:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lav);outline-offset:3px;border-radius:8px}
+.w{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{margin:0;letter-spacing:-.035em;line-height:1.05}
+h1{font-weight:900;font-size:clamp(36px,6.6vw,78px)}
+h2{font-weight:800;font-size:clamp(30px,4.6vw,52px);margin-bottom:14px}
+h3{font-weight:700;font-size:20px;letter-spacing:-.02em;line-height:1.2}
+.g{background:var(--grad-t);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lav);margin-bottom:14px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--grad);border-radius:2px}
+.lead{color:var(--mute);font-size:clamp(16px,2vw,19px);max-width:620px}
+section{padding:96px 0;position:relative}
+@media(max-width:700px){section{padding:68px 0}}
+
+.top{position:sticky;top:0;z-index:20;background:rgba(13,5,8,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .w{display:flex;align-items:center;gap:18px;height:64px}
+.logo{font-weight:900;font-size:20px;letter-spacing:-.04em;text-decoration:none}
+.logo i{font-style:normal;color:var(--pk)}
+.sp{flex:1}
+.top nav{display:flex;gap:22px}
+.top nav a{text-decoration:none;color:var(--mute);font-size:14px;font-weight:500;transition:color .2s}
+.top nav a:hover{color:var(--ink)}
+@media(max-width:820px){.top nav{display:none}}
+@media(max-width:700px){.top .btn.sm{display:none}}
+
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 26px;border-radius:999px;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 36px -10px rgba(163,0,79,.5)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 44px -10px rgba(163,0,79,.65)}
+.btn.o{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.o:hover{border-color:var(--lav);box-shadow:none}
+.btn.sm{padding:10px 20px;font-size:14px}
+
+.hero{padding:72px 0 40px;overflow:hidden}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;opacity:.55}
+.glow.a{width:480px;height:480px;background:#5b21b6;top:-160px;left:-140px;opacity:.38}
+.glow.b{width:640px;height:640px;background:#910048;top:-40px;right:-180px;opacity:.62}
+.hero .grid{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center;position:relative}
+@media(max-width:860px){.hero .grid{grid-template-columns:1fr}}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(31,11,22,.7);font-size:13px;color:var(--mute);margin-bottom:24px}
+.pill b{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.18)}
+.hero p.lead{margin:22px 0 30px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.langs{margin-top:22px;color:var(--dim);font-size:13px}
+
+.phone{position:relative;max-width:310px;margin:0 auto;aspect-ratio:9/18.5;border-radius:44px;padding:11px;background:linear-gradient(160deg,#5a2040,#1a0610);border:1px solid #6a2848;box-shadow:0 40px 90px -30px rgba(145,0,72,.7)}
+.screen{height:100%;border-radius:34px;background:radial-gradient(120% 80% at 50% 0%,#7A003D 0%,#3A001D 50%,#17070f 88%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;position:relative;overflow:hidden}
+.play{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;font-size:24px;padding-left:4px}
+.cap{font-size:13px;color:var(--mute)}
+.cap b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.chip{position:absolute;background:rgba(31,11,22,.92);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:13px;font-weight:600;box-shadow:0 14px 40px -14px #000;white-space:nowrap}
+.chip small{display:block;color:var(--mute);font-weight:500;font-size:11px}
+.chip.c1{left:-34px;top:14%}.chip.c2{right:-18px;bottom:-18px}
+@media(max-width:520px){.chip.c1{left:-6px}.chip.c2{right:-6px}}
+@media(max-width:860px){.phone{margin-top:20px}}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:56px;position:relative}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--bg2);padding:26px 22px}
+.stat b{display:block;font-size:clamp(34px,5vw,50px);font-weight:900;letter-spacing:-.04em;line-height:1;background:var(--grad-t);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{display:block;margin-top:8px;color:var(--mute);font-size:14px}
+
+.marq{padding:36px 0;border-block:1px solid var(--line);background:var(--bg2);overflow:hidden}
+.marq .label{text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:18px;font-weight:600}
+.track{display:flex;gap:14px;width:max-content;animation:slide 32s linear infinite}
+.track+.track{margin-top:12px}
+.track.back{animation-direction:reverse}
+.track span{padding:11px 22px;border:1px solid var(--line);border-radius:999px;font-weight:700;font-size:15px;color:var(--mute);background:var(--card);white-space:nowrap}
+@keyframes slide{to{transform:translateX(calc(-50% - 7px))}}
+@media(prefers-reduced-motion:reduce){.track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.track span[aria-hidden]{display:none}html{scroll-behavior:auto}}
+
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:40px}
+.tile{position:relative;border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:22px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;overflow:hidden;transition:transform .25s,border-color .25s;min-height:190px}
+.tile:hover{transform:translateY(-4px);border-color:var(--lav)}
+.tile::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 85% 0%,rgba(163,0,79,.36),transparent 70%),radial-gradient(70% 60% at 0% 100%,rgba(123,47,196,.2),transparent 70%);pointer-events:none}
+.tile .ar{position:absolute;top:18px;right:20px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);transition:background .25s,color .25s}
+.tile:hover .ar{background:var(--grad);color:#fff;border-color:transparent}
+.tile small{color:var(--lav);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;position:relative}
+.tile b{font-size:19px;letter-spacing:-.02em;line-height:1.2;margin-top:6px;position:relative}
+.tile em{font-style:normal;color:var(--dim);font-size:13px;margin-top:8px;position:relative}
+.t1{grid-column:span 2;grid-row:span 2;min-height:400px}
+.t1 b{font-size:clamp(24px,3vw,34px)}
+.t2,.t3{grid-column:span 1}.t4{grid-column:span 2}
+@media(max-width:860px){.bento{grid-template-columns:repeat(2,1fr)}.t1{grid-column:span 2;grid-row:auto;min-height:260px}.t4{grid-column:span 2}}
+@media(max-width:480px){.bento{grid-template-columns:1fr}.t1,.t2,.t3,.t4{grid-column:auto}}
+.note{color:var(--dim);font-size:13px;margin-top:18px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:36px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.c p{color:var(--mute);margin:10px 0 0;font-size:15px}
+.num{font-size:13px;font-weight:800;color:var(--pk);letter-spacing:.1em;margin-bottom:14px;display:block}
+.alt{background:linear-gradient(180deg,#1a0711 0%,#12060c 100%);border-block:1px solid var(--line)}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:36px;counter-reset:s}
+.steps .c::before{counter-increment:s;content:"0" counter(s);display:block;font-size:44px;font-weight:900;letter-spacing:-.04em;margin-bottom:14px;background:var(--grad-t);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.rev{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:34px}
+.rev .big{font-size:clamp(40px,6vw,64px);font-weight:900;letter-spacing:-.05em;line-height:1}
+.rev p{color:var(--mute);margin:8px 0 0}
+
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{font-weight:600;font-size:18px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:26px;line-height:1;color:var(--lav);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--mute);margin:12px 0 0;max-width:720px}
+
+.final{position:relative;overflow:hidden;text-align:center;border:1px solid var(--line);border-radius:36px;padding:72px 24px;background:radial-gradient(90% 120% at 15% 0%,#7A003D 0%,transparent 62%),radial-gradient(70% 110% at 95% 100%,#3D0091 0%,transparent 60%),var(--bg2)}
+.final h2{max-width:720px;margin:0 auto 14px}
+.final p{color:var(--mute)}
+.final .btn{margin-top:22px}
+.contact{margin-top:20px;font-size:14px;color:var(--dim)}
+.contact a{color:var(--mute);text-underline-offset:3px}.contact a:hover{color:var(--ink)}
+footer{padding:30px 0 90px;color:var(--dim);font-size:13px;text-align:center}
+
+.stick{display:none}
+@media(max-width:700px){.stick{display:block;position:fixed;left:14px;right:14px;bottom:14px;z-index:30}.stick .btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="w">
+  <a class="logo" href="#top">Cimey<i>.</i></a><span class="sp"></span>
+  <nav aria-label="Main"><a href="#work">Work</a><a href="#niches">Niches</a><a href="#consult">Free consultation</a><a href="#process">Process</a><a href="#faq">FAQ</a></nav>
+  <a class="btn sm" href="#consult">Get a free consultation</a>
+</div></header>
+
+<main id="top">
+
+<section class="hero"><div class="glow a"></div><div class="glow b"></div>
+<div class="w">
+ <div class="grid">
+  <div>
+   <div class="pill"><b></b>2 slots open this month</div>
+   <h1>Ads that feel like a <span class="g">friend's recommendation.</span></h1>
+   <p class="lead">I'm Juliani, a UGC creator making short videos for AI, SaaS, app, travel and beauty brands. They explain your product in under 30 seconds and look like a real person made them, because one did.</p>
+   <div class="cta-row"><a class="btn" href="#consult">Get a free consultation →</a><a class="btn o" href="#work">Watch my work</a></div>
+   <div class="langs">English and Bahasa Indonesia · Based in Indonesia · Working with brands worldwide</div>
+  </div>
+  <div class="phone" aria-label="Showreel placeholder">
+   <div class="screen">
+    <div class="play" aria-hidden="true">▶</div>
+    <div class="cap"><b>Your showreel goes here</b>Embed a 20-second reel with your 3 best hooks.</div>
+   </div>
+   <div class="chip c1">Hook in 2 seconds<small>pattern interrupt, then problem</small></div>
+   <div class="chip c2">Native EN + ID<small>no translation feel</small></div>
+  </div>
+ </div>
+
+ <div class="stats">
+  <div class="stat"><b>30+</b><span>brands, local and international</span></div>
+  <div class="stat"><b>10M+</b><span>organic views for clients</span></div>
+  <div class="stat"><b>5.0★</b><span>22 reviews, Fiverr Level 2</span></div>
+  <div class="stat"><b>2</b><span>languages, EN and Bahasa Indonesia</span></div>
+ </div>
+</div></section>
+
+<div class="marq" aria-label="Brands">
+ <div class="label">Brands I've created for</div>
+ <div class="track ">
+  <span>Tutorly</span><span>Flowy by FastFlowUp</span><span>Nomad Vault</span><span>Hilfe AI</span><span>Snap AI</span><span>Seyra eSIM</span><span>Seung AI</span><span>Quantum Leap</span><span>Sakura Speak</span><span>KIMI AI</span><span>Pingo AI</span><span>Mini Pay</span>
+  <span aria-hidden="true">Tutorly</span><span aria-hidden="true">Flowy by FastFlowUp</span><span aria-hidden="true">Nomad Vault</span><span aria-hidden="true">Hilfe AI</span><span aria-hidden="true">Snap AI</span><span aria-hidden="true">Seyra eSIM</span><span aria-hidden="true">Seung AI</span><span aria-hidden="true">Quantum Leap</span><span aria-hidden="true">Sakura Speak</span><span aria-hidden="true">KIMI AI</span><span aria-hidden="true">Pingo AI</span><span aria-hidden="true">Mini Pay</span>
+ </div>
+ <div class="track back">
+  <span>Springer Nature</span><span>HeyGen</span><span>Ling</span><span>Enstead.co</span><span>Jenni AI</span><span>SwiftFi</span><span>Welltech</span><span>SuperChinese</span><span>Falou</span><span>Tavo</span><span>Revibe</span><span>JobtoCN</span>
+  <span aria-hidden="true">Springer Nature</span><span aria-hidden="true">HeyGen</span><span aria-hidden="true">Ling</span><span aria-hidden="true">Enstead.co</span><span aria-hidden="true">Jenni AI</span><span aria-hidden="true">SwiftFi</span><span aria-hidden="true">Welltech</span><span aria-hidden="true">SuperChinese</span><span aria-hidden="true">Falou</span><span aria-hidden="true">Tavo</span><span aria-hidden="true">Revibe</span><span aria-hidden="true">JobtoCN</span>
+ </div>
+</div>
+
+<section id="work"><div class="w">
+ <div class="eyebrow">Portfolio</div>
+ <h2>Work by format</h2>
+ <p class="lead">Four formats that carry most briefs. Each tile opens the full video on Instagram.</p>
+ <div class="bento">
+  <a class="tile t1" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ar">↗</span><small>AI app · Talking head</small><b>Problem, demo, result in 30 seconds</b><em>Add views, CTR or CPA for this video here</em></a>
+  <a class="tile t2" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ar">↗</span><small>SaaS · Screen demo</small><b>Voiceover over a screen recording</b><em>Result line</em></a>
+  <a class="tile t3" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ar">↗</span><small>Travel · eSIM</small><b>Lifestyle storytelling</b><em>Result line</em></a>
+  <a class="tile t4" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ar">↗</span><small>Bahasa Indonesia</small><b>Native ads for a market of 280M people</b><em>Result line</em></a>
+ </div>
+ <p class="note">Brands hire on numbers, so each tile should carry one real result line before this page goes live.</p>
+</div></section>
+
+<section id="niches" class="alt"><div class="w">
+ <div class="eyebrow">What I do best</div>
+ <h2>Niches</h2>
+ <div class="cards">
+  <div class="c"><span class="num">01</span><h3>AI, SaaS and apps</h3><p>Screen demos, problem-solution hooks and fast feature explainers that turn viewers into installs.</p></div>
+  <div class="c"><span class="num">02</span><h3>Travel, hotels and food</h3><p>Hotel, restaurant and travel reels shot on location in Indonesia, with Bali available when the brand covers travel and stay.</p></div>
+  <div class="c"><span class="num">03</span><h3>Beauty and skincare (SEA)</h3><p>Routines, texture shots and honest reviews in English or Bahasa for brands shipping within Southeast Asia.</p></div>
+ </div>
+</div></section>
+
+<section id="consult"><div class="w">
+ <div class="eyebrow">Free consultation</div>
+ <h2>Every project is different, so let's talk first</h2>
+ <div class="cards">
+  <div class="c"><span class="num">01</span><h3>Free, in writing</h3><p>We chat on Instagram, WhatsApp or email, no call needed. Tell me about your product, audience and where the video will run. No preparation and no obligation.</p></div>
+  <div class="c"><span class="num">02</span><h3>You get a clear plan</h3><p>Concept ideas, video format and length, number of hooks to test, and a realistic delivery timeline for your brief.</p></div>
+  <div class="c"><span class="num">03</span><h3>Then a custom quote</h3><p>Pricing depends on the concept, video length, number of videos, usage rights and delivery speed, so I send a tailored offer right after the consultation.</p></div>
+ </div>
+ <p style="margin-top:28px"><a class="btn" href="mailto:cimeygallery@gmail.com?subject=Free%20UGC%20consultation&body=Hi%20Juliani%2C%0A%0ABrand%3A%20%0AProduct%3A%20%0AWhere%20the%20video%20will%20run%3A%20%0ABest%20way%20to%20reach%20you%20(Instagram%2FWhatsApp)%3A%20">Get your free consultation →</a></p>
+ <p class="note">Indonesian-language projects welcome. I reply within 24 hours.</p>
+</div></section>
+
+<section id="process" class="alt"><div class="w">
+ <div class="eyebrow">How it works</div>
+ <h2>From brief to ad in 7 days</h2>
+ <div class="steps">
+  <div class="c"><h3>Free consultation</h3><p>A quick written chat to align on product, audience and goal. Then you get a custom quote.</p></div>
+  <div class="c"><h3>Script</h3><p>I write hooks and a script for your approval before filming.</p></div>
+  <div class="c"><h3>Film and edit</h3><p>Shot natively for TikTok, Reels and Shorts, with captions and pacing for retention.</p></div>
+  <div class="c"><h3>Deliver</h3><p>Organised Google Drive folder, revisions included, files ready for ads.</p></div>
+ </div>
+</div></section>
+
+<section style="padding-block:72px"><div class="w">
+ <div class="rev">
+  <div><div class="eyebrow" style="margin-bottom:10px">Reviews</div><div class="big g">5.0 ★ from 22 clients</div><p>Read verified client reviews on Fiverr.</p></div>
+  <a class="btn o" href="https://www.fiverr.com/cimeygallery" target="_blank" rel="noopener">Read reviews on Fiverr ↗</a>
+ </div>
+</div></section>
+
+<section id="faq" style="padding-top:20px"><div class="w" style="max-width:820px">
+ <h2>FAQ</h2>
+ <details><summary>Do you need my physical product?</summary><p>For apps, SaaS and digital products, no. For physical products, I work with brands that can ship within Southeast Asia.</p></details>
+ <details><summary>Can you make content in Bahasa Indonesia?</summary><p>Yes. Native Indonesian content is ideal for brands entering a market of 280M people.</p></details>
+ <details><summary>How much does a video cost?</summary><p>It depends on the concept, length, number of videos, usage rights and timeline. After a free written consultation I send a clear custom quote.</p></details>
+ <details><summary>How do payments work?</summary><p>50% upfront and 50% on delivery via PayPal, cryptocurrency or Indonesian bank transfer, or through Fiverr or Collabstr if you prefer.</p></details>
+ <details><summary>Do you accept free stay or products instead of payment?</summary><p>Thank you for the kind offer! My creative work is always paid, so I work for a fee. For hotels and travel brands, I would be glad to have accommodation and travel costs covered in addition to the fee, but not in place of it.</p></details>
+ <details><summary>Can you post on my channels or run ads from my account?</summary><p>Yes. Whitelisting and Spark Ads are available as an add-on.</p></details>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+ <div class="final">
+  <h2>Let's make your next <span class="g">winning ad.</span></h2>
+  <p>2 slots open this month. The first consultation is free.</p>
+  <a class="btn" href="mailto:cimeygallery@gmail.com?subject=Free%20UGC%20consultation">Get a free consultation →</a>
+  <div class="contact">cimeygallery@gmail.com · <a href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener">Instagram @cimeygallery</a> · <a href="https://www.tiktok.com/@cimey.gallery" target="_blank" rel="noopener">TikTok @cimey.gallery</a> · <a href="https://www.tiktok.com/@cimeyugc" target="_blank" rel="noopener">TikTok @cimeyugc</a></div>
+ </div>
+</div></section>
+
+</main>
+<footer>© 2026 Juliani (Cimey) · UGC Creator · Indonesia</footer>
+<div class="stick"><a class="btn" href="#consult">Get a free consultation →</a></div>
+</body>
+</html>
