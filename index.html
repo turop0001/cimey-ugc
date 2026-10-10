@@ -269,9 +269,9 @@ section{padding:clamp(40px,5vw,76px) 0}
 .cbar i{display:block;height:100%;width:30%;border-radius:99px;background:var(--grad);transition:margin .15s}
 @media(max-width:640px){.cnav{display:none}.cfoot{flex-direction:column;align-items:flex-start}.cbar{width:100%;max-width:none}.reel{width:62vw}}
 /* coverflow carousel */
-.reels{--cw:clamp(210px,18vw,270px);--gap:10px;gap:var(--gap);perspective:1500px;perspective-origin:50% 40%;scroll-snap-type:x mandatory;padding:44px 0 26px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.reels{--cw:clamp(210px,18vw,270px);--gap:10px;gap:var(--gap);perspective:1500px;perspective-origin:50% 40%;scroll-snap-type:none;padding:44px 0 26px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
 .reels::before,.reels::after{content:"";flex:none;width:calc(50% - var(--cw)/2 - var(--gap))}
-.reel{width:var(--cw);scroll-snap-align:center;transition:opacity .25s;will-change:transform,opacity;transform-origin:50% 55%}
+.reel{width:var(--cw);scroll-snap-align:none;transition:opacity .25s;will-change:transform,opacity;transform-origin:50% 55%}
 .reel:hover{transform:none}
 .reel .ph{box-shadow:0 30px 60px -24px rgba(0,0,0,.7);transition:box-shadow .3s}
 .reel.on .ph{box-shadow:0 50px 90px -26px rgba(214,64,127,.55),0 0 0 1px rgba(205,176,255,.35)}
@@ -384,8 +384,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 </section>
 
 <section id="work"><div class="w">
- <div class="sech"><div><h2 class="rv">Selected work</h2><p class="lead rv">Vertical videos for AI, SaaS, travel and beauty brands, in English and Bahasa Indonesia.</p></div>
-  <div class="cnav" aria-label="Carousel controls"><button type="button" class="cb" id="cprev" aria-label="Previous videos">&#8249;</button><button type="button" class="cb" id="cnext" aria-label="Next videos">&#8250;</button></div></div>
+ <div class="sech"><div><h2 class="rv">Selected work</h2><p class="lead rv">Vertical videos for AI, SaaS, travel and beauty brands, in English and Bahasa Indonesia.</p></div></div>
  <!-- VIDEOS: put each mp4 (vertical 9:16, under 12 MB, H.264) into the /videos folder, then set data-src="videos/name.mp4" and data-poster="videos/name.jpg" on the .ph of a slide. Edit the brand, category and format in its figcaption. The same works for the intro phone in the hero. -->
  <div class="rwrap"><button type="button" class="ra l" id="cprev2" aria-label="Previous video">&#8249;</button><button type="button" class="ra r" id="cnext2" aria-label="Next video">&#8250;</button>
  <div class="reels" id="reels" tabindex="0" role="region" aria-label="Work examples, scroll sideways">
@@ -587,11 +586,12 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 
 (function(){
   var r=document.getElementById('reels');if(!r)return;
-  var pv=document.getElementById('cprev'),nx=document.getElementById('cnext'),th=document.getElementById('cthumb'),pv2=document.getElementById('cprev2'),nx2=document.getElementById('cnext2');
+  var pv=document.getElementById('cprev')||{},nx=document.getElementById('cnext')||{},th=document.getElementById('cthumb'),pv2=document.getElementById('cprev2'),nx2=document.getElementById('cnext2');
+  var down=false,sx=0,sl=0,moved=false;
   var cards=[].slice.call(r.querySelectorAll('.reel')),raf=0;
   function step(){var c=cards[0];return c?c.offsetWidth+10:260}
-  function fx(){raf=0;var mid=r.getBoundingClientRect().left+r.clientWidth/2,w=cards[0].offsetWidth+10,best=1e9,bi=0;
-    cards.forEach(function(c,i){var b=c.getBoundingClientRect(),cx=b.left+b.width/2,d=(cx-mid)/w,a=Math.min(Math.abs(d),3),sg=d<0?-1:1;
+  function fx(){raf=0;var mid=r.clientWidth/2,w=cards[0].offsetWidth+10,best=1e9,bi=0,base=r.offsetLeft;
+    cards.forEach(function(c,i){var cx=c.offsetLeft-base+c.offsetWidth/2-r.scrollLeft,d=(cx-mid)/w,a=Math.min(Math.abs(d),3),sg=d<0?-1:1;
       var sc=1.08-a*.16,ry=-sg*Math.min(a,2)*24,tz=-a*70,tx=-d*w*.12;
       if(sc<.6)sc=.6;
       c.style.transform='translate3d('+tx+'px,0,'+tz+'px) rotateY('+ry+'deg) scale('+sc+')';
@@ -602,19 +602,21 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   function upd(){var max=r.scrollWidth-r.clientWidth;var f=r.clientWidth/r.scrollWidth,p=max>0?r.scrollLeft/max:0;
     th.style.width=(Math.max(f,.12)*100)+'%';th.style.marginLeft=(p*(1-Math.max(f,.12))*100)+'%';
     pv.disabled=pv2.disabled=r.scrollLeft<=2;nx.disabled=nx2.disabled=r.scrollLeft>=max-2;tick()}
-  function go(i){i=Math.max(0,Math.min(cards.length-1,i));var c=cards[i];r.scrollTo({left:c.offsetLeft+c.offsetWidth/2-r.clientWidth/2,behavior:'smooth'})}
-  pv.addEventListener('click',function(){go((r._on||0)-1)});
-  nx.addEventListener('click',function(){go((r._on||0)+1)});
-  pv2.addEventListener('click',function(){go((r._on||0)-1)});nx2.addEventListener('click',function(){go((r._on||0)+1)});
+  var tg=null,tt=0;
+  function go(i){i=Math.max(0,Math.min(cards.length-1,i));tg=i;clearTimeout(tt);tt=setTimeout(function(){tg=null},700);var c=cards[i];r.scrollTo({left:c.offsetLeft-r.offsetLeft+c.offsetWidth/2-r.clientWidth/2,behavior:'smooth'})}
+  function cur(){return tg!==null?tg:(r._on||0)}
+  pv2.addEventListener('click',function(){go(cur()-1)});nx2.addEventListener('click',function(){go(cur()+1)});
   cards.forEach(function(c,i){c.addEventListener('click',function(e){if(r._on!==i){e.preventDefault();e.stopPropagation();go(i)}},true)});
+  var st=0;function settle(){if(down||tg!==null)return;var m=r.clientWidth/2,w=cards[0].offsetWidth+10,bi=0,bd=1e9;cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft-r.offsetLeft+c.offsetWidth/2-r.scrollLeft-m);if(d<bd){bd=d;bi=i}});if(bd>2)go(bi)}
+  r.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(settle,110)},{passive:true});
   r.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);
   r.scrollLeft=0;go(Math.min(2,cards.length-1));setTimeout(upd,60);upd();
-  r.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){go((r._on||0)+1);e.preventDefault()}if(e.key==='ArrowLeft'){go((r._on||0)-1);e.preventDefault()}});
+  r.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){go(cur()+1);e.preventDefault()}if(e.key==='ArrowLeft'){go(cur()-1);e.preventDefault()}});
   /* mouse drag */
-  var down=false,sx=0,sl=0,moved=false;
+  
   r.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.target.closest('button,video'))return;down=true;moved=false;sx=e.clientX;sl=r.scrollLeft;r.classList.add('drag')});
   window.addEventListener('pointermove',function(e){if(!down)return;var d=e.clientX-sx;if(Math.abs(d)>4)moved=true;r.scrollLeft=sl-d});
-  window.addEventListener('pointerup',function(){if(!down)return;down=false;r.classList.remove('drag')});
+  window.addEventListener('pointerup',function(){if(!down)return;down=false;r.classList.remove('drag');settle()});
 })();
 </script>
 </body>
