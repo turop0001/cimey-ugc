@@ -236,7 +236,6 @@ section{padding:clamp(40px,5vw,76px) 0}
 .tl::before{content:"";position:absolute;left:22px;right:22px;top:22px;height:2px;background:linear-gradient(90deg,#A3004F,#7B2FC4 55%,#CDB0FF);opacity:.8}
 .tl li{position:relative;padding-top:64px}
 .tl .dot{position:absolute;left:0;top:0;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px;background:var(--bg);border:2px solid var(--pk);color:#fff;box-shadow:0 0 0 6px var(--bg)}
-.tl .dot.end{background:var(--grad);border-color:transparent}
 .tl h3{font-size:clamp(20px,1.8vw,26px);font-weight:800}
 .tl p{margin:8px 0 0;color:var(--mute);font-size:15.5px}
 @media(max-width:860px){.tl{grid-template-columns:1fr;gap:6px}.tl::before{left:22px;right:auto;top:22px;bottom:22px;width:2px;height:auto;background:linear-gradient(180deg,#A3004F,#7B2FC4 55%,#CDB0FF)}.tl li{padding:4px 0 22px 66px}}
@@ -320,6 +319,16 @@ section{padding:clamp(40px,5vw,76px) 0}
 .pill b{animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}50%{box-shadow:0 0 0 7px rgba(74,222,128,0)}}
 }
+/* faq pills */
+.faq details{border:1px solid var(--line);border-radius:30px;padding:0 30px;margin-bottom:14px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));box-shadow:0 14px 30px -18px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.06);transition:border-color .3s,box-shadow .3s,transform .3s,background .3s}
+.faq details:first-of-type{border-top:1px solid var(--line)}
+.faq summary{padding:22px 0;font-size:18px}
+.faq details:hover{transform:translateY(-2px);border-color:rgba(214,64,127,.5)}
+.faq details[open]{border-color:rgba(214,64,127,.65);border-radius:28px;background:linear-gradient(180deg,rgba(163,0,79,.2),rgba(123,47,196,.1));box-shadow:0 22px 44px -22px rgba(214,64,127,.5),inset 0 1px 0 rgba(255,255,255,.08)}
+.faq details p{margin:0 0 24px;padding-top:0}
+.faq summary::after{width:34px;height:34px;padding:6px;border-radius:50%;background-color:rgba(255,255,255,.08);background-origin:content-box;background-size:contain;transition:transform .3s,background-color .3s}
+.faq details[open] summary::after{background-color:rgba(214,64,127,.35)}
+@media(max-width:560px){.faq details{padding:0 20px;border-radius:24px}.faq summary{font-size:16.5px}}
 /* booking dialog */
 .btn{font-family:inherit}
 dialog.bk{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:28px;background:var(--bg2);color:var(--ink);overflow:auto;box-shadow:0 40px 120px -20px rgba(0,0,0,.8)}
