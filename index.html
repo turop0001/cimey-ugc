@@ -291,6 +291,32 @@ section{padding:clamp(40px,5vw,76px) 0}
 .lbx .ph{position:fixed;margin:0;box-shadow:0 60px 120px -30px rgba(214,64,127,.5),0 0 0 1px rgba(205,176,255,.3);cursor:pointer}
 .lbx .x{position:fixed;top:18px;right:18px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:24px;cursor:pointer;display:grid;place-items:center;z-index:2;padding:0 0 3px}
 .lbx .x:hover{background:var(--grad)}
+/* motion + infographics (v17) */
+#sp{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--grad);z-index:300;pointer-events:none}
+.tl::before{opacity:.18!important}
+.tl::after{content:"";position:absolute;left:22px;right:22px;top:22px;height:2px;background:linear-gradient(90deg,#A3004F,#7B2FC4 55%,#CDB0FF);clip-path:inset(0 calc((1 - var(--p,0))*100%) 0 0);box-shadow:0 0 14px rgba(214,64,127,.7)}
+.tl li .dot{transition:background .4s,border-color .4s,box-shadow .4s,transform .4s}
+.tl li.on .dot{background:var(--grad);border-color:transparent;box-shadow:0 0 0 6px var(--bg),0 0 26px rgba(214,64,127,.65);transform:scale(1.08)}
+@media(max-width:860px){.tl::after{left:22px;right:auto;top:22px;bottom:22px;width:2px;height:auto;background:linear-gradient(180deg,#A3004F,#7B2FC4 55%,#CDB0FF);clip-path:inset(0 0 calc((1 - var(--p,0))*100%) 0)}}
+.stat b .cnt{display:inline;margin:0;color:inherit;font-size:inherit}
+.stat .strs{display:flex;gap:2px;letter-spacing:0}
+.lg em{font-style:normal}
+@media(prefers-reduced-motion:no-preference){
+.js .nr .chips li{opacity:0;transform:translateY(10px) scale(.94);transition:opacity .5s,transform .5s cubic-bezier(.16,1,.3,1)}
+.js .nr.in .chips li{opacity:1;transform:none}
+.nr .chips li:nth-child(1){transition-delay:.25s}.nr .chips li:nth-child(2){transition-delay:.33s}.nr .chips li:nth-child(3){transition-delay:.41s}.nr .chips li:nth-child(4){transition-delay:.49s}
+.js .nr .no{transition:color .6s,letter-spacing .8s cubic-bezier(.16,1,.3,1)}
+.js .nr:not(.in) .no{letter-spacing:.3em}
+.js .stats:not(.in) .strs{clip-path:inset(0 100% 0 0)}
+.stats .strs{clip-path:inset(0 0 0 0);transition:clip-path 1s cubic-bezier(.16,1,.3,1) .5s}
+.js .stats:not(.in) .lg em{opacity:0;transform:scale(.7)}
+.stats .lg em{transition:opacity .5s .7s,transform .5s cubic-bezier(.34,1.56,.64,1) .7s}
+.stats .lg em:nth-child(2){transition-delay:.85s}
+.js .stats .stat{transition:background .3s}
+.stat:hover{background:#1d0a14}
+.pill b{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}50%{box-shadow:0 0 0 7px rgba(74,222,128,0)}}
+}
 /* booking dialog */
 .btn{font-family:inherit}
 dialog.bk{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:28px;background:var(--bg2);color:var(--ink);overflow:auto;box-shadow:0 40px 120px -20px rgba(0,0,0,.8)}
@@ -345,6 +371,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   <button type="button" class="btn sm" data-book>Get a free consultation</button>
 </div></header>
 
+<div id="sp" aria-hidden="true"></div>
 <main id="top">
 
 <section class="hero"><div class="glow a"></div><div class="glow b"></div>
@@ -368,10 +395,10 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   </div>
 
   <div class="stats rv">
-    <div class="stat"><b>30+</b><span>brands, local and international</span></div>
-    <div class="stat"><b>10M+</b><span>organic views for clients</span></div>
-    <div class="stat"><b>5.0<i class="st">★</i></b><span>from 22 reviews, Fiverr Level 2</span><i class="strs" aria-hidden="true">★★★★★</i><a class="rl" href="https://www.fiverr.com/cimeygallery" target="_blank" rel="noopener">Read reviews on Fiverr ↗</a></div>
-    <div class="stat"><b>2</b><span>languages, native in both</span><i class="lg" aria-hidden="true"><em>EN</em><em>ID</em></i></div>
+    <div class="stat"><b><span class="cnt" data-to="30" data-suf="+">30+</span></b><span>brands, local and international</span></div>
+    <div class="stat"><b><span class="cnt" data-to="10" data-suf="M+">10M+</span></b><span>organic views for clients</span></div>
+    <div class="stat"><b><span class="cnt" data-to="5" data-dec="1">5.0</span><i class="st">★</i></b><span>from 22 reviews, Fiverr Level 2</span><i class="strs" aria-hidden="true">★★★★★</i><a class="rl" href="https://www.fiverr.com/cimeygallery" target="_blank" rel="noopener">Read reviews on Fiverr ↗</a></div>
+    <div class="stat"><b><span class="cnt" data-to="2">2</span></b><span>languages, native in both</span><i class="lg" aria-hidden="true"><em>EN</em><em>ID</em></i></div>
   </div>
 </div>
 <!-- SHOWREEL SLOT: when the 20-second vertical reel is ready, add a section here with a 9:16 video next to the hero text. -->
@@ -615,6 +642,32 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
       v.play();
     });
   });
+})();
+
+(function(){
+  var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  /* page progress */
+  var sp=document.getElementById('sp');
+  /* count-up */
+  var cn=document.querySelectorAll('.cnt');
+  function run(el){var to=+el.dataset.to,dec=+(el.dataset.dec||0),suf=el.dataset.suf||'',t0=performance.now(),d=1400;
+    function f(t){var k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,4);el.textContent=(dec?(to*e).toFixed(dec):Math.round(to*e))+suf;if(k<1)requestAnimationFrame(f);else el.textContent=to.toFixed(dec)+suf}
+    requestAnimationFrame(f)}
+  if(!rm&&'IntersectionObserver' in window){
+    cn.forEach(function(e){var to=+e.dataset.to,dec=+(e.dataset.dec||0);e.textContent=(0).toFixed(dec)+(e.dataset.suf||'')});
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){run(x.target);io.unobserve(x.target)}})},{threshold:.6});
+    cn.forEach(function(e){io.observe(e)});
+  }
+  /* timeline */
+  var tl=document.querySelector('.tl'),lis=tl?[].slice.call(tl.children):[];
+  function tick(){
+    var h=document.documentElement.scrollHeight-innerHeight;if(sp)sp.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')';
+    if(tl){var r=tl.getBoundingClientRect(),vert=getComputedStyle(tl).gridTemplateColumns.split(' ').length===1,
+      p=rm?1:Math.max(0,Math.min(1,(innerHeight*.72-r.top)/(vert?r.height:r.height+innerHeight*.15)));
+      tl.style.setProperty('--p',p);
+      lis.forEach(function(li,i){li.classList.toggle('on',p>=(i/(lis.length-1))*.92+.02||rm)})}
+  }
+  addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
 })();
 
 (function(){
