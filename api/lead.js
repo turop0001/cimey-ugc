@@ -41,6 +41,14 @@ module.exports = async (req, res) => {
   }).catch(() => null);
   if (!db || !db.ok) return res.status(502).json({ ok: false, error: 'db' });
 
+  if (type === 'guide') {
+    const m = require('./_mail');
+    const first = m.SEQUENCE[0];
+    if (!(await m.redis(['SISMEMBER', 'unsub', lead.email.toLowerCase()]))) {
+      const fresh = await m.redis(['SET', `mail:${lead.id}:1`, '1', 'NX']);
+      if (fresh && !(await m.send(lead.email, m.render(first, lead)))) await m.redis(['DEL', `mail:${lead.id}:1`]);
+    }
+  }
   if (process.env.RESEND_API_KEY) {
     const text = `New consultation request\n\nName: ${lead.name}\nEmail: ${lead.email}\n${lead.handle ? lead.channel + ': ' + lead.handle + '\n' : ''}Brand: ${lead.brand}\nReach via: ${lead.channel}\nWhen: ${lead.date} ${lead.time} WIB (UTC+7)\n\n${lead.message}`;
     await fetch('https://api.resend.com/emails', {
