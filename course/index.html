@@ -736,7 +736,7 @@ footer .logo{color:#fff}
 .cc.solo{--b:rotateZ(-2deg);max-width:340px;margin:28px 0 0}
 .cc.solo:hover{--b:rotateZ(0) translateY(-8px) scale(1.03)}
 /* meet cutout */
-.meet{position:relative;isolation:isolate;max-width:400px;margin:30px 0 0;aspect-ratio:4/4.6}
+.meet{position:relative;isolation:isolate;max-width:340px;margin:34px 0 0;aspect-ratio:1/1.36}
 .meet .aura{position:absolute;inset:6% -8% -4%;z-index:-2;border-radius:50%;background:radial-gradient(closest-side,rgba(224,80,140,.6),rgba(123,47,196,.28) 58%,transparent 76%);filter:blur(30px);animation:cnbr 7s ease-in-out infinite}
 @keyframes cnbr{50%{transform:scale(1.08);opacity:.85}}
 .meet .ring{position:absolute;left:50%;top:52%;width:104%;aspect-ratio:1;z-index:-1;border-radius:50%;translate:-50% -50%;border:1.5px dashed rgba(224,80,140,.45);animation:cnsp 70s linear infinite}
@@ -744,14 +744,14 @@ footer .logo{color:#fff}
 .meet .ring::after{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#E0508C;box-shadow:0 0 0 5px rgba(224,80,140,.22)}
 @keyframes cnsp{to{rotate:360deg}}
 .meet img{position:absolute;left:4%;bottom:0;width:92%;height:auto;filter:drop-shadow(0 0 2px rgba(255,255,255,.9)) drop-shadow(0 0 26px rgba(224,80,140,.55)) drop-shadow(0 30px 34px rgba(42,16,32,.3))}
-.meet .say{position:absolute;right:-6%;top:6%;max-width:190px;padding:12px 16px;border-radius:20px 20px 20px 6px;background:#fff;color:#2a1020;box-shadow:0 22px 40px -18px rgba(123,47,196,.6);font:700 14px/1.35 Manrope,sans-serif;animation:cnbob 7s ease-in-out infinite}
+.meet .say{position:absolute;right:-30%;top:auto;bottom:14%;max-width:190px;padding:12px 16px;border-radius:20px 20px 20px 6px;background:#fff;color:#2a1020;box-shadow:0 22px 40px -18px rgba(123,47,196,.6);font:700 14px/1.35 Manrope,sans-serif;animation:cnbob 7s ease-in-out infinite}
 .meet .say small{display:block;margin-top:6px;font:800 10.5px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#a3004f}
 .meet .say i{display:inline-flex;gap:3px;margin-left:6px;vertical-align:middle}
 .meet .say i b{width:5px;height:5px;border-radius:50%;background:#E0508C;animation:cndot 1s infinite}
 .meet .say i b:nth-child(2){animation-delay:.15s}.meet .say i b:nth-child(3){animation-delay:.3s}
 @keyframes cndot{40%{transform:translateY(-4px)}}
 @keyframes cnbob{50%{translate:0 -9px}}
-@media(max-width:900px){.meet{margin-inline:auto}}
+@media(max-width:900px){.meet{margin-inline:auto}.meet .say{right:-8%}}
 
 #cine-sec .sech{margin-bottom:clamp(64px,8vw,120px)}
 #cine-sec .cine{padding-bottom:clamp(20px,3vw,40px)}
