@@ -279,6 +279,12 @@ section{padding:clamp(40px,5vw,76px) 0}
 .reel:not(.on) figcaption{opacity:.35}
 .reel.on figcaption b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;background-image:linear-gradient(90deg,#fff,var(--lav))}
 @media(max-width:640px){.reels{--cw:60vw}}
+.rwrap{position:relative}
+.ra{position:absolute;top:50%;z-index:30;width:52px;height:52px;margin-top:-34px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(23,7,15,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font-size:30px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0 0 4px;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:background .2s,transform .2s,opacity .2s}
+.ra:hover{background:var(--grad);transform:scale(1.08)}
+.ra:disabled{opacity:.25;pointer-events:none}
+.ra.l{left:clamp(8px,3vw,48px)}.ra.r{right:clamp(8px,3vw,48px)}
+@media(max-width:640px){.ra{width:42px;height:42px;font-size:26px;margin-top:-50px}.ra.l{left:4px}.ra.r{right:4px}}
 /* booking dialog */
 .btn{font-family:inherit}
 dialog.bk{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:28px;background:var(--bg2);color:var(--ink);overflow:auto;box-shadow:0 40px 120px -20px rgba(0,0,0,.8)}
@@ -381,6 +387,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
  <div class="sech"><div><h2 class="rv">Selected work</h2><p class="lead rv">Vertical videos for AI, SaaS, travel and beauty brands, in English and Bahasa Indonesia.</p></div>
   <div class="cnav" aria-label="Carousel controls"><button type="button" class="cb" id="cprev" aria-label="Previous videos">&#8249;</button><button type="button" class="cb" id="cnext" aria-label="Next videos">&#8250;</button></div></div>
  <!-- VIDEOS: put each mp4 (vertical 9:16, under 12 MB, H.264) into the /videos folder, then set data-src="videos/name.mp4" and data-poster="videos/name.jpg" on the .ph of a slide. Edit the brand, category and format in its figcaption. The same works for the intro phone in the hero. -->
+ <div class="rwrap"><button type="button" class="ra l" id="cprev2" aria-label="Previous video">&#8249;</button><button type="button" class="ra r" id="cnext2" aria-label="Next video">&#8250;</button>
  <div class="reels" id="reels" tabindex="0" role="region" aria-label="Work examples, scroll sideways">
   <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 1: Tutorly, AI learning app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Tutorly</b><span>AI learning app · Talking head</span></figcaption></figure>
   <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 2: Hilfe AI, AI assistant" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Hilfe AI</b><span>AI assistant · Screen demo</span></figcaption></figure>
@@ -395,7 +402,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 11: Pingo AI, Language app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Pingo AI</b><span>Language app · Voiceover demo</span></figcaption></figure>
   <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 12: Bahasa Indonesia, Native ad" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Bahasa Indonesia</b><span>Native ad · Local market</span></figcaption></figure>
   
- </div>
+ </div></div>
  <div class="cfoot"><div class="cbar" aria-hidden="true"><i id="cthumb"></i></div><a class="btn o" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener">See my work on Instagram ↗</a></div>
 </div></section>
 
@@ -580,7 +587,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 
 (function(){
   var r=document.getElementById('reels');if(!r)return;
-  var pv=document.getElementById('cprev'),nx=document.getElementById('cnext'),th=document.getElementById('cthumb');
+  var pv=document.getElementById('cprev'),nx=document.getElementById('cnext'),th=document.getElementById('cthumb'),pv2=document.getElementById('cprev2'),nx2=document.getElementById('cnext2');
   var cards=[].slice.call(r.querySelectorAll('.reel')),raf=0;
   function step(){var c=cards[0];return c?c.offsetWidth+10:260}
   function fx(){raf=0;var mid=r.getBoundingClientRect().left+r.clientWidth/2,w=cards[0].offsetWidth+10,best=1e9,bi=0;
@@ -594,10 +601,11 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   function tick(){if(!raf)raf=requestAnimationFrame(fx)}
   function upd(){var max=r.scrollWidth-r.clientWidth;var f=r.clientWidth/r.scrollWidth,p=max>0?r.scrollLeft/max:0;
     th.style.width=(Math.max(f,.12)*100)+'%';th.style.marginLeft=(p*(1-Math.max(f,.12))*100)+'%';
-    pv.disabled=r.scrollLeft<=2;nx.disabled=r.scrollLeft>=max-2;tick()}
+    pv.disabled=pv2.disabled=r.scrollLeft<=2;nx.disabled=nx2.disabled=r.scrollLeft>=max-2;tick()}
   function go(i){i=Math.max(0,Math.min(cards.length-1,i));var c=cards[i];r.scrollTo({left:c.offsetLeft+c.offsetWidth/2-r.clientWidth/2,behavior:'smooth'})}
   pv.addEventListener('click',function(){go((r._on||0)-1)});
   nx.addEventListener('click',function(){go((r._on||0)+1)});
+  pv2.addEventListener('click',function(){go((r._on||0)-1)});nx2.addEventListener('click',function(){go((r._on||0)+1)});
   cards.forEach(function(c,i){c.addEventListener('click',function(e){if(r._on!==i){e.preventDefault();e.stopPropagation();go(i)}},true)});
   r.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);
   r.scrollLeft=0;go(Math.min(2,cards.length-1));setTimeout(upd,60);upd();
