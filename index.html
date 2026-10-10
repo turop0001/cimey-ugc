@@ -352,13 +352,15 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   </fieldset>
   <div class="f"><label for="bk-msg">About your product (optional)</label><textarea id="bk-msg" name="message"></textarea></div>
   <div class="chk"><input id="bk-ok" type="checkbox" required><label for="bk-ok">I agree that my details are used only to answer this request and are not shared with third parties.</label></div>
+  <input id="bk-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
   <p class="err" id="bk-err" role="alert"></p>
   <button type="submit" class="btn">Request my free consultation</button>
  </form>
  <div class="ok" id="bk-done" hidden>
-  <h2>One last step</h2>
+  <div id="bk-done-ok" hidden><h2>Request received</h2><p>Thank you. I will reply to your email within 24 hours.</p></div>
+  <div id="bk-done-mail" hidden><h2>One last step</h2>
   <p>Your email app should have opened with the request filled in. Press send there and I will reply within 24 hours.</p>
-  <p>If nothing opened, write to <a href="mailto:cimeygallery@gmail.com">cimeygallery@gmail.com</a> with the details you entered.</p>
+  <p>If nothing opened, write to <a href="mailto:cimeygallery@gmail.com">cimeygallery@gmail.com</a> with the details you entered.</p></div>
   <button type="button" class="btn" data-close>Close</button>
  </div>
 </dialog>
@@ -417,7 +419,12 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
     if(!document.getElementById('bk-ok').checked){err.textContent='Please confirm the privacy checkbox.';return}
     var body='Hi Juliani,\n\nName: '+v('bk-name')+'\nEmail: '+v('bk-mail')+'\nBrand/product: '+v('bk-brand')+'\nReach me via: '+(f.querySelector('input[name=ch]:checked')||{}).value+'\nPreferred time: '+date.value+' at '+time+' WIB (UTC+7)\n\n'+v('bk-msg')+'\n\nI agree that my details are used only to answer this request.';
     var href='mailto:cimeygallery@gmail.com?subject='+encodeURIComponent('Free UGC consultation: '+v('bk-brand'))+'&body='+encodeURIComponent(body);
-    f.hidden=true;done.hidden=false;window.location.href=href;
+    var btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending...';
+    var payload={name:v('bk-name'),email:v('bk-mail'),brand:v('bk-brand'),channel:(f.querySelector('input[name=ch]:checked')||{}).value,date:date.value,time:time,message:v('bk-msg'),consent:true,website:(document.getElementById('bk-hp')||{}).value||''};
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){if(!r.ok)throw 0;document.getElementById('bk-done-ok').hidden=false;document.getElementById('bk-done-mail').hidden=true;f.hidden=true;done.hidden=false})
+      .catch(function(){document.getElementById('bk-done-ok').hidden=true;document.getElementById('bk-done-mail').hidden=false;f.hidden=true;done.hidden=false;window.location.href=href})
+      .then(function(){btn.disabled=false;btn.textContent='Request my free consultation'});
   });
 })();
 </script>
