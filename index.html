@@ -373,6 +373,84 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 .cal .cg button.on{background:var(--grad);color:#fff}
 .cal .cg button:focus-visible{outline:2px solid var(--lav)}
 @media(max-width:560px){.bk .fr{grid-template-columns:1fr}.bk .slots{grid-template-columns:repeat(3,1fr)}}
+/* ===== cinematic photo cards ===== */
+.cine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,34px);align-items:center;max-width:1080px;margin:0 auto;perspective:1500px}
+.cc{--b:none;--rx:0deg;--ry:0deg;position:relative;margin:0;aspect-ratio:3/4;transform:var(--b) rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .9s,filter .9s;will-change:transform}
+.cc.c1{--b:rotateY(16deg) rotateZ(-3.5deg) translateY(22px)}
+.cc.c2{--b:translateY(-16px) scale(1.07);z-index:2}
+.cc.c3{--b:rotateY(-16deg) rotateZ(3.5deg) translateY(22px)}
+.cine:hover .cc.c1{--b:rotateY(6deg) rotateZ(-1.5deg) translateX(10px) translateY(14px)}
+.cine:hover .cc.c3{--b:rotateY(-6deg) rotateZ(1.5deg) translateX(-10px) translateY(14px)}
+.cc:hover{transition-duration:.25s,.9s,.9s}
+.cc .fr{position:absolute;inset:0;border-radius:24px;overflow:hidden;isolation:isolate;background:#1a0710;box-shadow:0 50px 80px -34px rgba(60,0,40,.7),0 0 0 1px rgba(255,255,255,.4) inset,0 0 0 6px rgba(255,255,255,.08)}
+.cc .fr::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);pointer-events:none;z-index:6}
+.cc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:cnkb 16s ease-in-out infinite alternate}
+.cc.c2 img{animation-duration:19s;animation-direction:alternate-reverse}
+@keyframes cnkb{from{transform:scale(1.03) translate(0,0)}to{transform:scale(1.15) translate(-2.5%,-2%)}}
+.cc .vig{position:absolute;inset:0;z-index:2;background:radial-gradient(120% 95% at 50% 38%,transparent 52%,rgba(24,2,16,.6)),linear-gradient(180deg,rgba(0,0,0,.34),transparent 24%,transparent 56%,rgba(28,2,18,.86))}
+.cc .tone{position:absolute;inset:0;z-index:2;mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(255,120,190,.35),rgba(123,47,196,.28))}
+.cc .grain{position:absolute;inset:-60%;z-index:3;opacity:.2;mix-blend-mode:overlay;pointer-events:none;background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");animation:cngr .7s steps(4) infinite}
+@keyframes cngr{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
+.cc .sweep{position:absolute;inset:0;z-index:4;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.3) 50%,transparent 65%);transform:translateX(-120%);animation:cnsw 7s ease-in-out infinite}
+.cc.c2 .sweep{animation-delay:2.3s}.cc.c3 .sweep{animation-delay:4.6s}
+@keyframes cnsw{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.cc .glare{position:absolute;inset:0;z-index:5;opacity:0;transition:opacity .3s;mix-blend-mode:soft-light;background:radial-gradient(380px circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.55),transparent 50%)}
+.cc:hover .glare{opacity:1}
+.cc .vf{position:absolute;inset:15% 11% 24%;z-index:5;pointer-events:none;opacity:.8;background:
+ linear-gradient(#fff,#fff) 0 0/22px 2px no-repeat,linear-gradient(#fff,#fff) 0 0/2px 22px no-repeat,
+ linear-gradient(#fff,#fff) 100% 0/22px 2px no-repeat,linear-gradient(#fff,#fff) 100% 0/2px 22px no-repeat,
+ linear-gradient(#fff,#fff) 0 100%/22px 2px no-repeat,linear-gradient(#fff,#fff) 0 100%/2px 22px no-repeat,
+ linear-gradient(#fff,#fff) 100% 100%/22px 2px no-repeat,linear-gradient(#fff,#fff) 100% 100%/2px 22px no-repeat;transition:inset .5s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.cc:hover .vf{inset:11% 8% 20%;opacity:1}
+.cc .rec{position:absolute;top:16px;left:16px;z-index:6;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:99px;background:rgba(14,0,10,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font:800 10.5px/1 Manrope,sans-serif;letter-spacing:.14em;color:#fff}
+.cc .rec i{width:8px;height:8px;border-radius:50%;background:#ff3b6b;box-shadow:0 0 10px #ff3b6b;animation:cnbl 1.2s steps(2) infinite}
+@keyframes cnbl{50%{opacity:.15}}
+.cc .tc{position:absolute;top:19px;right:18px;z-index:6;font:700 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;color:rgba(255,255,255,.92);text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.cc figcaption{position:absolute;left:18px;right:18px;bottom:18px;z-index:6;color:#fff}
+.cc figcaption small{display:block;margin-bottom:6px;font:800 10.5px Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#ffc2dd}
+.cc figcaption b{display:block;font:800 clamp(17px,1.7vw,23px)/1.12 "Bricolage Grotesque",Manrope,sans-serif;letter-spacing:-.02em;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.js .cine .cc{opacity:0;filter:blur(10px)}
+.js .cine.in .cc{opacity:1;filter:none}
+.js .cine .cc.c1{--b:translateX(90px) rotateY(0) rotateZ(0) scale(.88)}.js .cine .cc.c3{--b:translateX(-90px) rotateY(0) rotateZ(0) scale(.88)}.js .cine .cc.c2{--b:translateY(70px) scale(.9)}
+.js .cine.in .cc.c1{--b:rotateY(16deg) rotateZ(-3.5deg) translateY(22px)}.js .cine.in .cc.c3{--b:rotateY(-16deg) rotateZ(3.5deg) translateY(22px)}.js .cine.in .cc.c2{--b:translateY(-16px) scale(1.07)}
+.js .cine.in:hover .cc.c1{--b:rotateY(6deg) rotateZ(-1.5deg) translateX(10px) translateY(14px)}.js .cine.in:hover .cc.c3{--b:rotateY(-6deg) rotateZ(1.5deg) translateX(-10px) translateY(14px)}
+.js .cine .cc.c2{transition-delay:.05s}.js .cine .cc.c1,.js .cine .cc.c3{transition-delay:.18s}
+@media(max-width:760px){
+ .cine{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 18px 26px;margin-inline:calc(var(--gut,16px)*-1);perspective:none;scrollbar-width:none}
+ .cine::-webkit-scrollbar{display:none}
+ .cc,.js .cine .cc{flex:0 0 74%;scroll-snap-align:center;--b:none!important;opacity:1;filter:none}
+ .cc.c2{order:-1}
+}
+@media(prefers-reduced-motion:reduce){.cc img,.cc .grain,.cc .sweep,.cc .rec i{animation:none}.js .cine .cc{opacity:1;filter:none}}
+/* single framed card */
+.cc.solo{--b:rotateZ(-2deg);max-width:340px;margin:28px 0 0}
+.cc.solo:hover{--b:rotateZ(0) translateY(-8px) scale(1.03)}
+/* meet cutout */
+.meet{position:relative;isolation:isolate;max-width:400px;margin:30px 0 0;aspect-ratio:4/4.6}
+.meet .aura{position:absolute;inset:6% -8% -4%;z-index:-2;border-radius:50%;background:radial-gradient(closest-side,rgba(224,80,140,.6),rgba(123,47,196,.28) 58%,transparent 76%);filter:blur(30px);animation:cnbr 7s ease-in-out infinite}
+@keyframes cnbr{50%{transform:scale(1.08);opacity:.85}}
+.meet .ring{position:absolute;left:50%;top:52%;width:104%;aspect-ratio:1;z-index:-1;border-radius:50%;translate:-50% -50%;border:1.5px dashed rgba(224,80,140,.45);animation:cnsp 70s linear infinite}
+.meet .ring.r2{width:78%;border-style:solid;border-color:rgba(123,47,196,.28);animation-direction:reverse}
+.meet .ring::after{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#E0508C;box-shadow:0 0 0 5px rgba(224,80,140,.22)}
+@keyframes cnsp{to{rotate:360deg}}
+.meet img{position:absolute;left:4%;bottom:0;width:92%;height:auto;filter:drop-shadow(0 0 2px rgba(255,255,255,.9)) drop-shadow(0 0 26px rgba(224,80,140,.55)) drop-shadow(0 30px 34px rgba(42,16,32,.3))}
+.meet .say{position:absolute;right:-6%;top:6%;max-width:190px;padding:12px 16px;border-radius:20px 20px 20px 6px;background:#fff;color:#2a1020;box-shadow:0 22px 40px -18px rgba(123,47,196,.6);font:700 14px/1.35 Manrope,sans-serif;animation:cnbob 7s ease-in-out infinite}
+.meet .say small{display:block;margin-top:6px;font:800 10.5px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#a3004f}
+.meet .say i{display:inline-flex;gap:3px;margin-left:6px;vertical-align:middle}
+.meet .say i b{width:5px;height:5px;border-radius:50%;background:#E0508C;animation:cndot 1s infinite}
+.meet .say i b:nth-child(2){animation-delay:.15s}.meet .say i b:nth-child(3){animation-delay:.3s}
+@keyframes cndot{40%{transform:translateY(-4px)}}
+@keyframes cnbob{50%{translate:0 -9px}}
+@media(max-width:900px){.meet{margin-inline:auto}}
+
+.cc .fr{box-shadow:0 50px 80px -34px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.22) inset,0 0 0 6px rgba(255,255,255,.06)}
+.cc.solo{aspect-ratio:3/4;max-width:300px}
+.final{--ink:#faf3f6}
+.final > *:not(.meet){position:relative;z-index:2}
+.fin-meet{position:absolute;right:3%;bottom:0;width:min(36%,420px);margin:0;z-index:1}
+.fin-meet .say{right:auto;left:-14%;top:10%}
+@media(max-width:900px){.fin-meet{position:relative;right:auto;width:78%;max-width:300px;margin:34px auto calc(-1*clamp(36px,5vw,72px))}.fin-meet .say{left:auto;right:-4%;top:auto;bottom:14%}}
+html,body{overflow-x:clip}.hero{overflow-x:clip}
 </style>
 </head>
 <body>
@@ -457,6 +535,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   <article class="nr rv"><span class="no">02</span><div class="nb"><h3>Travel, hotels and food</h3><p>Hotel, restaurant and travel reels shot on location in Pekanbaru and across Indonesia, with Bali available when the brand covers travel and stay.</p></div><ul class="chips"><li>On location</li><li>Lifestyle story</li><li>eSIM and travel apps</li><li>Bali on request</li></ul></article>
   <article class="nr rv"><span class="no">03</span><div class="nb"><h3>Beauty and skincare</h3><p>Routines, texture shots and honest reviews in English or Bahasa for brands that ship within Southeast Asia.</p></div><ul class="chips"><li>Routine</li><li>Texture shots</li><li>Honest review</li><li>English or Bahasa</li></ul></article>
  </div>
+<div class="cine" style="margin-top:clamp(40px,6vw,80px)"><figure class="cc c1"><div class="fr"><img src="img/ph-gate.webp" alt="Cimey at a hotel gate" loading="lazy" decoding="async"><i class="vig"></i><i class="tone"></i><i class="grain"></i><i class="sweep"></i><i class="glare"></i><i class="vf"></i><span class="rec"><i></i>REC</span><span class="tc"></span></div><figcaption><small>On location</small><b>Hotels and resorts</b></figcaption></figure><figure class="cc c2"><div class="fr"><img src="img/ph-bamboo.webp" alt="Cimey in a bamboo cafe" loading="lazy" decoding="async"><i class="vig"></i><i class="tone"></i><i class="grain"></i><i class="sweep"></i><i class="glare"></i><i class="vf"></i><span class="rec"><i></i>REC</span><span class="tc"></span></div><figcaption><small>On location</small><b>Cafés and food</b></figcaption></figure><figure class="cc c3"><div class="fr"><img src="img/ph-house.webp" alt="Cimey at a stay" loading="lazy" decoding="async"><i class="vig"></i><i class="tone"></i><i class="grain"></i><i class="sweep"></i><i class="glare"></i><i class="vf"></i><span class="rec"><i></i>REC</span><span class="tc"></span></div><figcaption><small>On location</small><b>Travel and stays</b></figcaption></figure></div>
 </div></section>
 
 
@@ -467,6 +546,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   <p class="lead">A free written chat on Instagram, WhatsApp or email. No call, no preparation, no obligation.</p>
   <button type="button" class="btn" data-book>Get a free consultation</button>
   <p class="note">I reply within 24 hours. Indonesian-language projects are welcome.</p>
+ <figure class="cc solo"><div class="fr"><img src="img/ph-smile.webp" alt="Cimey smiling" loading="lazy" decoding="async"><i class="vig"></i><i class="tone"></i><i class="grain"></i><i class="sweep"></i><i class="glare"></i><i class="vf"></i><span class="rec"><i></i>REC</span><span class="tc"></span></div><figcaption><small>Hi, I'm Cimey</small><b>Let's talk about your product</b></figcaption></figure>
  </div>
  <div class="list">
   <div class="rv"><h3>Free, in writing</h3><p>Tell me about your product, your audience and where the video will run. We do it by message, so there is nothing to prepare.</p></div>
@@ -499,6 +579,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 
 <section><div class="w">
  <div class="final rv">
+ <div class="meet fin-meet"><i class="aura"></i><i class="ring"></i><i class="ring r2"></i><img src="img/cut-smile.webp" alt="Cimey" loading="lazy" decoding="async"><div class="say">Tell me about your product<i><b></b><b></b><b></b></i><small>Cimey</small></div></div>
   <h2>Let's make your next <span class="g">ad.</span></h2>
   <p>Tell me about your product and I will reply within 24 hours. 2 slots open this month, and the first consultation is free.</p>
   <button type="button" class="btn" data-book>Get a free consultation</button>
@@ -724,6 +805,21 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   r.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.target.closest('button,video'))return;down=true;moved=false;sx=e.clientX;sl=r.scrollLeft;r.classList.add('drag')});
   window.addEventListener('pointermove',function(e){if(!down)return;var d=e.clientX-sx;if(Math.abs(d)>4)moved=true;r.scrollLeft=sl-d});
   window.addEventListener('pointerup',function(){if(!down)return;down=false;r.classList.remove('drag');settle()});
+})();
+</script>
+<script>(function(){
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  [].forEach.call(document.querySelectorAll('.cine'),function(c){
+    if('IntersectionObserver' in window&&!rm){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){c.classList.add('in');o.disconnect()}},{threshold:.25}).observe(c)}else c.classList.add('in');
+  });
+  var cards=[].slice.call(document.querySelectorAll('.cc'));
+  if(matchMedia('(pointer:fine)').matches&&!rm){cards.forEach(function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      c.style.setProperty('--ry',((x-.5)*14)+'deg');c.style.setProperty('--rx',((.5-y)*10)+'deg');c.style.setProperty('--mx',(x*100)+'%');c.style.setProperty('--my',(y*100)+'%')});
+    c.addEventListener('pointerleave',function(){c.style.setProperty('--ry','0deg');c.style.setProperty('--rx','0deg')})})}
+  var t0=Date.now();function p(n){return (n<10?'0':'')+n}
+  function tc(){var s=Math.floor((Date.now()-t0)/1000)+7;[].forEach.call(document.querySelectorAll('.cc .tc'),function(e,i){var v=s+i*13;e.textContent='00:'+p(Math.floor(v/60)%60)+':'+p(v%60)})}
+  tc();if(!rm)setInterval(tc,1000);
 })();
 </script>
 </body>

@@ -420,6 +420,338 @@ footer .logo{color:#fff}
 .flegal{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:flex-start;padding-top:22px;font-size:13px;color:#b9a2b0}
 .flegal details{flex:1 1 260px}.flegal summary{color:#e9d9e3}.flegal span{margin-left:auto}
 @media(max-width:860px){.fgrid{grid-template-columns:1fr 1fr}.fb{grid-column:1/-1}.flegal span{margin-left:0}}
+/* ===== v3: interactive infographic layer ===== */
+[hidden]{display:none!important}
+/* hero */
+.chip.math{left:auto;right:-5%;top:9%;padding:12px 16px 12px;transform:translateZ(120px)}
+.chip.math .eq2 b{display:block;margin-top:4px;font:800 17px "Bricolage Grotesque",sans-serif;color:var(--ink)}
+.chip.math .eq2 em{display:block;font:800 26px/1.1 "Bricolage Grotesque",sans-serif;font-style:normal;background:var(--grad-t);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chip.path{left:-7%;bottom:4%;width:min(64%,310px);padding:14px 16px 13px;transform:translateZ(100px)}
+.chip.path h5{margin:0 0 10px;font:800 11px Manrope,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:var(--lav)}
+.pth{display:flex;align-items:flex-end;justify-content:space-between;gap:2px}
+.pth .st{display:flex;flex-direction:column;align-items:center;gap:7px;font:800 11.5px Manrope,sans-serif;color:var(--ink)}
+.pth .ar{align-self:center;margin-bottom:22px;color:var(--pk);opacity:.75}
+.mph{position:relative;width:40px;height:74px;border-radius:12px;padding:3px;background:#2a1020;box-shadow:0 10px 20px -8px rgba(42,16,32,.55);transition:transform .4s}
+.mph::before{content:"";position:absolute;top:6px;left:50%;translate:-50% 0;width:14px;height:4px;border-radius:9px;background:#0b0408;z-index:2}
+.mph .sc{height:100%;border-radius:9px;display:grid;place-items:center;color:#fff;background:linear-gradient(170deg,#E0508C,#7B2FC4)}
+.st:nth-child(3) .mph .sc{background:linear-gradient(170deg,#7B2FC4,#E0508C)}
+.st:nth-child(5) .mph .sc{background:linear-gradient(170deg,#0f8a5a,#6fd6a3)}
+@media(prefers-reduced-motion:no-preference){.mph{animation:phlift 4.8s ease-in-out infinite}.st:nth-child(3) .mph{animation-delay:1.6s}.st:nth-child(5) .mph{animation-delay:3.2s}}
+@keyframes phlift{0%,26%,100%{transform:none}8%,18%{transform:translateY(-7px);box-shadow:0 18px 26px -8px rgba(214,64,127,.7)}}
+@media(max-width:520px){.chip.path{left:-2%;width:62%}.chip.math{right:-2%}}
+/* stats */
+.stats{padding:0 0 clamp(28px,4vw,60px)}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);padding:8px;border-radius:30px;background:rgba(255,255,255,.88);border:1px solid #fff;box-shadow:0 30px 60px -38px rgba(123,47,196,.5),0 2px 6px rgba(42,16,32,.04)}
+.sgrid>div{position:relative;display:flex;align-items:center;gap:16px;padding:20px 24px}
+.sgrid>div+div::before{content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;background:var(--line)}
+.sgrid .ic{flex:none;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;color:var(--lav);background:linear-gradient(140deg,#fde3ee,#ece0fb);transition:transform .4s}
+.sgrid>div:hover .ic{transform:rotate(-8deg) scale(1.1)}
+.sgrid b{display:block;font:800 clamp(28px,3vw,40px)/1 "Bricolage Grotesque",sans-serif;background:var(--grad-t);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sgrid span{display:block;margin-top:4px;font-size:14px;line-height:1.3;color:var(--mute)}
+@media(max-width:900px){.sgrid{grid-template-columns:1fr 1fr}.sgrid>div:nth-child(3)::before{display:none}.sgrid>div{padding:16px 14px;gap:12px}}
+@media(max-width:480px){.sgrid .ic{width:42px;height:42px}.sgrid>div{flex-direction:column;align-items:flex-start;gap:8px}.sgrid>div+div::before{display:none}}
+/* why stall */
+.stk{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(18px,2.6vw,38px);align-items:stretch}
+.stk-nav{display:grid;gap:14px;align-content:center}
+.tab{position:relative;display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:20px 22px;border-radius:24px;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.72);box-shadow:var(--sh);color:var(--ink);font:inherit;cursor:pointer;overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,background .4s,border-color .4s}
+.tab:hover{transform:translateX(6px)}
+.tab .ti{flex:none;width:54px;height:54px;border-radius:17px;display:grid;place-items:center;color:var(--lav);background:linear-gradient(140deg,#fde3ee,#ece0fb);transition:.4s}
+.tab small{display:block;font:800 11.5px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pk)}
+.tab b{display:block;margin-top:4px;font:800 clamp(17px,1.5vw,21px)/1.2 "Bricolage Grotesque",sans-serif}
+.tab .bar{position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--grad)}
+.tab[aria-selected=true]{transform:translateX(12px);background:#fff;border-color:rgba(214,64,127,.28);box-shadow:0 34px 60px -34px rgba(176,16,92,.6),0 2px 6px rgba(42,16,32,.05)}
+.tab[aria-selected=true] .ti{background:var(--grad);color:#fff;transform:rotate(-7deg) scale(1.06)}
+.tab[aria-selected=true] .bar{animation:tabbar 8s linear forwards}
+.stk.paused .tab .bar{animation:none;width:100%}
+@keyframes tabbar{to{width:100%}}
+.stk-view{display:grid;position:relative;border-radius:32px;overflow:hidden;background:radial-gradient(70% 60% at 100% 0%,rgba(224,80,140,.16),transparent 65%),radial-gradient(60% 50% at 0% 100%,rgba(123,47,196,.13),transparent 65%),#fff;box-shadow:0 44px 80px -46px rgba(123,47,196,.55),0 2px 6px rgba(42,16,32,.05)}
+.pane{grid-area:1/1;display:flex;flex-direction:column;gap:18px;padding:clamp(24px,3vw,42px);opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .45s,transform .45s,visibility .45s}
+.pane.on{opacity:1;visibility:visible;transform:none}
+.pane .k{font:800 11.5px Manrope,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.pane h3{font-size:clamp(22px,2.2vw,30px);line-height:1.15;margin:0}
+.pane>p{margin:0;color:var(--mute);font-size:16px}
+.chat{display:grid;gap:12px;margin-top:4px}
+.bub{max-width:88%;padding:14px 18px;border-radius:20px;font-size:15.5px;line-height:1.45;opacity:0;transform:translateY(10px) scale(.96)}
+.bub.me{justify-self:start;border-bottom-left-radius:6px;background:#f3ecf1;color:var(--ink);font-style:italic}
+.bub.her{justify-self:end;border-bottom-right-radius:6px;background:var(--grad);color:#fff;box-shadow:0 18px 30px -16px rgba(176,16,92,.7)}
+.bub small{display:block;font:800 10.5px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:4px;font-style:normal}
+.pane.on .bub.me{animation:pop .5s .15s cubic-bezier(.2,.8,.2,1) forwards}
+.pane.on .bub.her{animation:pop .5s .85s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+.solved{margin-top:auto;padding:16px 18px;border-radius:20px;background:#fbf4f8;border:1px solid var(--line)}
+.solved>span{display:block;font:800 11.5px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.wtrack{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.wtrack i{display:grid;place-items:center;height:30px;border-radius:10px;font:800 11.5px Manrope,sans-serif;font-style:normal;color:var(--dim);background:#efe3ea;transition:background .4s,color .4s,transform .4s}
+.pane.on .wtrack i.hit{animation:hit .5s forwards;animation-delay:calc(1.4s + var(--n)*.2s)}
+@keyframes hit{to{background:var(--grad);color:#fff;transform:translateY(-4px);box-shadow:0 10px 18px -8px rgba(176,16,92,.6)}}
+.solved b{display:block;margin-top:12px;font-size:15px;color:var(--ok)}
+@media(max-width:900px){.stk{grid-template-columns:1fr}.stk-nav{grid-template-columns:1fr}.tab[aria-selected=true],.tab:hover{transform:none}}
+/* calculator hint */
+/* program snake */
+.phases{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:-4px 0 6px}
+.phases span{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:#fff;box-shadow:var(--sh);font:800 13px Manrope,sans-serif;color:var(--ink)}
+.phases span i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.snake{position:relative;margin-top:clamp(16px,2vw,28px)}
+.spath{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
+.spath .bgp{fill:none;stroke:#e8d6e2;stroke-width:5;stroke-linecap:round;stroke-dasharray:1 13}
+.spath .fgp{fill:none;stroke:url(#sg);stroke-width:7;stroke-linecap:round;filter:drop-shadow(0 0 7px rgba(214,64,127,.5))}
+.wlist{list-style:none;margin:0;padding:0;position:relative;z-index:1}
+.wkrow{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(24px,6vw,110px);padding:clamp(20px,2.6vw,38px) 0}
+.wkrow .wnode{grid-area:1/1;display:grid;place-items:center}
+.wkrow .wcard{grid-area:1/2}
+.wkrow:nth-child(even) .wnode{grid-area:1/2}
+.wkrow:nth-child(even) .wcard{grid-area:1/1}
+.wnode .num{position:relative;display:grid;place-items:center;align-content:center;width:clamp(78px,7.4vw,104px);aspect-ratio:1;border-radius:50%;background:#fff;border:3px solid #f0d4e3;color:var(--mute);box-shadow:0 20px 40px -22px rgba(123,47,196,.6);transition:all .55s cubic-bezier(.2,.8,.2,1)}
+.wnode .num small{font:800 10px Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+.wnode .num b{font:800 clamp(30px,3.2vw,42px)/1 "Bricolage Grotesque",sans-serif}
+.wkrow.on .wnode .num{color:#fff;border-color:#fff;background:var(--c1,var(--grad));box-shadow:0 0 0 9px rgba(214,64,127,.14),0 28px 50px -18px rgba(176,16,92,.75);transform:scale(1.08)}
+.wcard{position:relative;padding:clamp(22px,2.4vw,32px);border-radius:30px;background:#fff;border:1px solid rgba(255,255,255,.95);box-shadow:0 1px 0 #fff inset,0 2px 4px rgba(42,16,32,.04),0 24px 40px -26px rgba(123,47,196,.45);transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .6s,box-shadow .6s}
+.js .wkrow:not(.on) .wcard{opacity:.5;transform:translateY(20px) scale(.985)}
+.wkrow.on .wcard{box-shadow:0 1px 0 #fff inset,0 2px 4px rgba(42,16,32,.05),0 44px 70px -42px rgba(176,16,92,.55)}
+.wkrow.on .wcard:hover{transform:translateY(-5px)}
+.wtag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--tb,#fde8f1);color:var(--tc,#a3004f);font:800 11.5px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.wcard h3{margin:14px 0 0;font-size:clamp(21px,2vw,27px);line-height:1.15}
+.wcard>p{margin:10px 0 0;color:var(--mute);font-size:15.5px}
+.wviz{margin-top:18px;padding:14px 16px;border-radius:18px;background:#fbf4f8;border:1px solid #f3e4ec;min-height:78px;display:flex;align-items:center}
+.wget{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 14px;border-radius:16px;background:linear-gradient(120deg,#fde8f1,#efe6fc)}
+.wget i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#fff}
+.wget span{display:block;font:800 10.5px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.wget b{display:block;font:800 16px "Bricolage Grotesque",sans-serif;color:var(--ink)}
+/* mini viz */
+.vchips{display:flex;flex-wrap:wrap;gap:8px}
+.vchips span{padding:7px 12px;border-radius:999px;border:1.5px solid #e8d6e2;background:#fff;font:800 13px Manrope,sans-serif;color:var(--mute);transition:.4s}
+.wkrow.on .vchips span.sel{background:var(--grad);border-color:transparent;color:#fff;transform:translateY(-2px)}
+.vmeter{width:100%;display:grid;gap:9px}
+.vmeter div{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:center;font:800 12px Manrope,sans-serif;color:var(--mute)}
+.vmeter i{display:block;height:8px;border-radius:9px;background:#ecdce5;overflow:hidden}
+.vmeter i::after{content:"";display:block;height:100%;width:0;border-radius:9px;background:var(--grad);transition:width 1.1s cubic-bezier(.2,.8,.2,1) .3s}
+.wkrow.on .vmeter i::after{width:var(--w)}
+.vtiles{display:flex;gap:8px;align-items:center;width:100%}
+.vtiles i{flex:1;aspect-ratio:9/14;max-width:46px;border-radius:9px;background:linear-gradient(160deg,var(--a),var(--b));opacity:.35;transform:translateY(8px);transition:.5s}
+.wkrow.on .vtiles i{opacity:1;transform:none}
+.wkrow.on .vtiles i:nth-child(2){transition-delay:.12s}.wkrow.on .vtiles i:nth-child(3){transition-delay:.24s}.wkrow.on .vtiles i:nth-child(4){transition-delay:.36s}.wkrow.on .vtiles i:nth-child(5){transition-delay:.48s}
+.vtiles em{margin-left:auto;padding:8px 12px;border-radius:12px;background:#fff;border:1.5px dashed #d9b8cc;font:800 12px Manrope,sans-serif;font-style:normal;color:var(--lav);white-space:nowrap}
+.vbar{width:100%}
+.vbar .tr{position:relative;height:14px;border-radius:99px;background:#ecdce5;overflow:hidden}
+.vbar .tr i{display:block;height:100%;width:0;border-radius:99px;background:var(--grad);transition:width 1.4s cubic-bezier(.2,.8,.2,1) .3s}
+.wkrow.on .vbar .tr i{width:100%}
+.vbar .lb{display:flex;justify-content:space-between;margin-top:8px;font:800 12px Manrope,sans-serif;color:var(--mute)}
+.vdots{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;width:100%}
+.vdots i{aspect-ratio:1;border-radius:50%;background:#ecdce5;transition:background .3s,transform .3s}
+.wkrow.on .vdots i{background:var(--grad);transform:scale(1);animation:dotin .35s backwards;animation-delay:calc(var(--n)*.07s + .3s)}
+@keyframes dotin{from{background:#ecdce5;transform:scale(.4)}}
+.vrate{display:flex;flex-wrap:wrap;gap:8px}
+.vrate span{padding:7px 12px;border-radius:12px;background:#fff;border:1.5px solid #e8d6e2;font:800 12.5px Manrope,sans-serif;color:var(--mute)}
+.vrate span.add{border-style:dashed;color:var(--lav)}
+.wkrow.on .vrate span{animation:pop .45s backwards;animation-delay:calc(var(--n)*.14s + .2s)}
+.vcheck{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;width:100%}
+.vcheck span{display:flex;align-items:center;gap:8px;font:800 13px Manrope,sans-serif;color:var(--mute)}
+.vcheck span::before{content:"";flex:none;width:20px;height:20px;border-radius:7px;background:#ecdce5 center/13px no-repeat;transition:.35s}
+.wkrow.on .vcheck span::before{background-color:var(--ok);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5L20 7' stroke='%23fff' stroke-width='3.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");transition-delay:calc(var(--n)*.18s + .3s)}
+.vspark{width:100%;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}
+.vspark svg{width:100%;height:64px;overflow:visible}
+.vspark path{fill:none;stroke:url(#sg);stroke-width:4;stroke-linecap:round;stroke-dasharray:240;stroke-dashoffset:240;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1) .3s}
+.wkrow.on .vspark path{stroke-dashoffset:0}
+.vspark b{font:800 22px "Bricolage Grotesque",sans-serif;background:var(--grad-t);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+/* rider */
+.rider{position:absolute;left:0;top:0;z-index:3;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;border:3px solid #fff;background:url(/img/cimey-portrait.webp) 50% 4%/190% auto no-repeat,var(--grad);box-shadow:0 0 0 7px rgba(214,64,127,.22),0 16px 30px -8px rgba(176,16,92,.75);pointer-events:none;opacity:0;transition:opacity .4s}
+.rider.v{opacity:1}
+.rider::after{content:"";position:absolute;inset:-12px;border-radius:50%;border:2px solid rgba(214,64,127,.4);animation:rip 2s ease-out infinite}
+@keyframes rip{from{transform:scale(.7);opacity:1}to{transform:scale(1.35);opacity:0}}
+/* finish */
+.wkrow.fin{grid-template-columns:1fr;justify-items:center;gap:22px;padding-bottom:0}
+.wkrow.fin .wnode{grid-area:auto}
+.wkrow.fin .wnode .num{background:#fff;color:var(--pk)}
+.wkrow.fin.on .wnode .num{background:var(--grad);color:#fff}
+.fincard{width:min(100%,860px);padding:clamp(26px,3.4vw,46px);border-radius:34px;text-align:center;color:#fff;background:radial-gradient(70% 60% at 90% 0%,rgba(255,200,230,.35),transparent 65%),linear-gradient(135deg,#B0105C,#7B2FC4);box-shadow:0 50px 90px -46px rgba(176,16,92,.8)}
+.fincard h3{margin:0;font-size:clamp(26px,3vw,38px);color:#fff}
+.fincard>p{margin:12px auto 0;max-width:52ch;color:rgba(255,255,255,.86)}
+.fgoal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px;text-align:left}
+.fgoal div{padding:16px;border-radius:20px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);backdrop-filter:blur(8px);transition:transform .4s}
+.fgoal div:hover{transform:translateY(-6px)}
+.fgoal b{display:block;font:800 clamp(24px,2.6vw,34px)/1 "Bricolage Grotesque",sans-serif}
+.fgoal span{display:block;margin-top:6px;font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85)}
+.fincard .btn{margin-top:26px;background:#fff;color:#5a0a33;box-shadow:0 18px 34px -14px rgba(0,0,0,.5)}
+.fincard small{display:block;margin-top:12px;color:rgba(255,255,255,.75);font-size:13px}
+@media(max-width:700px){.fgoal{grid-template-columns:1fr 1fr}}
+@media(max-width:820px){
+ .wkrow,.wkrow.fin{grid-template-columns:60px minmax(0,1fr);gap:14px;padding:16px 0}
+ .wkrow .wnode,.wkrow:nth-child(even) .wnode{grid-area:1/1;justify-self:start;align-self:start}
+ .wkrow .wcard,.wkrow:nth-child(even) .wcard{grid-area:1/2}
+ .wnode .num{width:56px}.wnode .num b{font-size:24px}.wnode .num small{font-size:8px}
+ .wkrow.fin{grid-template-columns:60px minmax(0,1fr)}
+ .wkrow.fin .fincard{grid-area:1/2;width:auto}
+ .rider{width:42px;height:42px;margin:-21px 0 0 -21px}
+}
+/* timing infographic */
+.when{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(36px,5vw,64px)}
+.wn{position:relative;padding:22px 24px;border-radius:26px;background:#fff;border:1px solid rgba(255,255,255,.95);box-shadow:0 2px 4px rgba(42,16,32,.04),0 24px 40px -28px rgba(123,47,196,.5);display:flex;gap:16px;align-items:flex-start;transition:transform .4s}
+.wn:hover{transform:translateY(-5px)}
+.wn .ic{flex:none;width:48px;height:48px;border-radius:16px;display:grid;place-items:center;color:var(--lav);background:linear-gradient(140deg,#fde3ee,#ece0fb)}
+.wn small{display:block;font:800 11px Manrope,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.wn b{display:block;margin-top:4px;font:800 19px/1.2 "Bricolage Grotesque",sans-serif;color:var(--ink)}
+.wn p{margin:6px 0 0;font-size:14px;line-height:1.45;color:var(--mute)}
+.tz{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;padding:16px 18px;border-radius:22px;background:rgba(255,255,255,.7);border:1px dashed #dcbfd0}
+.tz>span{font:800 12px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-right:6px}
+.tz i{font-style:normal;padding:8px 14px;border-radius:999px;background:#fff;box-shadow:var(--sh);font:700 13.5px Manrope,sans-serif;color:var(--mute)}
+.tz i b{color:var(--ink)}
+.tz i.me{background:var(--grad);color:#fff}.tz i.me b{color:#fff}
+@media(max-width:860px){.when{grid-template-columns:1fr}}
+/* about */
+.aimg{overflow:visible;border-radius:0;background:none;aspect-ratio:4/5;isolation:isolate}
+.aimg .aura{position:absolute;inset:8% -4% -2%;z-index:-2;border-radius:50%;background:radial-gradient(closest-side,rgba(214,64,127,.55),rgba(123,47,196,.25) 58%,transparent 76%);filter:blur(34px);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.07);opacity:.85}}
+.aimg .ring{position:absolute;left:50%;top:54%;z-index:-1;border-radius:50%;translate:-50% -50%;border:1.5px dashed rgba(214,64,127,.38)}
+.aimg .r1{width:96%;aspect-ratio:1;animation:spin 60s linear infinite}
+.aimg .r2{width:72%;aspect-ratio:1;border-style:solid;border-color:rgba(123,47,196,.22);animation:spin 80s linear infinite reverse}
+.aimg .ring::after{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:var(--pk);box-shadow:0 0 0 5px rgba(214,64,127,.2)}
+.aimg .floor{position:absolute;left:8%;right:8%;bottom:-2%;height:12%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(176,16,92,.5),transparent);filter:blur(10px)}
+.aimg img{position:absolute;inset:auto 3% 0 3%;width:94%;height:auto;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 22px rgba(214,64,127,.55)) drop-shadow(0 30px 36px rgba(42,16,32,.3));-webkit-mask-image:linear-gradient(#000 90%,transparent);mask-image:linear-gradient(#000 90%,transparent)}
+.aimg .tagc{left:50%;top:auto;bottom:3%;translate:-50% 0;background:rgba(255,255,255,.92);color:var(--ink);box-shadow:var(--sh);z-index:2;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.aimg .tagc svg{color:var(--pk)}
+.bchip{position:absolute;z-index:3;padding:12px 16px;border-radius:20px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 22px 40px -20px rgba(123,47,196,.6),0 1px 0 #fff inset;line-height:1.15}
+.bchip b{display:block;font:800 26px "Bricolage Grotesque",sans-serif;background:var(--grad-t);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bchip span{font-size:12.5px;font-weight:700;color:var(--mute)}
+.bchip.c1{left:-5%;top:46%}.bchip.c2{right:-5%;top:60%}.bchip.c3{right:-2%;top:16%}
+@media(prefers-reduced-motion:no-preference){.bchip.c1{animation:bob 7s ease-in-out infinite}.bchip.c2{animation:bob 8s ease-in-out -3s infinite}.bchip.c3{animation:bob 9s ease-in-out -5s infinite}}
+@media(max-width:900px){.aimg{max-width:430px;margin-inline:auto}.bchip.c1{left:-2%}.bchip.c2,.bchip.c3{right:-2%}}
+.soc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:26px}
+.soc a{position:relative;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:20px;background:#fff;border:1px solid rgba(255,255,255,.95);box-shadow:0 2px 4px rgba(42,16,32,.04),0 20px 34px -24px rgba(123,47,196,.55);text-decoration:none;color:var(--ink);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.soc a:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(42,16,32,.04),0 34px 44px -26px rgba(176,16,92,.6);color:var(--ink);border-color:#fff}
+.soc .ico{flex:none;width:46px;height:46px;border-radius:15px;display:grid;place-items:center;color:#fff;transition:transform .35s}
+.soc a:hover .ico{transform:rotate(-8deg) scale(1.08)}
+.soc .ig .ico{background:linear-gradient(45deg,#f58529,#dd2a7b 55%,#8134af)}
+.soc .fv .ico{background:#1dbf73;font:800 20px "Bricolage Grotesque",sans-serif}
+.soc .pf .ico{background:var(--grad)}
+.soc b{display:block;font:800 15.5px "Bricolage Grotesque",sans-serif}
+.soc small{display:block;margin-top:2px;font-size:12.5px;color:var(--mute);line-height:1.3}
+.soc a::after{content:"";margin-left:auto;flex:none;width:18px;height:18px;opacity:.4;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath d='M7 17L17 7M9 7h8v8' stroke='%232a1020' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat;transition:.3s}
+.soc a:hover::after{opacity:1;transform:translate(2px,-2px)}
+/* guarantee steps */
+.gst{list-style:none;padding:0!important;margin:16px 0 0;display:grid;grid-template-columns:repeat(3,1fr)!important;gap:12px!important;counter-reset:g}
+.gst li{position:relative;padding:14px 16px 14px 56px;border-radius:18px;background:#fff;box-shadow:var(--sh);font-size:14.5px;line-height:1.45;counter-increment:g}
+.gst li::before{content:counter(g);position:absolute;left:14px;top:14px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#fff;font:800 14px "Bricolage Grotesque",sans-serif}
+@media(max-width:900px){.gst{grid-template-columns:1fr!important}}
+/* faq */
+.faq{counter-reset:q;gap:16px;perspective:1100px}
+.faq details{position:relative;border-radius:26px;background:linear-gradient(180deg,#fff,#fff7fb);border:1px solid rgba(255,255,255,.95);box-shadow:0 1px 0 #fff inset,0 2px 4px rgba(42,16,32,.04),0 20px 34px -22px rgba(123,47,196,.5),0 44px 60px -46px rgba(176,16,92,.4);transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .4s}
+.faq details:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 1px 0 #fff inset,0 2px 4px rgba(42,16,32,.05),0 30px 44px -22px rgba(123,47,196,.55),0 60px 80px -46px rgba(176,16,92,.5)}
+.faq details::before{content:"";position:absolute;left:0;top:20px;bottom:20px;width:4px;border-radius:0 6px 6px 0;background:var(--grad);transform:scaleY(0);transition:transform .4s}
+.faq details:hover::before,.faq details[open]::before{transform:scaleY(1)}
+.faq summary{gap:16px;padding:22px 24px 22px 22px;justify-content:flex-start}
+.faq summary::before{counter-increment:q;content:counter(q,decimal-leading-zero);flex:none;width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(140deg,#fde3ee,#ece0fb);color:var(--lav);font:800 14px "Bricolage Grotesque",sans-serif;transition:.4s}
+.faq details:hover summary::before,.faq details[open] summary::before{background:var(--grad);color:#fff;transform:rotate(-6deg)}
+.faq summary::after{margin-left:auto}
+.faq details p{padding:0 26px 24px 80px}
+.faq details[open]>p{animation:faqin .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes faqin{from{opacity:0;transform:translateY(-10px)}}
+@media(max-width:560px){.faq details p{padding-left:24px}.faq summary::before{width:36px;height:36px}}
+/* free pack block */
+.free{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);padding:clamp(26px,3.6vw,52px);border-radius:36px;border:1px solid #fff;overflow:hidden;position:relative;isolation:isolate;background:radial-gradient(60% 80% at 0% 100%,rgba(224,80,140,.18),transparent 70%),radial-gradient(50% 60% at 100% 0%,rgba(123,47,196,.16),transparent 70%),linear-gradient(135deg,#fff,#fff6fa)}
+.fvis{position:relative;aspect-ratio:1/.92;perspective:1200px}
+.fvis .doc{position:absolute;bottom:3%;height:92%;width:auto;border-radius:10px;box-shadow:0 2px 4px rgba(42,16,32,.12),0 30px 50px -18px rgba(42,16,32,.5);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.fvis .d1{left:4%;transform:rotateY(18deg) rotateZ(-7deg) translateZ(0);z-index:1}
+.fvis .d2{left:30%;transform:rotateY(-6deg) rotateZ(3deg);z-index:2}
+.fvis .d3{left:40%;z-index:3;transform:rotateY(-14deg) rotateZ(8deg);height:80%}
+.fvis:hover .d1{transform:rotateY(8deg) rotateZ(-12deg) translateX(-14px)}
+.fvis:hover .d2{transform:rotateY(-2deg) rotateZ(0) translateY(-10px)}
+.fvis:hover .d3{transform:rotateY(-8deg) rotateZ(13deg) translateX(14px)}
+.fvis .tgx{position:absolute;z-index:5;padding:9px 14px;border-radius:999px;background:#fff;box-shadow:0 18px 30px -16px rgba(123,47,196,.6);font:800 12.5px Manrope,sans-serif;color:var(--ink);display:flex;gap:8px;align-items:center;white-space:nowrap}
+.fvis .tgx i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#fff;font-style:normal;font-size:11px}
+.fvis .t1{left:0;top:6%}.fvis .t2{right:0;top:28%}.fvis .t3{left:2%;bottom:6%}
+@media(prefers-reduced-motion:no-preference){.fvis .t1{animation:bob 7s ease-in-out infinite}.fvis .t2{animation:bob 8s ease-in-out -2s infinite}.fvis .t3{animation:bob 9s ease-in-out -4s infinite}}
+.ftxt h3{font-size:clamp(24px,2.6vw,34px);line-height:1.12}
+.ftxt .eyebrow{margin-bottom:12px}
+.ftxt p{font-size:16px}
+.fpts{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:10px}
+.fpts li{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600;color:var(--mute)}
+.fpts li i{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(140deg,#fde3ee,#ece0fb);color:var(--lav)}
+.free form{max-width:480px}
+@media(max-width:900px){.free{grid-template-columns:1fr}.fvis{max-width:420px;margin-inline:auto;width:100%}}
+
+
+.ctl{box-shadow:none!important;background:none!important}
+#why{padding-top:clamp(28px,3.4vw,56px)}
+.rider{transform:translate(44px,-36px);width:50px;height:50px;margin:-25px 0 0 -25px}
+@media(max-width:820px){.rider{transform:translate(30px,-26px)}}
+.soc{grid-template-columns:repeat(auto-fit,minmax(176px,1fr))}
+.soc small{white-space:normal}
+
+@media(max-width:900px){.aimg{width:100%}}
+@media(max-width:820px){.wkrow.fin{justify-items:stretch}.fincard{min-width:0;width:auto}}
+
+.fincard .btn{white-space:normal;text-align:center;line-height:1.25}
+@media(max-width:520px){.chip.math{top:-5%;right:3%;padding:9px 12px}.chip.math .eq2 b{font-size:13px}.chip.math .eq2 em{font-size:19px}.chip.math>span{font-size:11px}.fincard .btn{padding:16px 20px;width:100%}}
+/* ===== cinematic photo cards ===== */
+.cine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,34px);align-items:center;max-width:1080px;margin:0 auto;perspective:1500px}
+.cc{--b:none;--rx:0deg;--ry:0deg;position:relative;margin:0;aspect-ratio:3/4;transform:var(--b) rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .9s,filter .9s;will-change:transform}
+.cc.c1{--b:rotateY(16deg) rotateZ(-3.5deg) translateY(22px)}
+.cc.c2{--b:translateY(-16px) scale(1.07);z-index:2}
+.cc.c3{--b:rotateY(-16deg) rotateZ(3.5deg) translateY(22px)}
+.cine:hover .cc.c1{--b:rotateY(6deg) rotateZ(-1.5deg) translateX(10px) translateY(14px)}
+.cine:hover .cc.c3{--b:rotateY(-6deg) rotateZ(1.5deg) translateX(-10px) translateY(14px)}
+.cc:hover{transition-duration:.25s,.9s,.9s}
+.cc .fr{position:absolute;inset:0;border-radius:24px;overflow:hidden;isolation:isolate;background:#1a0710;box-shadow:0 50px 80px -34px rgba(60,0,40,.7),0 0 0 1px rgba(255,255,255,.4) inset,0 0 0 6px rgba(255,255,255,.08)}
+.cc .fr::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);pointer-events:none;z-index:6}
+.cc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:cnkb 16s ease-in-out infinite alternate}
+.cc.c2 img{animation-duration:19s;animation-direction:alternate-reverse}
+@keyframes cnkb{from{transform:scale(1.03) translate(0,0)}to{transform:scale(1.15) translate(-2.5%,-2%)}}
+.cc .vig{position:absolute;inset:0;z-index:2;background:radial-gradient(120% 95% at 50% 38%,transparent 52%,rgba(24,2,16,.6)),linear-gradient(180deg,rgba(0,0,0,.34),transparent 24%,transparent 56%,rgba(28,2,18,.86))}
+.cc .tone{position:absolute;inset:0;z-index:2;mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(255,120,190,.35),rgba(123,47,196,.28))}
+.cc .grain{position:absolute;inset:-60%;z-index:3;opacity:.2;mix-blend-mode:overlay;pointer-events:none;background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");animation:cngr .7s steps(4) infinite}
+@keyframes cngr{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
+.cc .sweep{position:absolute;inset:0;z-index:4;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.3) 50%,transparent 65%);transform:translateX(-120%);animation:cnsw 7s ease-in-out infinite}
+.cc.c2 .sweep{animation-delay:2.3s}.cc.c3 .sweep{animation-delay:4.6s}
+@keyframes cnsw{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.cc .glare{position:absolute;inset:0;z-index:5;opacity:0;transition:opacity .3s;mix-blend-mode:soft-light;background:radial-gradient(380px circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.55),transparent 50%)}
+.cc:hover .glare{opacity:1}
+.cc .vf{position:absolute;inset:15% 11% 24%;z-index:5;pointer-events:none;opacity:.8;background:
+ linear-gradient(#fff,#fff) 0 0/22px 2px no-repeat,linear-gradient(#fff,#fff) 0 0/2px 22px no-repeat,
+ linear-gradient(#fff,#fff) 100% 0/22px 2px no-repeat,linear-gradient(#fff,#fff) 100% 0/2px 22px no-repeat,
+ linear-gradient(#fff,#fff) 0 100%/22px 2px no-repeat,linear-gradient(#fff,#fff) 0 100%/2px 22px no-repeat,
+ linear-gradient(#fff,#fff) 100% 100%/22px 2px no-repeat,linear-gradient(#fff,#fff) 100% 100%/2px 22px no-repeat;transition:inset .5s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.cc:hover .vf{inset:11% 8% 20%;opacity:1}
+.cc .rec{position:absolute;top:16px;left:16px;z-index:6;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:99px;background:rgba(14,0,10,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font:800 10.5px/1 Manrope,sans-serif;letter-spacing:.14em;color:#fff}
+.cc .rec i{width:8px;height:8px;border-radius:50%;background:#ff3b6b;box-shadow:0 0 10px #ff3b6b;animation:cnbl 1.2s steps(2) infinite}
+@keyframes cnbl{50%{opacity:.15}}
+.cc .tc{position:absolute;top:19px;right:18px;z-index:6;font:700 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;color:rgba(255,255,255,.92);text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.cc figcaption{position:absolute;left:18px;right:18px;bottom:18px;z-index:6;color:#fff}
+.cc figcaption small{display:block;margin-bottom:6px;font:800 10.5px Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#ffc2dd}
+.cc figcaption b{display:block;font:800 clamp(17px,1.7vw,23px)/1.12 "Bricolage Grotesque",Manrope,sans-serif;letter-spacing:-.02em;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.js .cine .cc{opacity:0;filter:blur(10px)}
+.js .cine.in .cc{opacity:1;filter:none}
+.js .cine .cc.c1{--b:translateX(90px) rotateY(0) rotateZ(0) scale(.88)}.js .cine .cc.c3{--b:translateX(-90px) rotateY(0) rotateZ(0) scale(.88)}.js .cine .cc.c2{--b:translateY(70px) scale(.9)}
+.js .cine.in .cc.c1{--b:rotateY(16deg) rotateZ(-3.5deg) translateY(22px)}.js .cine.in .cc.c3{--b:rotateY(-16deg) rotateZ(3.5deg) translateY(22px)}.js .cine.in .cc.c2{--b:translateY(-16px) scale(1.07)}
+.js .cine.in:hover .cc.c1{--b:rotateY(6deg) rotateZ(-1.5deg) translateX(10px) translateY(14px)}.js .cine.in:hover .cc.c3{--b:rotateY(-6deg) rotateZ(1.5deg) translateX(-10px) translateY(14px)}
+.js .cine .cc.c2{transition-delay:.05s}.js .cine .cc.c1,.js .cine .cc.c3{transition-delay:.18s}
+@media(max-width:760px){
+ .cine{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 18px 26px;margin-inline:calc(var(--gut,16px)*-1);perspective:none;scrollbar-width:none}
+ .cine::-webkit-scrollbar{display:none}
+ .cc,.js .cine .cc{flex:0 0 74%;scroll-snap-align:center;--b:none!important;opacity:1;filter:none}
+ .cc.c2{order:-1}
+}
+@media(prefers-reduced-motion:reduce){.cc img,.cc .grain,.cc .sweep,.cc .rec i{animation:none}.js .cine .cc{opacity:1;filter:none}}
+/* single framed card */
+.cc.solo{--b:rotateZ(-2deg);max-width:340px;margin:28px 0 0}
+.cc.solo:hover{--b:rotateZ(0) translateY(-8px) scale(1.03)}
+/* meet cutout */
+.meet{position:relative;isolation:isolate;max-width:400px;margin:30px 0 0;aspect-ratio:4/4.6}
+.meet .aura{position:absolute;inset:6% -8% -4%;z-index:-2;border-radius:50%;background:radial-gradient(closest-side,rgba(224,80,140,.6),rgba(123,47,196,.28) 58%,transparent 76%);filter:blur(30px);animation:cnbr 7s ease-in-out infinite}
+@keyframes cnbr{50%{transform:scale(1.08);opacity:.85}}
+.meet .ring{position:absolute;left:50%;top:52%;width:104%;aspect-ratio:1;z-index:-1;border-radius:50%;translate:-50% -50%;border:1.5px dashed rgba(224,80,140,.45);animation:cnsp 70s linear infinite}
+.meet .ring.r2{width:78%;border-style:solid;border-color:rgba(123,47,196,.28);animation-direction:reverse}
+.meet .ring::after{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#E0508C;box-shadow:0 0 0 5px rgba(224,80,140,.22)}
+@keyframes cnsp{to{rotate:360deg}}
+.meet img{position:absolute;left:4%;bottom:0;width:92%;height:auto;filter:drop-shadow(0 0 2px rgba(255,255,255,.9)) drop-shadow(0 0 26px rgba(224,80,140,.55)) drop-shadow(0 30px 34px rgba(42,16,32,.3))}
+.meet .say{position:absolute;right:-6%;top:6%;max-width:190px;padding:12px 16px;border-radius:20px 20px 20px 6px;background:#fff;color:#2a1020;box-shadow:0 22px 40px -18px rgba(123,47,196,.6);font:700 14px/1.35 Manrope,sans-serif;animation:cnbob 7s ease-in-out infinite}
+.meet .say small{display:block;margin-top:6px;font:800 10.5px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#a3004f}
+.meet .say i{display:inline-flex;gap:3px;margin-left:6px;vertical-align:middle}
+.meet .say i b{width:5px;height:5px;border-radius:50%;background:#E0508C;animation:cndot 1s infinite}
+.meet .say i b:nth-child(2){animation-delay:.15s}.meet .say i b:nth-child(3){animation-delay:.3s}
+@keyframes cndot{40%{transform:translateY(-4px)}}
+@keyframes cnbob{50%{translate:0 -9px}}
+@media(max-width:900px){.meet{margin-inline:auto}}
+
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -460,22 +792,61 @@ footer .logo{color:#fff}
     <div class="tilt" id="tilt">
       <div class="card"></div>
       <img class="cut" src="/img/cimey-portrait.webp" width="855" height="1190" alt="Juliani (Cimey), UGC creator and mentor" fetchpriority="high">
-      <div class="chip math"><span>The $1,000 math</span><div class="eq">5 brands <i>×</i> $200 <i>=</i> <em>$1,000</em></div></div>
-      <div class="chip cal"><div class="av"><i></i><i></i><i></i></div><div><b>Weekly call</b><span>Thursdays · 7 pm WIB</span></div></div>
+      <div class="chip math"><span>The $1,000 math</span><div class="eq2"><b>5 brands × $200</b><em>= $1,000 / month</em></div></div>
+      <div class="chip path"><h5>Your path in 8 weeks</h5><div class="pth">
+        <div class="st"><div class="mph"><div class="sc"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div></div>Film</div>
+        <svg class="ar" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="st"><div class="mph"><div class="sc"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 7 9-7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg></div></div>Pitch</div>
+        <svg class="ar" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="st"><div class="mph"><div class="sc"><b style="font:800 20px 'Bricolage Grotesque',sans-serif">$</b></div></div>Get paid</div>
+      </div></div>
       <div class="ph intro" data-src="/videos/intro.mp4" data-poster="/videos/intro.jpg"><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Watch Cimey's 30-second intro"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Hi, I'm Cimey</span></div></div>
     </div>
   </div>
 </div></section>
 
+<!-- STATS -->
+<section class="stats" aria-label="Key numbers"><div class="w"><div class="sgrid rv">
+  <div><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v12H4zM9 7V5h6v2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><div><b data-count="30" data-suf="+">30+</b><span>brands Cimey has made videos for</span></div></div>
+  <div><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><div><b data-count="5" data-dec="1">5.0</b><span>rating on Fiverr</span></div></div>
+  <div><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h14v12H3zM17 10l4-3v10l-4-3" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><div><b data-count="8">8</b><span>weeks, one live call each</span></div></div>
+  <div><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-7-7 18-3-8z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><div><b data-count="20">20</b><span>pitches sent by week 5</span></div></div>
+</div></div></section>
+
 <!-- PROBLEM -->
 <section id="why"><div class="w">
   <div class="sech"><div><span class="eyebrow rv">Why most people stall</span><h2 class="rv d1" style="margin-top:14px">Beginners get stuck at <span class="g">the same three places.</span></h2></div><p class="lead rv">Free tutorials explain what UGC is. Nobody watches your video and tells you what to change.</p></div>
-  <div class="stuck">
-    <article class="sk rv"><span class="n">01 · WHAT TO FILM</span><h3>You open the camera and freeze.</h3><p>Without a brief or a format to follow, every idea feels wrong, so the portfolio never gets made.</p><div class="q">"I've been 'starting next week' for two months."</div><div class="fix">✓ Week 1 to 3: scripts and three portfolio videos</div></article>
-    <article class="sk rv d1"><span class="n">02 · WHOM TO WRITE</span><h3>You know brands pay. You don't know which ones.</h3><p>You send two DMs, get no answer and decide UGC doesn't work for people without followers.</p><div class="q">"Do I need 10k followers first?" (No.)</div><div class="fix">✓ Week 4 to 5: brand list, pitch template, 20 pitches out</div></article>
-    <article class="sk rv d2"><span class="n">03 · WHAT TO CHARGE</span><h3>A brand asks your rate and you guess low.</h3><p>Then you do usage rights, revisions and raw files for free because nobody told you they cost extra.</p><div class="q">"I said $20. They said yes too fast."</div><div class="fix">✓ Week 6: your rate card, add-ons and a contract checklist</div></article>
+  <div class="stk" id="stk">
+    <div class="stk-nav" role="tablist" aria-label="Where beginners get stuck">
+      <button class="tab" role="tab" type="button" aria-selected="true"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><span><small>01 · What to film</small><b>You open the camera and freeze.</b></span><i class="bar"></i></button>
+      <button class="tab" role="tab" type="button" aria-selected="false"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-7-7 18-3-8z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span><span><small>02 · Whom to write</small><b>You know brands pay. You don't know which ones.</b></span><i class="bar"></i></button>
+      <button class="tab" role="tab" type="button" aria-selected="false"><span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l9-9h9v9l-9 9zM16 8h.01" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg></span><span><small>03 · What to charge</small><b>A brand asks your rate and you guess low.</b></span><i class="bar"></i></button>
+    </div>
+    <div class="stk-view" aria-live="polite">
+      <article class="pane on" role="tabpanel">
+        <span class="k">What actually happens</span>
+        <h3>Without a brief or a format to follow, every idea feels wrong.</h3>
+        <p>So the portfolio never gets made, and without a portfolio there is nothing to send to brands.</p>
+        <div class="chat"><div class="bub me"><small>You</small>"I've been 'starting next week' for two months."</div><div class="bub her"><small>Juliani</small>Film one 10-second hook today and send it to me. We fix the light and the sound together.</div></div>
+        <div class="solved"><span>Fixed in weeks 1 to 3</span><div class="wtrack"><i class="hit" style="--n:0">1</i><i class="hit" style="--n:1">2</i><i class="hit" style="--n:2">3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i></div><b>✓ Scripts and three portfolio videos</b></div>
+      </article>
+      <article class="pane" role="tabpanel">
+        <span class="k">What actually happens</span>
+        <h3>You send two DMs, get no answer and decide UGC is not for you.</h3>
+        <p>Most beginners also think they need followers first. Brands pay for the video file, not for your audience.</p>
+        <div class="chat"><div class="bub me"><small>You</small>"Do I need 10k followers first?"</div><div class="bub her"><small>Juliani</small>No. Here is a list of brands that hire new creators, and a pitch template that gets replies.</div></div>
+        <div class="solved"><span>Fixed in weeks 4 and 5</span><div class="wtrack"><i>1</i><i>2</i><i>3</i><i class="hit" style="--n:0">4</i><i class="hit" style="--n:1">5</i><i>6</i><i>7</i><i>8</i></div><b>✓ Brand list, pitch template, 20 pitches out</b></div>
+      </article>
+      <article class="pane" role="tabpanel">
+        <span class="k">What actually happens</span>
+        <h3>You do usage rights, revisions and raw files for free.</h3>
+        <p>Nobody told you they cost extra, so you say the first low number that comes to mind.</p>
+        <div class="chat"><div class="bub me"><small>You</small>"I said $20. They said yes too fast."</div><div class="bub her"><small>Juliani</small>That means the price was too low. We build your rate card and add-on prices before your first order.</div></div>
+        <div class="solved"><span>Fixed in week 6</span><div class="wtrack"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i class="hit" style="--n:0">6</i><i>7</i><i>8</i></div><b>✓ Your rate card, add-ons and a contract checklist</b></div>
+      </article>
+    </div>
   </div>
-  <p class="bridge rv">In the group you send your work to Juliani every week, and she tells you what to fix before a brand ever sees it.</p>
+  <p class="bridge rv" style="margin-inline:auto;text-align:center">In the group you send your work to Juliani every week, and she tells you what to fix before a brand ever sees it.</p>
 </div></section>
 
 <!-- CALCULATOR -->
@@ -484,7 +855,7 @@ footer .logo{color:#fff}
   <div class="calc">
     <div class="cpanel rv">
       <h3>Your month, in numbers</h3>
-      <div class="ctl"><label for="cPrice">Price per video <output id="oPrice">$100</output></label><input id="cPrice" type="range" min="20" max="350" step="10" value="100"><div class="hint"><span>$20 Indonesia start</span><span>$50 to $150 English start</span><span>$350 experienced</span></div></div>
+      <div class="ctl"><label for="cPrice">Price per video <output id="oPrice">$100</output></label><input id="cPrice" type="range" min="50" max="350" step="10" value="100"><div class="hint"><span>$50 English start</span><span>$150</span><span>$350 experienced</span></div></div>
       <div class="ctl"><label for="cVids">Videos per month <output id="oVids">4</output></label><input id="cVids" type="range" min="1" max="12" step="1" value="4"><div class="hint"><span>1</span><span>12</span></div></div>
       <div class="ctl"><label for="cAdd">Add-ons (usage rights, raw files, hooks) <output id="oAdd">+15%</output></label><input id="cAdd" type="range" min="0" max="40" step="5" value="15"><div class="hint"><span>none</span><span>+40%</span></div></div>
     </div>
@@ -498,26 +869,60 @@ footer .logo{color:#fff}
 
 <!-- ROADMAP -->
 <section id="program"><div class="w">
-  <div class="sech"><div><span class="eyebrow rv">The program</span><h2 class="rv d1" style="margin-top:14px">Eight weeks, <span class="g">one result each week.</span></h2></div><p class="lead rv">One live call a week, then tasks for 4 to 6 hours. Each week ends with something finished.</p></div>
-  <div class="rprog" aria-hidden="true"><i id="rp"></i></div>
-  <ol class="road" id="road">
-    <li><div class="wk">Week 1 <i>1</i></div><h3>Niche and first script</h3><p>Pick 2 niches you can film at home and write your first 30-second script.</p><div class="out">→ 1 test video filmed</div></li>
-    <li><div class="wk">Week 2 <i>2</i></div><h3>Phone filming and editing</h3><p>Light, sound, hooks and CapCut edits that look like ads, without new gear.</p><div class="out">→ 2 videos re-shot after review</div></li>
-    <li><div class="wk">Week 3 <i>3</i></div><h3>Portfolio live</h3><p>Your best 3 to 5 videos on one page that brands can open on a phone.</p><div class="out">→ Portfolio link ready</div></li>
-    <li><div class="wk">Week 4 <i>4</i></div><h3>Brand list and pitch</h3><p>Where beginner-friendly brands post briefs and how to write a pitch they reply to.</p><div class="out">→ 40 brands on your list</div></li>
-    <li><div class="wk">Week 5 <i>5</i></div><h3>20 pitches out</h3><p>Send, track and follow up, with feedback on your messages from Juliani.</p><div class="out">→ 20 pitches sent</div></li>
-    <li><div class="wk">Week 6 <i>6</i></div><h3>Rates and negotiation</h3><p>Set your price, sell add-ons and answer "can you do it cheaper?" calmly.</p><div class="out">→ Rate card done</div></li>
-    <li><div class="wk">Week 7 <i>7</i></div><h3>First order, brief to delivery</h3><p>Read a brief, agree on revisions, deliver files and get paid on time.</p><div class="out">→ Delivery checklist</div></li>
-    <li><div class="wk">Week 8 <i>8</i></div><h3>Repeat clients</h3><p>Turn one order into a monthly package and plan your next 30 days.</p><div class="out">→ 30-day plan to $1,000</div></li>
-  </ol>
-  <div class="callout rv"><span>📅 Starts <b data-start>Nov 17, 2026</b></span><span>🕖 Calls on <b>Thursdays, 7 pm WIB</b> (recorded)</span><span>⏱ <b>5 to 7 hours</b> a week</span></div>
+  <div class="sech"><div><span class="eyebrow rv">The program</span><h2 class="rv d1" style="margin-top:14px">Eight weeks, <span class="g">one result each week.</span></h2></div><p class="lead rv">Follow the path from your first script to your first paid order. Each week ends with something finished that you can show.</p></div>
+  <div class="phases rv"><span><i style="--c:#E0508C"></i>Weeks 1 to 3 · Make</span><span><i style="--c:#7B2FC4"></i>Weeks 4 to 5 · Pitch</span><span><i style="--c:#0f8a5a"></i>Weeks 6 to 8 · Get paid</span></div>
+  <div class="snake" id="snake">
+    <svg class="spath" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0508C"/><stop offset="1" stop-color="#7B2FC4"/></linearGradient></defs><path class="bgp"/><path class="fgp"/></svg>
+    <div class="rider" aria-hidden="true"></div>
+    <ol class="wlist">
+    <li class="wkrow" style="--tb:#fde8f1;--tc:#a3004f"><div class="wnode"><div class="num"><small>Week</small><b>1</b></div></div>
+      <article class="wcard"><span class="wtag">Week 1 · Make</span><h3>Niche and first script</h3><p>Pick 2 niches you can film at home and write your first 30-second script.</p><div class="wviz"><div class="vchips"><span class="sel">Skincare</span><span>Travel</span><span class="sel">Language apps</span><span>Fitness</span><span>AI tools</span></div></div>
+      <div class="wget"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></i><div><span>You get</span><b>1 test video filmed</b></div></div></article></li>
+    <li class="wkrow" style="--tb:#fde8f1;--tc:#a3004f"><div class="wnode"><div class="num"><small>Week</small><b>2</b></div></div>
+      <article class="wcard"><span class="wtag">Week 2 · Make</span><h3>Phone filming and editing</h3><p>Light, sound, hooks and CapCut edits that look like ads, without new gear.</p><div class="wviz"><div class="vmeter"><div>Light<i style="--w:86%"></i></div><div>Sound<i style="--w:74%"></i></div><div>Hook<i style="--w:92%"></i></div></div></div>
+      <div class="wget"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></i><div><span>You get</span><b>2 videos re-shot after review</b></div></div></article></li>
+    <li class="wkrow" style="--tb:#fde8f1;--tc:#a3004f"><div class="wnode"><div class="num"><small>Week</small><b>3</b></div></div>
+      <article class="wcard"><span class="wtag">Week 3 · Make</span><h3>Portfolio live</h3><p>Your best 3 to 5 videos on one page that brands can open on a phone.</p><div class="wviz"><div class="vtiles"><i style="--a:#E0508C;--b:#7B2FC4"></i><i style="--a:#FFB38A;--b:#E0508C"></i><i style="--a:#7B2FC4;--b:#D4BBFF"></i><i style="--a:#E0508C;--b:#FFB38A"></i><em>yourname.com</em></div></div>
+      <div class="wget"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></i><div><span>You get</span><b>Portfolio link ready</b></div></div></article></li>
+    <li class="wkrow" style="--tb:#ece3fb;--tc:#6d28b8"><div class="wnode"><div class="num"><small>Week</small><b>4</b></div></div>
+      <article class="wcard"><span class="wtag">Week 4 · Pitch</span><h3>Brand list and pitch</h3><p>Where beginner-friendly brands post briefs and how to write a pitch they reply to.</p><div class="wviz"><div class="vbar"><div class="tr"><i></i></div><div class="lb"><span>0</span><span>40 brands</span></div></div></div>
+      <div class="wget"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></i><div><span>You get</span><b>40 brands on your list</b></div></div></article></li>
+    <li class="wkrow" style="--tb:#ece3fb;--tc:#6d28b8"><div class="wnode"><div class="num"><small>Week</small><b>5</b></div></div>
+      <article class="wcard"><span class="wtag">Week 5 · Pitch</span><h3>20 pitches out</h3><p>Send, track and follow up, with feedback on your messages from Juliani.</p><div class="wviz"><div class="vdots"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><i style="--n:5"></i><i style="--n:6"></i><i style="--n:7"></i><i style="--n:8"></i><i style="--n:9"></i><i style="--n:10"></i><i style="--n:11"></i><i style="--n:12"></i><i style="--n:13"></i><i style="--n:14"></i><i style="--n:15"></i><i style="--n:16"></i><i style="--n:17"></i><i style="--n:18"></i><i style="--n:19"></i></div></div>
+      <div class="wget"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></i><div><span>You get</span><b>20 pitches sent</b></div></div></article></li>
+    <li class="wkrow" style="--tb:#dff5ea;--tc:#0f6a47"><div class="wnode"><div class="num"><small>Week</small><b>6</b></div></div>
+      <article class="wcard"><span class="wtag">Week 6 · Get paid</span><h3>Rates and negotiation</h3><p>Set your price, sell add-ons and answer "can you do it cheaper?" calmly.</p><div class="wviz"><div class="vrate"><span style="--n:0">Base price</span><span class="add" style="--n:1">+ usage rights</span><span class="add" style="--n:2">+ raw files</span><span class="add" style="--n:3">+ extra hooks</span></div></div>
+      <div class="wget"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></i><div><span>You get</span><b>Rate card done</b></div></div></article></li>
+    <li class="wkrow" style="--tb:#dff5ea;--tc:#0f6a47"><div class="wnode"><div class="num"><small>Week</small><b>7</b></div></div>
+      <article class="wcard"><span class="wtag">Week 7 · Get paid</span><h3>First order, brief to delivery</h3><p>Read a brief, agree on revisions, deliver files and get paid on time.</p><div class="wviz"><div class="vcheck"><span style="--n:0">Read the brief</span><span style="--n:1">Agree revisions</span><span style="--n:2">Deliver files</span><span style="--n:3">Get paid</span></div></div>
+      <div class="wget"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></i><div><span>You get</span><b>Delivery checklist</b></div></div></article></li>
+    <li class="wkrow" style="--tb:#dff5ea;--tc:#0f6a47"><div class="wnode"><div class="num"><small>Week</small><b>8</b></div></div>
+      <article class="wcard"><span class="wtag">Week 8 · Get paid</span><h3>Repeat clients</h3><p>Turn one order into a monthly package and plan your next 30 days.</p><div class="wviz"><div class="vspark"><svg viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true"><path d="M2 58 C40 56 60 46 90 40 S150 22 198 4"/></svg><b>$1,000 goal</b></div></div>
+      <div class="wget"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></i><div><span>You get</span><b>30-day plan to $1,000</b></div></div></article></li>
+    <li class="wkrow fin"><div class="wnode"><div class="num" aria-hidden="true"><svg width="38" height="38" viewBox="0 0 24 24"><path d="M6 21V4M6 4h12l-2.5 4L18 12H6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg></div></div>
+      <div class="fincard"><span class="eyebrow" style="color:#ffd3e6">Finish line</span><h3 style="margin-top:12px">After week 8 you leave with a working system.</h3><p>Not a folder of lessons. Four things you made yourself and can use the next morning.</p>
+        <div class="fgoal"><div><b>3 to 5</b><span>portfolio videos on one live page</span></div><div><b>20</b><span>pitches sent to real brands</span></div><div><b>1</b><span>rate card with add-ons you can defend</span></div><div><b>30 days</b><span>plan toward your first $1,000 a month</span></div></div>
+        <a class="btn" href="#apply">Apply for the November group</a><small>A goal, not a promise. Your result depends on your niche and your effort.</small></div></li>
+    </ol>
+  </div>
+  <div class="when rv">
+    <div class="wn"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span><div><small>Starts</small><b data-start>Thursday, Nov 19, 2026</b><p>First live call on the start date.</p></div></div>
+    <div class="wn"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span><div><small>Weekly call</small><b>Thursdays, 7 pm WIB</b><p>WIB is Jakarta time (UTC+7). Every call is recorded.</p></div></div>
+    <div class="wn"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg></span><div><small>Your time</small><b>5 to 7 hours a week</b><p>Tasks you can do in the evening, on your own schedule.</p></div></div>
+    <div class="tz"><span>7 pm WIB is</span><i><b>8 pm</b> Singapore</i><i><b>12 pm</b> London</i><i><b>1 pm</b> Berlin</i><i><b>7 am</b> New York</i><i><b>11 pm</b> Sydney</i></div>
+  </div>
 <div class="midcta"><a class="btn" href="#apply">Apply for the November group</a><small class="note">Reply within 24 hours. You pay only after a short chat.</small></div>
 </div></section>
 
 <!-- ABOUT + WORK -->
 <section id="work" class="pan"><div class="w">
   <div class="about">
-    <div class="aimg rv"><img src="/img/cimey-portrait.webp" width="855" height="1190" alt="Juliani, known as Cimey" loading="lazy"><span class="tagc">📍 Pekanbaru, Indonesia</span></div>
+    <div class="aimg rv"><div class="aura"></div><span class="ring r1"></span><span class="ring r2"></span><span class="floor"></span>
+      <img src="/img/cimey-portrait.webp" width="855" height="1190" alt="Juliani, known as Cimey" loading="lazy">
+      <div class="bchip c3"><b>30+</b><span>brands</span></div>
+      <div class="bchip c1"><b>5.0</b><span>Fiverr rating</span></div>
+      <div class="bchip c2"><b>2</b><span>languages: EN and ID</span></div>
+      <span class="tagc"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="currentColor"/></svg>Pekanbaru, Indonesia</span></div>
     <div>
       <span class="eyebrow rv">Your mentor</span>
       <h2 class="rv d1" style="margin-top:14px">Hi, I'm Juliani. <span class="g">Most people call me Cimey.</span></h2>
@@ -526,10 +931,15 @@ footer .logo{color:#fff}
         <p>I started with no audience, no camera and no idea what to charge. The first months were slow because I had to work everything out alone. This group is the shortcut I wish I'd had: a small room, real feedback, and someone who still pitches brands every week.</p>
         <p><b>The group is capped at 8</b> so I can watch every video you send.</p>
       </blockquote>
-      <div class="sig rv d3"><a href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener">Instagram @cimeygallery</a><a href="https://www.fiverr.com/cimeygallery" target="_blank" rel="noopener">Fiverr · 5.0</a><a href="https://cimey-ugc.vercel.app" target="_blank" rel="noopener">Brand portfolio</a></div>
+      <div class="soc rv d3">
+        <a class="ig" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg></span><span><b>Instagram</b><small>@cimeygallery</small></span></a>
+        <a class="fv" href="https://www.fiverr.com/cimeygallery" target="_blank" rel="noopener"><span class="ico">fi</span><span><b>Fiverr · 5.0</b><small>Client reviews</small></span></a>
+        <a class="pf" href="https://cimey-ugc.vercel.app" target="_blank" rel="noopener"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span><b>Portfolio</b><small>Her ads for brands</small></span></a>
+      </div>
+    </div>
     </div>
   </div>
-  <div class="sech" style="margin-top:clamp(56px,7vw,96px);margin-bottom:0"><div><h2 class="rv" style="font-size:clamp(28px,3vw,42px)">The standard you'll learn to</h2><p class="lead rv">Real videos Cimey made for brands. Swipe or use the arrows.</p></div></div>
+  <div class="sech" style="margin-top:clamp(56px,7vw,96px);margin-bottom:0"><div><h2 class="rv" style="font-size:clamp(28px,3vw,42px)">The standard you'll learn to meet</h2><p class="lead rv">These are real ads Cimey made for brands. Tap one to play it, swipe for more.</p></div></div>
   <div class="rwrap">
     <button class="ra l" id="cprev2" type="button" aria-label="Previous video">‹</button>
     <div class="reels" id="reels" tabindex="0" role="region" aria-label="Cimey's work examples">
@@ -548,6 +958,8 @@ footer .logo{color:#fff}
   </div>
 <div class="midcta"><a class="btn" href="#apply">See if there is a seat for you</a><small class="note"><span data-seats-left>5</span> of 8 seats left</small></div>
 </div></section>
+
+<section id="cine-sec" style="padding-top:0"><div class="w"><div class="sech" style="text-align:center;justify-content:center"><div><span class="eyebrow rv">Your studio is already in your pocket</span><h2 class="rv d1" style="margin-top:14px">You don't need a studio. <span class="g">You need a window and a phone.</span></h2></div></div><div class="cine"><figure class="cc c1"><div class="fr"><img src="/img/ph-sunset.webp" alt="Cimey filming in golden light" loading="lazy" decoding="async"><i class="vig"></i><i class="tone"></i><i class="grain"></i><i class="sweep"></i><i class="glare"></i><i class="vf"></i><span class="rec"><i></i>REC</span><span class="tc"></span></div><figcaption><small>Scene 01</small><b>Good light is free</b></figcaption></figure><figure class="cc c2"><div class="fr"><img src="/img/ph-phone.webp" alt="Cimey with her phone" loading="lazy" decoding="async"><i class="vig"></i><i class="tone"></i><i class="grain"></i><i class="sweep"></i><i class="glare"></i><i class="vf"></i><span class="rec"><i></i>REC</span><span class="tc"></span></div><figcaption><small>Scene 02</small><b>Your phone is the studio</b></figcaption></figure><figure class="cc c3"><div class="fr"><img src="/img/ph-swing.webp" alt="Cimey on a swing" loading="lazy" decoding="async"><i class="vig"></i><i class="tone"></i><i class="grain"></i><i class="sweep"></i><i class="glare"></i><i class="vf"></i><span class="rec"><i></i>REC</span><span class="tc"></span></div><figcaption><small>Scene 03</small><b>Pick a spot you love</b></figcaption></figure></div></div></section>
 
 <!-- FIT -->
 <section id="fit" style="padding-top:0"><div class="w">
@@ -595,7 +1007,7 @@ footer .logo{color:#fff}
   <div class="guar rv">
     <div class="seal"><b>14<small>day refund</small></b></div>
     <div><h3 style="font-size:24px">Try the first week. If it's not for you, get your money back.</h3>
-      <ol><li>Join the first call (live or recording).</li><li>Send your week 1 task: your two niches and one 30 to 60 second test video.</li><li>Write to Juliani within 14 days of the start date. Full refund within 5 working days, no arguing.</li></ol>
+      <ol class="gst"><li>Join the first call (live or recording).</li><li>Send your week 1 task: your two niches and one 30 to 60 second test video.</li><li>Write to Juliani within 14 days of the start date. Full refund within 5 working days, no arguing.</li></ol>
       <small class="note">The task is there so the refund is for people who tried the program, and it takes about 2 hours.</small></div>
   </div>
 </div></section>
@@ -613,7 +1025,7 @@ footer .logo{color:#fff}
     <details class="rv"><summary>Do I need followers?</summary><p>No. Brands pay UGC creators for the video file and post it on their own accounts and ads. Your follower count rarely comes up.</p></details>
     <details class="rv"><summary>Do I need a camera or special gear?</summary><p>No. A phone from the last 4 to 5 years, daylight from a window and a quiet room are enough. We'll talk about a $10 to $20 mic only if you want one.</p></details>
     <details class="rv"><summary>Will I earn $1,000 a month?</summary><p>That is the goal we build toward, and I cannot promise it. Some people land a first paid order during the program, others need a few more months of pitching. By week 8 you will have a portfolio, a pitch that works and a price list.</p></details>
-    <details class="rv"><summary>I live in a different time zone. What about the calls?</summary><p>Calls are on Thursdays at 7 pm WIB (UTC+7) and every call is recorded. You can send questions before the call and watch the answers later.</p></details>
+    <details class="rv"><summary>I live in a different time zone. What about the calls?</summary><p>Calls are on Thursdays at 7 pm WIB, which is Jakarta time (UTC+7): 12 pm in London, 1 pm in Berlin, 7 am in New York. Every call is recorded. You can send questions before the call and watch the answers later.</p></details>
     <details class="rv"><summary>How is this different from a video course?</summary><p>A course gives you lessons. Here you also get someone who checks your videos and pitches each week, in a group small enough that she knows your name.</p></details>
     <details class="rv"><summary>What happens after I apply?</summary><p>Juliani reads every application and replies within 48 hours on the channel you choose. If the group fits, you get a payment link. If it doesn't, she'll tell you honestly and suggest what to do instead.</p></details>
     <details class="rv"><summary>I speak Bahasa Indonesia. Is there a group in Indonesian?</summary><p>Yes, with its own page and a price in rupiah. Leave your email below and you'll get the link when it opens.</p></details>
@@ -633,6 +1045,7 @@ footer .logo{color:#fff}
         <li><i>3</i><div><b>Short chat, then payment link</b><span>Only if you both agree it's a fit.</span></div></li>
       </ol>
       <p class="rv" style="margin-top:22px;color:var(--mute)"><b data-seats-left style="color:var(--ink)">5</b><b style="color:var(--ink)"> seats left</b> · enrollment closes <span data-close-date>Nov 14</span></p>
+      <div class="meet rv d2"><i class="aura"></i><i class="ring"></i><i class="ring r2"></i><img src="/img/cut-smile.webp" alt="Cimey smiling" loading="lazy" decoding="async"><div class="say">I read every application myself<i><b></b><b></b><b></b></i><small>Cimey</small></div></div>
     </div>
     <div>
       <form class="fm rv d1" id="fm" novalidate>
@@ -671,9 +1084,22 @@ footer .logo{color:#fff}
   </div>
 
   <div class="free rv" id="guide">
-    <div class="pdf">PDF</div>
-    <div><h3>Not ready to apply? Get the free First Pitch Pack.</h3><p>5 pitch templates Cimey uses with brands, plus the Indonesian group link when it opens.</p></div>
-    <div><form id="ff" novalidate><input type="email" name="email" placeholder="Your email" aria-label="Your email" required><input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="btn sm" type="submit">Send it to me</button></form><small class="note" id="fmsg" style="margin-top:8px">By sending, you agree to get emails from Cimey UGC. Unsubscribe anytime.</small></div>
+    <div class="fvis" aria-hidden="true">
+      <img class="doc d1" src="/img/pack-hunt.webp" width="420" height="594" alt="" loading="lazy">
+      <img class="doc d2" src="/img/pack-inside.webp" width="420" height="594" alt="" loading="lazy">
+      <img class="doc d3" src="/img/pack-cover.webp" width="420" height="594" alt="" loading="lazy">
+      <span class="tgx t1"><i>5</i>pitch templates</span><span class="tgx t2"><i>✓</i>copy and paste ready</span><span class="tgx t3"><i>PDF</i>free download</span>
+    </div>
+    <div class="ftxt">
+      <span class="eyebrow">Free · PDF guide</span>
+      <h3>Not ready to apply? Get the free First Pitch Pack.</h3>
+      <ul class="fpts">
+        <li><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 7 9-7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg></i>5 pitch templates Cimey uses with real brands</li>
+        <li><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM4 10h16M10 10v9" stroke="currentColor" stroke-width="2" fill="none"/></svg></i>The Brand Hunt List: where beginners find paying brands</li>
+        <li><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg></i>The link to the Indonesian group when it opens</li>
+      </ul>
+      <form id="ff" novalidate><input type="email" name="email" placeholder="Your email" aria-label="Your email" required><input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="btn sm" type="submit">Send it to me</button></form><small class="note" id="fmsg" style="margin-top:10px">By sending, you agree to get emails from Cimey UGC. Unsubscribe anytime.</small>
+    </div>
   </div>
 </div></section>
 </main>
@@ -696,7 +1122,7 @@ footer .logo{color:#fff}
 
 <script>
 /* ===== EDIT HERE: group settings ===== */
-var CFG={seatsTotal:8,seatsTaken:3,closes:'2026-11-14T23:59:00+07:00',start:'Nov 17, 2026'};
+var CFG={seatsTotal:8,seatsTaken:3,closes:'2026-11-14T23:59:00+07:00',start:'Thursday, Nov 19, 2026'};
 /* ===================================== */
 (function(){
   var left=Math.max(0,CFG.seatsTotal-CFG.seatsTaken),cl=new Date(CFG.closes),
@@ -722,12 +1148,10 @@ var CFG={seatsTotal:8,seatsTaken:3,closes:'2026-11-14T23:59:00+07:00',start:'Nov
   var rv=document.querySelectorAll('.rv');
   if('IntersectionObserver' in window&&!rm){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});rv.forEach(function(e){io.observe(e)})}
   else rv.forEach(function(e){e.classList.add('in')});
-  var sp=document.getElementById('sp'),mb=document.getElementById('mbar'),hero=document.querySelector('.hero'),ap=document.getElementById('apply'),
-      road=document.getElementById('road'),lis=[].slice.call(road.children),rp=document.getElementById('rp');
+  var sp=document.getElementById('sp'),mb=document.getElementById('mbar'),hero=document.querySelector('.hero'),ap=document.getElementById('apply');
   function tick(){var h=document.documentElement.scrollHeight-innerHeight;sp.style.transform='scaleX('+(h>0?scrollY/h:0)+')';
     var past=hero.getBoundingClientRect().bottom<0,ar=ap.getBoundingClientRect(),inAp=ar.top<innerHeight&&ar.bottom>0;mb.classList.toggle('in',past&&!inAp);
-    var r=road.getBoundingClientRect(),pr=rm?1:Math.max(0,Math.min(1,(innerHeight*.75-r.top)/(r.height)));rp.style.width=(pr*100)+'%';
-    lis.forEach(function(li,i){li.classList.toggle('on',rm||pr>=(i+.5)/lis.length)})}
+  }
   addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
   /* hero tilt */
   var st=document.getElementById('stage'),tl=document.getElementById('tilt');
@@ -856,6 +1280,69 @@ var CFG={seatsTotal:8,seatsTaken:3,closes:'2026-11-14T23:59:00+07:00',start:'Nov
     fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'guide',email:em,consent:true,website:ff.elements.website.value,page:location.pathname})})
       .then(function(r){if(!r.ok)throw 0;ff.hidden=true;fm.innerHTML='Done. Check your inbox, or <a href="/downloads/first-pitch-pack.pdf" download style="color:var(--lav);text-decoration:underline">download the PDF now</a>. The Brand Hunt List is <a href="/downloads/brand-hunt-list.pdf" download style="color:var(--lav);text-decoration:underline">here</a>.'})
       .catch(function(){fm.textContent='Could not send right now. Please try again in a minute.'}).then(function(){b.disabled=false})});
+})();
+</script>
+<script>
+/* ===== v3 interactions ===== */
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  /* count-up */
+  var cs=[].slice.call(document.querySelectorAll('[data-count]'));
+  function runC(el){var to=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),suf=el.dataset.suf||'',t0=performance.now(),d=1400;
+    (function f(t){var k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.textContent=(to*e).toFixed(dec)+(k>=1?suf:'');if(k<1)requestAnimationFrame(f)})(t0)}
+  if('IntersectionObserver' in window&&!rm){var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){runC(e.target);cio.unobserve(e.target)}})},{threshold:.6});cs.forEach(function(c){cio.observe(c)})}
+  else cs.forEach(function(c){c.textContent=(+c.dataset.count).toFixed(+(c.dataset.dec||0))+(c.dataset.suf||'')});
+
+  /* why-stall tabs */
+  var stk=document.getElementById('stk');
+  if(stk){
+    var tabs=[].slice.call(stk.querySelectorAll('.tab')),panes=[].slice.call(stk.querySelectorAll('.pane')),cur=0,timer=null,stopped=false;
+    function show(i){cur=i;tabs.forEach(function(t,k){var on=k===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;var b=t.querySelector('.bar');if(on){b.style.animation='none';void b.offsetWidth;b.style.animation=''}});
+      panes.forEach(function(p,k){p.classList.toggle('on',k===i)})}
+    function next(){show((cur+1)%tabs.length)}
+    function start(){clearInterval(timer);if(stopped||rm)return;timer=setInterval(next,8000)}
+    tabs.forEach(function(t,i){t.addEventListener('click',function(){stopped=true;stk.classList.add('paused');clearInterval(timer);show(i)});
+      t.addEventListener('keydown',function(e){if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();stopped=true;stk.classList.add('paused');show((cur+1)%tabs.length);tabs[cur].focus()}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();stopped=true;stk.classList.add('paused');show((cur+tabs.length-1)%tabs.length);tabs[cur].focus()}})});
+    if(rm){stk.classList.add('paused')}
+    var seen=false;if('IntersectionObserver' in window){new IntersectionObserver(function(es,o){if(es[0].isIntersecting&&!seen){seen=true;show(0);start()}else if(!es[0].isIntersecting){clearInterval(timer)}else if(seen&&!stopped){start()}},{threshold:.35}).observe(stk)}else{show(0)}
+    show(0);
+  }
+
+  /* snake roadmap */
+  var sn=document.getElementById('snake');
+  if(sn){
+    var svg=sn.querySelector('.spath'),bgp=svg.querySelector('.bgp'),fgp=svg.querySelector('.fgp'),rider=sn.querySelector('.rider'),
+        rows=[].slice.call(sn.querySelectorAll('.wkrow')),nodes=rows.map(function(r){return r.querySelector('.num')}),len=0,nlen=[],pts=[];
+    function lenAtY(y){var lo=0,hi=len;for(var i=0;i<22;i++){var m=(lo+hi)/2;if(fgp.getPointAtLength(m).y<y)lo=m;else hi=m}return (lo+hi)/2}
+    function build(){var c=sn.getBoundingClientRect();
+      pts=nodes.map(function(n){var r=n.getBoundingClientRect();return [r.left+r.width/2-c.left,r.top+r.height/2-c.top]});
+      svg.setAttribute('viewBox','0 0 '+c.width+' '+c.height);
+      var d='M'+pts[0][0]+' '+(pts[0][1]-70)+' L'+pts[0][0]+' '+pts[0][1];
+      for(var i=1;i<pts.length;i++){var a=pts[i-1],b=pts[i],m=(a[1]+b[1])/2;d+=' C'+a[0]+' '+m+' '+b[0]+' '+m+' '+b[0]+' '+b[1]}
+      bgp.setAttribute('d',d);fgp.setAttribute('d',d);len=fgp.getTotalLength();fgp.style.strokeDasharray=len+' '+len;
+      nlen=pts.map(function(p){return lenAtY(p[1])});upd()}
+    function upd(){if(!len)return;var c=sn.getBoundingClientRect(),y=rm?c.height:Math.max(0,Math.min(c.height,innerHeight*.58-c.top)),L=y>=c.height-2?len:lenAtY(y);
+      fgp.style.strokeDashoffset=len-L;var p=fgp.getPointAtLength(L);rider.style.left=p.x+'px';rider.style.top=p.y+'px';rider.classList.toggle('v',!(c.top>innerHeight*.58||c.bottom<innerHeight*.2));
+      rows.forEach(function(r,i){r.classList.toggle('on',rm||L>=nlen[i]-6)})}
+    build();addEventListener('resize',function(){build()});addEventListener('scroll',upd,{passive:true});
+    addEventListener('load',build);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);setTimeout(build,600);
+  }
+})();
+
+</script>
+<script>(function(){
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  [].forEach.call(document.querySelectorAll('.cine'),function(c){
+    if('IntersectionObserver' in window&&!rm){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){c.classList.add('in');o.disconnect()}},{threshold:.25}).observe(c)}else c.classList.add('in');
+  });
+  var cards=[].slice.call(document.querySelectorAll('.cc'));
+  if(matchMedia('(pointer:fine)').matches&&!rm){cards.forEach(function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      c.style.setProperty('--ry',((x-.5)*14)+'deg');c.style.setProperty('--rx',((.5-y)*10)+'deg');c.style.setProperty('--mx',(x*100)+'%');c.style.setProperty('--my',(y*100)+'%')});
+    c.addEventListener('pointerleave',function(){c.style.setProperty('--ry','0deg');c.style.setProperty('--rx','0deg')})})}
+  var t0=Date.now();function p(n){return (n<10?'0':'')+n}
+  function tc(){var s=Math.floor((Date.now()-t0)/1000)+7;[].forEach.call(document.querySelectorAll('.cc .tc'),function(e,i){var v=s+i*13;e.textContent='00:'+p(Math.floor(v/60)%60)+':'+p(v%60)})}
+  tc();if(!rm)setInterval(tc,1000);
 })();
 </script>
 </body>
