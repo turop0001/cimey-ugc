@@ -247,6 +247,27 @@ section{padding:clamp(40px,5vw,76px) 0}
 .stage .card,.stage .cut{-webkit-mask-image:linear-gradient(#000 84%,transparent 100%);mask-image:linear-gradient(#000 84%,transparent 100%)}
 .rev{padding:clamp(22px,3vw,38px)}
 .final{padding:clamp(36px,5vw,72px) clamp(22px,4vw,64px)}
+
+/* carousel */
+.reels{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:18px 4px 14px;margin-top:0;scrollbar-width:none;cursor:grab;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.reels::-webkit-scrollbar{display:none}
+.reels.drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.reel{flex:none;width:clamp(190px,16.5vw,238px);margin:0;scroll-snap-align:start;transition:transform .3s}
+.reel .ph{width:100%}
+.reel:hover{transform:translateY(-6px)}
+.reel figcaption{margin-top:14px;display:flex;flex-direction:column;gap:2px}
+.reel figcaption b{font-family:"Bricolage Grotesque",Manrope,sans-serif;font-size:18px;letter-spacing:-.01em}
+.reel figcaption span{font-size:13.5px;color:var(--mute)}
+.reels .ph{width:100%;flex:none}
+.reels .ph:hover{transform:none}
+.cnav{display:flex;gap:10px}
+.cb{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:#fff;font-size:26px;line-height:1;cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s}
+.cb:hover:not(:disabled){border-color:var(--pk);background:#2a0f1e}
+.cb:disabled{opacity:.3;cursor:default}
+.cfoot{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:14px}
+.cbar{flex:1;max-width:420px;height:4px;border-radius:99px;background:var(--line);overflow:hidden}
+.cbar i{display:block;height:100%;width:30%;border-radius:99px;background:var(--grad);transition:margin .15s}
+@media(max-width:640px){.cnav{display:none}.cfoot{flex-direction:column;align-items:flex-start}.cbar{width:100%;max-width:none}.reel{width:62vw}}
 /* booking dialog */
 .btn{font-family:inherit}
 dialog.bk{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:28px;background:var(--bg2);color:var(--ink);overflow:auto;box-shadow:0 40px 120px -20px rgba(0,0,0,.8)}
@@ -346,22 +367,25 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
 </section>
 
 <section id="work"><div class="w">
- <h2 class="rv">Selected work</h2>
- <p class="lead rv">Vertical videos for AI, SaaS, travel and beauty brands, in English and Bahasa Indonesia.</p>
- <!-- VIDEOS: put each mp4 (vertical 9:16, under 12 MB, H.264) into the /videos folder and set data-src="videos/name.mp4" and data-poster="videos/name.jpg" on a figure below. Same for the intro video in the hero. -->
- <div class="reels" id="reels" tabindex="0" aria-label="Work examples">
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 1: AI app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">AI app</span></div></figure>
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 2: SaaS demo" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">SaaS demo</span></div></figure>
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 3: Travel" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Travel</span></div></figure>
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 4: eSIM" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">eSIM</span></div></figure>
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 5: Beauty" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Beauty</span></div></figure>
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 6: Bahasa Indonesia" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Bahasa Indonesia</span></div></figure>
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 7: AI app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">AI app</span></div></figure>
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 8: SaaS demo" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">SaaS demo</span></div></figure>
-  <figure class="ph rv" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 9: Travel" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button><span class="tg">Travel</span></div></figure>
+ <div class="sech"><div><h2 class="rv">Selected work</h2><p class="lead rv">Vertical videos for AI, SaaS, travel and beauty brands, in English and Bahasa Indonesia.</p></div>
+  <div class="cnav" aria-label="Carousel controls"><button type="button" class="cb" id="cprev" aria-label="Previous videos">&#8249;</button><button type="button" class="cb" id="cnext" aria-label="Next videos">&#8250;</button></div></div>
+ <!-- VIDEOS: put each mp4 (vertical 9:16, under 12 MB, H.264) into the /videos folder, then set data-src="videos/name.mp4" and data-poster="videos/name.jpg" on the .ph of a slide. Edit the brand, category and format in its figcaption. The same works for the intro phone in the hero. -->
+ <div class="reels" id="reels" tabindex="0" role="region" aria-label="Work examples, scroll sideways">
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 1: Tutorly, AI learning app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Tutorly</b><span>AI learning app · Talking head</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 2: Hilfe AI, AI assistant" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Hilfe AI</b><span>AI assistant · Screen demo</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 3: Seyra eSIM, Travel eSIM" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Seyra eSIM</b><span>Travel eSIM · Lifestyle story</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 4: Sakura Speak, Language app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Sakura Speak</b><span>Language app · Voiceover demo</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 5: HeyGen, AI video" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>HeyGen</b><span>AI video · Screen demo</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 6: Jenni AI, AI writing" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Jenni AI</b><span>AI writing · Talking head</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 7: Nomad Vault, Travel" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Nomad Vault</b><span>Travel · Lifestyle story</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 8: SuperChinese, Language app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>SuperChinese</b><span>Language app · Talking head</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 9: Beauty brand, Skincare" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Beauty brand</b><span>Skincare · Routine and texture</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 10: Snap AI, AI app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Snap AI</b><span>AI app · Screen demo</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 11: Pingo AI, Language app" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Pingo AI</b><span>Language app · Voiceover demo</span></figcaption></figure>
+  <figure class="reel"><div class="ph" data-src="" data-poster=""><div class="scr"><i class="nt"></i><button type="button" class="pl" aria-label="Play video 12: Bahasa Indonesia, Native ad" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div><figcaption><b>Bahasa Indonesia</b><span>Native ad · Local market</span></figcaption></figure>
   
  </div>
- <p class="more"><a class="btn o" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener">See my work on Instagram ↗</a></p>
+ <div class="cfoot"><div class="cbar" aria-hidden="true"><i id="cthumb"></i></div><a class="btn o" href="https://www.instagram.com/cimeygallery/" target="_blank" rel="noopener">See my work on Instagram ↗</a></div>
 </div></section>
 
 <section id="niches" class="alt"><div class="w">
@@ -541,6 +565,24 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
       v.play();
     });
   });
+})();
+
+(function(){
+  var r=document.getElementById('reels');if(!r)return;
+  var pv=document.getElementById('cprev'),nx=document.getElementById('cnext'),th=document.getElementById('cthumb');
+  function step(){var c=r.querySelector('.reel');return c?(c.offsetWidth+20)*2:300}
+  function upd(){var max=r.scrollWidth-r.clientWidth;var f=r.clientWidth/r.scrollWidth,p=max>0?r.scrollLeft/max:0;
+    th.style.width=(f*100)+'%';th.style.marginLeft=(p*(1-f)*100)+'%';
+    pv.disabled=r.scrollLeft<=2;nx.disabled=r.scrollLeft>=max-2}
+  pv.addEventListener('click',function(){r.scrollBy({left:-step()})});
+  nx.addEventListener('click',function(){r.scrollBy({left:step()})});
+  r.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+  r.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){r.scrollBy({left:step()/2});e.preventDefault()}if(e.key==='ArrowLeft'){r.scrollBy({left:-step()/2});e.preventDefault()}});
+  /* mouse drag */
+  var down=false,sx=0,sl=0,moved=false;
+  r.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.target.closest('button,video'))return;down=true;moved=false;sx=e.clientX;sl=r.scrollLeft;r.classList.add('drag')});
+  window.addEventListener('pointermove',function(e){if(!down)return;var d=e.clientX-sx;if(Math.abs(d)>4)moved=true;r.scrollLeft=sl-d});
+  window.addEventListener('pointerup',function(){if(!down)return;down=false;r.classList.remove('drag')});
 })();
 </script>
 </body>
