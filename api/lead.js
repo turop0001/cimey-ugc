@@ -9,7 +9,17 @@ module.exports = async (req, res) => {
   try { if (typeof b === 'string') b = JSON.parse(b || '{}'); } catch (e) { b = {}; }
   b = b || {};
   if (b.website) return res.status(200).json({ ok: true }); // honeypot
+  const type = b.type === 'course' || b.type === 'guide' ? b.type : 'brand';
+  if (type !== 'brand') {
+    b.brand = type === 'course' ? 'Курс EN: заявка в группу' : 'Гайд: First Pitch Pack';
+    b.date = new Date().toISOString().slice(0, 10); b.time = '00:00';
+    if (type === 'guide') { b.name = b.name || clip(b.email, 120).split('@')[0]; b.channel = 'Email'; }
+    b.message = type === 'course'
+      ? `Опыт: ${clip(b.level, 40)}\nЧасов в неделю: ${clip(b.hours, 20)}\nЦель: ${clip(b.goal, 1200)}\nСтраница: ${clip(b.page, 60)}`
+      : `Подписка на бесплатный гайд. Страница: ${clip(b.page, 60)}`;
+  }
   const lead = {
+    type,
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
     created: new Date().toISOString(),
     name: clip(b.name, 120), email: clip(b.email, 200), brand: clip(b.brand, 200),
@@ -36,7 +46,7 @@ module.exports = async (req, res) => {
     await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from: 'Cimey UGC <onboarding@resend.dev>', to: [process.env.NOTIFY_EMAIL || 'cimeygallery@gmail.com'], reply_to: lead.email, subject: 'New lead: ' + lead.brand, text })
+      body: JSON.stringify({ from: 'Cimey UGC <onboarding@resend.dev>', to: [process.env.NOTIFY_EMAIL || 'cimeygallery@gmail.com'], reply_to: lead.email, subject: (type === 'course' ? 'New course application: ' + lead.name : type === 'guide' ? 'New guide signup: ' + lead.email : 'New lead: ' + lead.brand), text })
     }).catch(() => {});
   }
   return res.status(200).json({ ok: true });
