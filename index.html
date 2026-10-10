@@ -520,6 +520,7 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   </div>
   <div class="f"><label for="bk-brand">Brand or product</label><input id="bk-brand" name="brand" type="text" required></div>
   <fieldset class="f"><legend>Where should I reach you</legend><div class="slots c3"><input type="radio" name="ch" id="c0" value="Email" checked><label for="c0">Email</label><input type="radio" name="ch" id="c1" value="Instagram"><label for="c1">Instagram</label><input type="radio" name="ch" id="c2" value="WhatsApp"><label for="c2">WhatsApp</label></div></fieldset>
+  <div class="f" id="bk-hw" hidden><label for="bk-handle" id="bk-hl">Instagram username</label><input id="bk-handle" name="handle" maxlength="60" autocomplete="off" placeholder="@yourbrand"></div>
   <fieldset class="f"><legend>Preferred date</legend><input id="bk-date" type="hidden"><div class="cal" id="bk-cal"><div class="ch"><button type="button" class="cn" id="cal-p" aria-label="Previous month">&#8249;</button><b id="cal-t"></b><button type="button" class="cn" id="cal-n" aria-label="Next month">&#8250;</button></div><div class="cg cw"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div><div class="cg" id="cal-g"></div></div></fieldset>
   <fieldset><legend>Preferred time (Indonesia, WIB)</legend>
    <div class="slots" id="bk-slots"></div>
@@ -584,18 +585,26 @@ dialog.bk::backdrop{background:rgba(8,2,5,.72);backdrop-filter:blur(6px)}
   d.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){d.close()})});
   d.addEventListener('click',function(e){if(e.target===d)d.close()});
   d.addEventListener('close',function(){if(last&&last.focus)last.focus()});
+  var hw=document.getElementById('bk-hw'),hl=document.getElementById('bk-hl'),hi=document.getElementById('bk-handle');
+  f.querySelectorAll('input[name=ch]').forEach(function(r){r.addEventListener('change',function(){var c=r.value;if(!r.checked)return;
+    if(c==='Email'){hw.hidden=true;hi.required=false;return}
+    hw.hidden=false;hi.required=true;
+    if(c==='WhatsApp'){hl.textContent='WhatsApp number (with country code)';hi.placeholder='+62 812 3456 7890';hi.inputMode='tel'}
+    else{hl.textContent='Instagram username';hi.placeholder='@yourbrand';hi.inputMode='text'}
+    hi.focus()})});
   f.addEventListener('submit',function(e){
     e.preventDefault();err.textContent='';
     var v=function(id){return document.getElementById(id).value.trim()};
     var time=(f.querySelector('input[name=time]:checked')||{}).value;
     if(!v('bk-name')||!v('bk-brand')){err.textContent='Please fill in your name and brand.';return}
     if(!/^\S+@\S+\.\S+$/.test(v('bk-mail'))){err.textContent='Please enter a valid email.';return}
+    var chv=(f.querySelector('input[name=ch]:checked')||{}).value;if(chv!=='Email'&&v('bk-handle').length<3){err.textContent=(chv==='WhatsApp'?'Please enter your WhatsApp number.':'Please enter your Instagram username.');document.getElementById('bk-handle').focus();return}
     if(!date.value||!time){err.textContent='Please choose a date and a time.';return}
     if(!document.getElementById('bk-ok').checked){err.textContent='Please confirm the privacy checkbox.';return}
-    var body='Hi Juliani,\n\nName: '+v('bk-name')+'\nEmail: '+v('bk-mail')+'\nBrand/product: '+v('bk-brand')+'\nReach me via: '+(f.querySelector('input[name=ch]:checked')||{}).value+'\nPreferred time: '+date.value+' at '+time+' WIB (UTC+7)\n\n'+v('bk-msg')+'\n\nI agree that my details are used only to answer this request.';
+    var body='Hi Juliani,\n\nName: '+v('bk-name')+'\nEmail: '+v('bk-mail')+((f.querySelector('input[name=ch]:checked')||{}).value!=='Email'&&v('bk-handle')?'\n'+(f.querySelector('input[name=ch]:checked')||{}).value+': '+v('bk-handle'):'')+'\nBrand/product: '+v('bk-brand')+'\nReach me via: '+(f.querySelector('input[name=ch]:checked')||{}).value+'\nPreferred time: '+date.value+' at '+time+' WIB (UTC+7)\n\n'+v('bk-msg')+'\n\nI agree that my details are used only to answer this request.';
     var href='mailto:cimeygallery@gmail.com?subject='+encodeURIComponent('Free UGC consultation: '+v('bk-brand'))+'&body='+encodeURIComponent(body);
     var btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending...';
-    var payload={name:v('bk-name'),email:v('bk-mail'),brand:v('bk-brand'),channel:(f.querySelector('input[name=ch]:checked')||{}).value,date:date.value,time:time,message:v('bk-msg'),consent:true,website:(document.getElementById('bk-hp')||{}).value||''};
+    var payload={name:v('bk-name'),email:v('bk-mail'),brand:v('bk-brand'),channel:(f.querySelector('input[name=ch]:checked')||{}).value,handle:v('bk-handle'),date:date.value,time:time,message:v('bk-msg'),consent:true,website:(document.getElementById('bk-hp')||{}).value||''};
     fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
       .then(function(r){if(!r.ok)throw 0;document.getElementById('bk-done-ok').hidden=false;document.getElementById('bk-done-mail').hidden=true;f.hidden=true;done.hidden=false})
       .catch(function(){document.getElementById('bk-done-ok').hidden=true;document.getElementById('bk-done-mail').hidden=false;f.hidden=true;done.hidden=false;window.location.href=href})
