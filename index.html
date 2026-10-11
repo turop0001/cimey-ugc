@@ -243,6 +243,7 @@ section{padding:clamp(40px,5vw,76px) 0}
 .rl:hover{border-color:var(--lav)}
 .reels{-webkit-mask-image:linear-gradient(90deg,#000 90%,transparent);mask-image:linear-gradient(90deg,#000 90%,transparent)}
 .nr{grid-template-columns:64px minmax(0,1.2fr) minmax(300px,1fr)}
+@media(max-width:900px){.nr{grid-template-columns:44px minmax(0,1fr);gap:10px 16px;align-items:start}.nr .chips{grid-column:1/-1;justify-content:flex-start}.nr .no{font-size:34px}}
 .stage .card,.stage .cut{-webkit-mask-image:linear-gradient(#000 84%,transparent 100%);mask-image:linear-gradient(#000 84%,transparent 100%)}
 .rev{padding:clamp(22px,3vw,38px)}
 .final{padding:clamp(36px,5vw,72px) clamp(22px,4vw,64px)}
