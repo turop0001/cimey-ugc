@@ -17,7 +17,7 @@ const secret = () => process.env.UNSUB_SECRET || process.env.RESEND_API_KEY || '
 const token = email => crypto.createHmac('sha256', secret()).update(String(email).toLowerCase()).digest('hex').slice(0, 24);
 const unsubUrl = email => `${SITE}/api/unsub?e=${encodeURIComponent(email)}&t=${token(email)}`;
 
-// day = days after signup. {name} and {close} are filled in per lead.
+// day = days after signup. {name} is filled in per lead.
 const SEQUENCE = [
   { n: 1, day: 0, subject: 'Your First Pitch Pack is here', text:
 `Hi {name},
@@ -62,13 +62,15 @@ This is a goal, not a promise. How fast you get there depends on your niche, you
 I am opening a small group (8 people max) where I review your videos and pitches every week for 8 weeks. Details and price: {site}/course/#offer
 
 Cimey` },
-  { n: 5, day: 9, subject: 'Applications for the group close on {close}', closing: true, text:
+  { n: 5, day: 9, subject: 'The UGC group is opening soon: join the waitlist', closing: true, text:
 `Hi {name},
 
-Applications for the current UGC Creator Group close on {close}. There are a few seats left, and I keep the group at 8 so I can watch every video you send.
+I am opening a small UGC Creator Group (8 people max), and I keep the group small so I can watch every video you send.
 
-If you want to apply, the form takes two minutes: {site}/course/#apply
-I read every application myself and reply within 48 hours. You pay nothing until we both agree it is a good fit.
+There is no start date yet. If you join the waitlist now, you hear the date before anyone else, and you get a lower price for a few days after I announce it. Joining is free and you pay nothing until the date is set.
+
+The waitlist takes two minutes: {site}/course/#apply
+I read every entry myself and reply within 48 hours.
 
 If the timing is wrong, the Pitch Pack is yours to keep. Good luck with your first pitches.
 
@@ -77,8 +79,7 @@ Cimey` }
 
 function render(step, lead) {
   const name = (lead.name || '').split(' ')[0] || 'there';
-  const close = process.env.GROUP_CLOSE_LABEL || 'Nov 14';
-  const f = s => s.replaceAll('{name}', name).replaceAll('{site}', SITE).replaceAll('{close}', close);
+  const f = s => s.replaceAll('{name}', name).replaceAll('{site}', SITE);
   return { subject: f(step.subject), text: f(step.text) + `\n\n--\nCimey UGC, Pekanbaru, Indonesia\nUnsubscribe: ${unsubUrl(lead.email)}` };
 }
 async function send(to, mail) {
