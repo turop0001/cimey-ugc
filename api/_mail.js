@@ -23,6 +23,7 @@ const SEQUENCE = [
 `Hi {name},
 
 Here is your First Pitch Pack: {site}/downloads/first-pitch-pack.pdf
+Bahasa Indonesia: {site}/downloads/first-pitch-pack-id.pdf
 
 It has 5 pitch templates I use with brands, plus a tracker. Do this today: pick one brand you already like, fill in template 1 and send it. One message is enough to start.
 
@@ -39,7 +40,7 @@ Most pitches get ignored because they could have been sent to anyone. Here is th
 3. Open the Meta Ad Library and see if they already run video ads.
 4. Choose one video from my portfolio that is close to their product.
 
-It takes five minutes and changes how many people reply. The bonus list of platforms and ways to find brands is here: {site}/downloads/brand-hunt-list.pdf
+It takes five minutes and changes how many people reply. The bonus list of platforms and ways to find brands is here: {site}/downloads/brand-hunt-list.pdf (Bahasa Indonesia: {site}/downloads/brand-hunt-list-id.pdf)
 
 Cimey` },
   { n: 3, day: 4, subject: '"Do I need followers?"', text:
